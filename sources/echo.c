@@ -53,9 +53,3 @@ void ft_echo(char *str)
 	exit(0);
 }
 
-char **get_env(void)
-{
-	static char **env;
-
-	return (env);
-}
