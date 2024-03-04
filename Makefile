@@ -1,10 +1,10 @@
-NAME= pipex
+NAME= minishell
 
 CC= cc
 CFLAGS= -Wall -Werror -Wextra -g
 
 SRC= $(addprefix sources/, $(SOURCES))
-SOURCES= echo.c parser.c
+SOURCES= echo.c parser.c get_env.c main_test_echo.c
 
 OBJ_DIR= objects
 OBJ= $(addprefix $(OBJ_DIR)/, $(SRC:sources/%.c=%.o))

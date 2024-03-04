@@ -11,13 +11,18 @@ typedef enum node_type
 	PIPE
 } node_type;
 
-typedef struct tree_node
+typedef struct s_tree_node b_tree; 
+
+struct b_tree
 {
 	char *data;
 	node_type type;
 	b_tree *left;
 	b_tree *right;
 
-} b_tree;
+};
+
+char **get_set_env(char **new_env);
+void ft_echo(char *str);
 
 #endif
