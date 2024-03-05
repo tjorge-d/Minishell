@@ -4,7 +4,7 @@ CC= cc
 CFLAGS= -Wall -Werror -Wextra -g
 
 SRC= $(addprefix sources/, $(SOURCES))
-SOURCES= echo.c parser.c
+SOURCES= parser.c
 
 OBJ_DIR= objects
 OBJ= $(addprefix $(OBJ_DIR)/, $(SRC:sources/%.c=%.o))
@@ -15,7 +15,7 @@ LIBFT= $(LIBFT_DIR)/libft.a
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJ) -o $@ $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJ) -lreadline -o $@ $(LIBFT)
 
 $(OBJ_DIR)/%.o: sources/%.c
 	mkdir -p $(OBJ_DIR)
@@ -35,6 +35,6 @@ fclean: clean
 re: fclean all
 
 run: re
-	./minishell
+	clear && ./minishell
 
 .PHONY: all fclean clean re run
