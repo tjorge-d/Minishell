@@ -12,19 +12,25 @@ typedef enum node_type
 	ARGUMENT,
 	REDIRECT_IN,
 	REDIRECT_OUT,
-	PIPE
+	PIPE,
+	FLAGS
 }	node_type;
 
-typedef struct s_tree_node b_tree; 
-
-struct b_tree
+typedef struct s_token
 {
-	char *data;
-	node_type type;
-	b_tree *left;
-	b_tree *right;
+	char 				*data;
+	struct s_token		*next;
 
-};
+}	t_token;
+
+typedef struct s_tree_node
+{
+	char 				*data;
+	node_type 			type;
+	struct s_tree_node *left;
+	struct s_tree_node *right;
+
+}	b_tree;
 
 char **get_set_env(char **new_env);
 void ft_echo(char *str, int flag);
