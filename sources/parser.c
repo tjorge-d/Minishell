@@ -9,10 +9,10 @@
 
 // }
 
-int main()
-{
-	char *line;
+// int main()
+// {
+// 	char *line;
 
-	line = readline(NULL);
-	printf("%s\n", line);
-}
+// 	line = readline(NULL);
+// 	printf("%s\n", line);
+// }

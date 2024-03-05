@@ -6,7 +6,7 @@ char **get_set_env(char **new_env)
 
 	if (new_env)
 	{
-		//free_char_pp(env);
+		free_char_pp(env);
 		env = new_env;
 	}
 	return (env);

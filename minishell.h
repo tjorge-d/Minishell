@@ -23,6 +23,7 @@ struct b_tree
 };
 
 char **get_set_env(char **new_env);
-void ft_echo(char *str);
+void ft_echo(char *str, int flag);
+void free_char_pp(char **array);
 
 #endif
