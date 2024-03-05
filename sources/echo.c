@@ -66,7 +66,10 @@ int	print_no_skips(char *str)
 	while(str[i] && str[i] != '"')
 	{	
 		if(str[i] == '$')
+		{
 			i += search_and_print_variable(&str[i + 1]);
+			continue;
+		}
 		if(str[i])
 			write(1, &str[i], 1);
 		else
@@ -89,12 +92,8 @@ void	ft_echo(char *str, int flag)
 		return ;
 	while(str[i])
 	{
-		if (str[i] == '"')
-			i += print_no_skips(&str[i]);
-		if(str[i] == '$')
-			i += search_and_print_variable(&str[i + 1]);
-		if(str[i] == '\'')
-			i += print_skip_apo(&str[i]);
+		if (if_sequence(str, &i))
+			continue;
 		if(str[i])
 			write(1, &str[i], 1);
 		else
@@ -106,4 +105,22 @@ void	ft_echo(char *str, int flag)
 	exit(0);
 }
 
-
+int if_sequence(char *str , int *i)
+{
+	if (str[*i] == '"')
+	{
+		*i += print_no_skips(&str[*i]);
+		return (1);
+	}
+	if(str[*i] == '$')
+	{
+		*i += search_and_print_variable(&str[*i + 1]);
+		return (1);
+	}
+	if(str[*i] == '\'')
+	{
+		*i += print_skip_apo(&str[*i]);
+		return (1);
+	}
+	return (0);
+}
