@@ -1,6 +1,6 @@
-#include "minishell.h"
+#include "../minishell.h"
 
-char **get_env(char **new_env)
+char **get_set_env(char **new_env)
 {
 	static char **env;
 
