@@ -4,7 +4,7 @@ CC= cc
 CFLAGS= -Wall -Werror -Wextra -g
 
 SRC= $(addprefix sources/, $(SOURCES))
-SOURCES= parser.c
+SOURCES= parser.c tokenizer.c tokenizer_utils.c
 
 OBJ_DIR= objects
 OBJ= $(addprefix $(OBJ_DIR)/, $(SRC:sources/%.c=%.o))
@@ -31,7 +31,7 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 	$(MAKE) -C $(LIBFT_DIR) fclean
-	
+
 re: fclean all
 
 run: re

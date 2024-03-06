@@ -32,8 +32,20 @@ typedef struct s_tree_node
 
 }	b_tree;
 
-char **get_set_env(char **new_env);
-void ft_echo(char *str, int flag);
-void free_char_pp(char **array);
+//parser.c
+int			parser();
+
+//tokenizer.c
+void		destroy_tokens(t_token *token);
+t_token		*token_creator(char *line, int x1, int x2);
+int			add_token(char *line, t_token **token, int x1, int x2);
+int 		tokenizer(t_token **head, char *line);
+
+//tokenizer_utils.c
+int			is_space(char c);
+void 		iter_spaces(char *line, int *x, int *i);
+int			iter_quote(char *line, int	*i, char quote, int *x2);
+int			print_quotes(t_token **head, char *line, int *x, int *i);
+int			iter_chars(t_token **head, char *line, int *x, int *i);
 
 #endif
