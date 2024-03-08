@@ -3,14 +3,16 @@
 int	parser()
 {
 	char 		*line;
-	t_token		*token;
-	t_token		*test;
+//	t_token		*token;
+//	t_token		*test;
 
-	token = NULL;
+//	token = NULL;
+	printf("line:\n");
 	line = readline(NULL);
-	printf("\n");
-	if(!tokenizer(&token, line))
-		return (destroy_tokens(token), 0);
+	line = expander(line);
+	printf("\nexpanded line:\n%s\n", line);
+	/*if(!tokenizer(&token, line))
+		return (destroy_tokens(token, 'e'), 0);
 	test = token;
 	while (test)
 	{
@@ -18,14 +20,15 @@ int	parser()
 		test = test->next;
 	}
 	free(line);
-	destroy_tokens(token);
+	destroy_tokens(token, 'd');*/
 	printf("========================\n");
 	parser();
 	return (1);
 }
 
-int main()
+int main(int argc, char **argv ,char **envp)
 {
+	get_set_env(envp);
 	if (!parser())
 		return (2);
 	return (0);
