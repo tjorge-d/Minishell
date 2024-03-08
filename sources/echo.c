@@ -21,17 +21,21 @@ char *get_var_from_env(char *var, int len)
 {
 	char	**env;
 	int		i;
+	char	*var_with_equal;
 
 	i = 0;
 	env = get_set_env(NULL);
+	var_with_equal = ft_strjoin(var, "=");
 	while (env[i])
 	{
-		if(!ft_strncmp(var, env[i], len))
+		if(!ft_strncmp(var_with_equal, env[i], len + 1))
 		{
+			free(var_with_equal);
 			return (&env[i][len + 1]);
 		}
 		i ++;
 	}
+	free(var_with_equal);
 	return (NULL);
 }
 
@@ -53,7 +57,7 @@ int	search_and_print_variable(char *s)
 		value_to_print = get_var_from_env(variable, i);
 	if (value_to_print)
 	{
-		n_chars_printed = ft_printf("%s", value_to_print) + 1;
+		n_chars_printed = printf("%s", value_to_print) + 1;
 	}
 	free(variable);
 	return (i + 1);
