@@ -48,13 +48,16 @@ int			iter_quote(char *line, int	*i, char quote, int *x2);
 int			print_quotes(t_token **head, char *line, int *x, int *i);
 int			iter_chars(t_token **head, char *line, int *x, int *i);
 
-int		iter_single_quote(char *line, int i);
-int		iter_double_quote(char *line, int i);
-char	*get_var(char *line, int var_pos, int len);
-char	*refresh_line(char *line, int x1, int x2, char *expansion);
-char	*search_and_add_variable(char *line, int *i);
-char	*expander(char *line);
+//expander.c
+char		*get_var(char *line, int var_pos, int len);
+char		*refresh_line(char *line, int x1, int x2, char *expansion);
+char		*search_and_add_variable(char *line, int *i);
+char		*expander(char *line);
 
-char	 **get_set_env(char **new_env);
+//expander_utils.c
+int			iter_single_quote(char *line, int i);
+int			iter_double_quote(char *line, int i);
+
+char		 **get_set_env(char **new_env);
 
 #endif

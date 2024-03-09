@@ -1,10 +1,10 @@
 NAME= minishell
 
 CC= cc
-CFLAGS= -g #-Wall -Werror -Wextra
+CFLAGS= -g -Wall -Werror -Wextra
 
 SRC= $(addprefix sources/, $(SOURCES))
-SOURCES= parser.c tokenizer.c tokenizer_utils.c expander2.c get_env.c
+SOURCES= parser.c tokenizer.c tokenizer_utils.c expander.c expander_utils.c get_env.c
 
 OBJ_DIR= objects
 OBJ= $(addprefix $(OBJ_DIR)/, $(SRC:sources/%.c=%.o))

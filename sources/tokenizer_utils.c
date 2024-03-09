@@ -51,18 +51,18 @@ int	iter_chars(t_token **head, char *line, int *x, int *i)
 		{
 			x[1] = (*i) - 1;
 			if (x[0] <= x[1] && !add_token(line, head, x[0], x[1]))
-				return (1);
+				return (0);
 			if (!add_token(line, head, *i, *i))
-				return (1);
+				return (0);
 			x[0] = (*i) + 1;
 		}
 		else if (line[(*i)] == '"' || line[(*i)] == '\'')
 		{
 			if (!print_quotes(head, line, x, i))
-				return (1);
+				return (0);
 		}
 		(*i)++;
 	}
 	x[1] = (*i) - 1;
-	return (0);
+	return (1);
 }

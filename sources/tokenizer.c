@@ -41,7 +41,6 @@ int	add_token(char *line, t_token **token, int x1, int x2)
 {
 	t_token		*current;
 
-	//printf ("x1= %i\nx2= %i\n\n", x[0], x[1]);
 	if (*token == NULL)
 	{
 		*token = token_creator(line, x1, x2);
