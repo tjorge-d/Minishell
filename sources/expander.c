@@ -14,9 +14,7 @@ char	*get_var(char *line, int var_pos, int len)
 	var_name[len] = '\0';
 	var_name[len - 1] = '=';
 	while (++i < len - 1)
-		var_name[i] = line[var_pos + 1];
-	printf("%i\n", len);
-	printf("%s\n", var_name);
+		var_name[i] = line[var_pos + i];
 	while (env[i])
 	{
 		if(!ft_strncmp(var_name, env[i], len))
@@ -45,18 +43,10 @@ char	*refresh_line(char *line, int x1, int x2, char *expansion)
 		new_line[i] = line[i];
 	j = 0;
 	while (expansion[j])
-	{
-		new_line[i] = expansion[j];
-		j++;
-		i++;
-	}
+		new_line[i++] = expansion[j++];
 	j = x2;
 	while(line[j])
-	{
-		new_line[i] = line[j];
-		j++;
-		i++;
-	}
+		new_line[i++] = line[j++];
 	new_line[i] = '\0';
 	free (line);
 	return (new_line);
@@ -68,8 +58,7 @@ char	*search_and_add_variable(char *line, int *i)
 	int			j;
 
 	j = (*i) + 1;
-	while (!is_space(line[j]) && line[j] != '\'' && line[j] != '"' \
-			&& line[j] != '>' && line[j] != '<' && line[j] != '$' && line[j])
+	while (ft_isalnum(line[j]) || line[j] == '_')
 		j++;
 	expansion = get_var(line, (*i) + 1, j - (*i));
 	if (!expansion)
@@ -88,9 +77,9 @@ char	*expander(char *line)
 	while (line[i])
 	{
 		if(line[i] == '\'')
-			i = iter_single_quote(line, i);
+			i = iter_single_quote(line, i + 1);
 		else if (line[i] == '"')
-			i = iter_double_quote(line, i);
+			i = iter_double_quote(&line, i + 1);
 		else if(line[i] == '$')
 		{
 			line = search_and_add_variable(line, &i);

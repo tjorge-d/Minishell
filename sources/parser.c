@@ -36,3 +36,5 @@ int main(int argc, char **argv ,char **envp)
 		return (2);
 	return (0);
 }
+
+//valgrind --track-fds=yes --leak-check=full --show-leak-kinds=all  --suppressions=".valgrind.supp" ./minishell

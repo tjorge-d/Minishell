@@ -56,7 +56,7 @@ char		*expander(char *line);
 
 //expander_utils.c
 int			iter_single_quote(char *line, int i);
-int			iter_double_quote(char *line, int i);
+int			iter_double_quote(char **line, int i);
 
 char		 **get_set_env(char **new_env);
 
