@@ -10,6 +10,7 @@ int	is_space(char c)
 
 void iter_spaces(char *line, int *x, int *i)
 {
+	add_token
 	while (is_space(line[(*i)]))
 		(*i)++;
 	x[0] = (*i);
@@ -58,6 +59,7 @@ int	iter_chars(t_token **head, char *line, int *x, int *i)
 		}
 		else if (line[(*i)] == '"' || line[(*i)] == '\'')
 		{
+			//skip quotes
 			if (!print_quotes(head, line, x, i))
 				return (0);
 		}

@@ -4,22 +4,25 @@ int	parser()
 {
 	char 		*line;
 	t_token		*token;
-	t_token		*test;
+	t_token		*teste;
+	b_tree		*tree;
 
 	token = NULL;
+	tree = NULL;
 	printf("line:\n");
 	line = readline(NULL);
 	line = expander(line);
 	printf("\nexpanded line:\n%s\n\nTokens:\n", line);
 	if(!tokenizer(&token, line))
 		return (destroy_tokens(token, 'e'), 0);
-	test = token;
-	while (test)
+	teste = token;
+	while (teste)
 	{
-		printf("%s$\n", test->data);
-		test = test->next;
+		printf("%s$\n", teste->data);
+		teste = teste->next;
 	}
 	free(line);
+	tree_constructor(&tree, &token);
 	destroy_tokens(token, 'd');
 	printf("========================\n");
 	parser();

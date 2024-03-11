@@ -58,6 +58,10 @@ char		*expander(char *line);
 int			iter_single_quote(char *line, int i);
 int			iter_double_quote(char **line, int i);
 
+//tree_constructor.c
+int			create_branch(b_tree **tree);
+int			tree_constructor(b_tree **tree, t_token **token);
+
 char		 **get_set_env(char **new_env);
 
 #endif
