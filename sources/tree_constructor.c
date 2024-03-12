@@ -81,35 +81,8 @@ int	tree_constructor(b_tree **tree, t_token **token)
 
 	if (!pipe_brancher(tree, token))
 		return (0);
-	printf("\npipes:\n");
-	test = *tree;
-	while(test)
-	{
-		if (test->type == PIPE)
-		 	printf("|\n");
-		test = test->left;
-	}
-
 	if (!redirection_checker(tree, token))
 		return (0);
-	printf("\nredirections:\n");
-	test = *tree;
-	test2 = *tree;
-	while(test2)
-	{
-		while(test)
-		{
-			printf("%i", test->type);
-			if (test->data)
-				printf("(%s)", test->data);
-			printf("->");
-			test = test->right;
-		}
-		printf("\n");
-		test2 = test2->left;
-		test = test2;
-	}
-
 	if (!token_setter(tree, token))
 		return (0);
 	printf("\ncomplete tree:\n");

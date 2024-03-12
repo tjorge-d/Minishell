@@ -12,9 +12,7 @@ typedef enum node_type
 	ARGUMENT,
 	REDIRECT_IN,
 	REDIRECT_OUT,
-	REDIRECT_OUT_APP,
 	PIPE,
-	MAIN_BRANCH,
 	FLAGS
 }	node_type;
 

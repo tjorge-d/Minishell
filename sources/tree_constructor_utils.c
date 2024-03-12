@@ -72,13 +72,6 @@ int	add_redirection(b_tree **branch, t_token **token, char *redir)
 	iterator = *branch;
 	while (iterator)
 	{
-		if (iterator->type == REDIRECT_OUT && redir[0] == '>')
-		{
-			iterator->data = (*token)->next->data;
-			(*token)->next->used = 1;
-			(*token)->used = 1;
-			return (1);
-		}
 		if (iterator->right == NULL)
 		{
 			if (!redirect_to_last(iterator, token, redir))
