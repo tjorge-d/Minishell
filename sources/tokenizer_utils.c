@@ -8,40 +8,22 @@ int	is_space(char c)
 	return (0);
 }
 
-void iter_spaces(char *line, int *x, int *i)
+void	iter_spaces(char *line, int *x, int *i)
 {
-	add_token
 	while (is_space(line[(*i)]))
 		(*i)++;
 	x[0] = (*i);
 }
 
-int	iter_quote(char *line, int	*i, char quote, int *x2)
+void	skip_quote(char *line, int *i, char quote)
 {
 	while (line[(*i)])
 	{
 		(*i)++;
 		if (line[(*i)] == quote)
-		{
-			(*x2) = (*i);
-			return(1);
-		}
+			break ;
 	}
-	return (0);
-}
-
-int	print_quotes(t_token **head, char *line, int *x, int *i)
-{
-	x[1] = (*i) - 1;
-	if (x[0] <= x[1] && !add_token(line, head, x[0], x[1]))
-		return (0);
-	x[0] = (*i);
-	if (!iter_quote(line, i, line[(*i)], &x[1]))
-		return (0);
-	if (!add_token(line, head, x[0], x[1]))
-		return (0);
-	x[0] = (*i) + 1;
-	return (1);
+	return ;
 }
 
 int	iter_chars(t_token **head, char *line, int *x, int *i)
@@ -58,11 +40,7 @@ int	iter_chars(t_token **head, char *line, int *x, int *i)
 			x[0] = (*i) + 1;
 		}
 		else if (line[(*i)] == '"' || line[(*i)] == '\'')
-		{
-			//skip quotes
-			if (!print_quotes(head, line, x, i))
-				return (0);
-		}
+			skip_quote(line, i, line[(*i)]);
 		(*i)++;
 	}
 	x[1] = (*i) - 1;

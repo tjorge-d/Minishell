@@ -20,6 +20,7 @@ typedef struct s_token
 {
 	char 				*data;
 	struct s_token		*next;
+	int					used;
 
 }	t_token;
 
@@ -44,8 +45,7 @@ int 		tokenizer(t_token **head, char *line);
 //tokenizer_utils.c
 int			is_space(char c);
 void 		iter_spaces(char *line, int *x, int *i);
-int			iter_quote(char *line, int	*i, char quote, int *x2);
-int			print_quotes(t_token **head, char *line, int *x, int *i);
+void		skip_quote(char *line, int *i, char quote);
 int			iter_chars(t_token **head, char *line, int *x, int *i);
 
 //expander.c
@@ -59,8 +59,16 @@ int			iter_single_quote(char *line, int i);
 int			iter_double_quote(char **line, int i);
 
 //tree_constructor.c
-int			create_branch(b_tree **tree);
+int			pipe_brancher(b_tree **tree, t_token **token);
+int			redirection_checker(b_tree **tree, t_token **token);
+int			token_setter(b_tree **tree, t_token **token);
 int			tree_constructor(b_tree **tree, t_token **token);
+
+//tree_constructor.c
+int			set_token(b_tree **branch, t_token **token);
+int			create_branch(b_tree **tree);
+int    		redirect_to_last(b_tree *node, t_token **token, char *redir);
+int			add_redirection(b_tree **branch, t_token **token, char *redir);
 
 char		 **get_set_env(char **new_env);
 
