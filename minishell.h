@@ -14,7 +14,7 @@ typedef enum node_type
 	REDIRECT_OUT,
 	REDIRECT_OUT_APP,
 	PIPE,
-	MAIN_BRANCH,
+	FIRST_BRANCH,
 	FLAGS
 }	node_type;
 
@@ -38,6 +38,16 @@ typedef struct s_tree_node
 //parser.c
 int			parser();
 
+//expander.c
+char		*get_var(char *line, int var_pos, int len);
+char		*refresh_line(char *line, int x1, int x2, char *expansion);
+char		*search_and_add_variable(char *line, int *i);
+char		*expander(char *line);
+
+//expander_utils.c
+int			iter_single_quote(char *line, int i);
+int			iter_double_quote(char **line, int i);
+
 //tokenizer.c
 void		destroy_tokens(t_token *token, char mode);
 t_token		*token_creator(char *line, int x1, int x2);
@@ -50,26 +60,16 @@ void 		iter_spaces(char *line, int *x, int *i);
 void		skip_quote(char *line, int *i, char quote);
 int			iter_chars(t_token **head, char *line, int *x, int *i);
 
-//expander.c
-char		*get_var(char *line, int var_pos, int len);
-char		*refresh_line(char *line, int x1, int x2, char *expansion);
-char		*search_and_add_variable(char *line, int *i);
-char		*expander(char *line);
-
-//expander_utils.c
-int			iter_single_quote(char *line, int i);
-int			iter_double_quote(char **line, int i);
-
 //tree_constructor.c
 int			pipe_brancher(b_tree **tree, t_token **token);
 int			redirection_checker(b_tree **tree, t_token **token);
-int			token_setter(b_tree **tree, t_token **token);
+int			command_builder(b_tree **tree, t_token **token);
 int			tree_constructor(b_tree **tree, t_token **token);
 
-//tree_constructor.c
-int			set_token(b_tree **branch, t_token **token);
+//tree_constructor_utils.c
+int			set_token(b_tree **branch, t_token **token, int	token_type);
 int			create_branch(b_tree **tree);
-int    		redirect_to_last(b_tree *node, t_token **token, char *redir);
+int			get_redirection_type(char *redir);
 int			add_redirection(b_tree **branch, t_token **token, char *redir);
 
 char		 **get_set_env(char **new_env);

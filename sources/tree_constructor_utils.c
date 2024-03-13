@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-int	set_token(b_tree **branch, t_token **token)
+int	set_token(b_tree **branch, t_token **token, int	token_type)
 {
 	b_tree *iterator;
 
@@ -13,7 +13,7 @@ int	set_token(b_tree **branch, t_token **token)
 			iterator->right = malloc(sizeof(b_tree));
 			if (iterator->right == NULL)
 				return (0);
-			iterator->right->type = 42;
+			iterator->right->type = token_type;
 			iterator->right->data = (*token)->data;
 			(*token)->used = 1;
 			iterator->right->left = NULL;
@@ -48,36 +48,39 @@ int	create_branch(b_tree **tree)
 	return (0);
 }
 
-int    redirect_to_last(b_tree *node, t_token **token, char *redir)
+int	get_redirection_type(char *redir)
 {
-    node->right = malloc(sizeof(b_tree));
-	if (node->right == NULL)
-		return (0);
-	if (redir[0] == '>')
-		node->right->type = REDIRECT_OUT;
-	if (redir[0] == '<')
-		node->right->type = REDIRECT_IN;
-	node->right->data = (*token)->next->data;
-	(*token)->next->used = 1;
-	(*token)->used = 1;
-	node->right->left = NULL;
-	node->right->right = NULL;
-	return (1);
+	if (!ft_strncmp(redir, "<", 2))
+		return (REDIRECT_IN);
+	if (!ft_strncmp(redir, ">", 2))
+		return (REDIRECT_OUT);
+	if (!ft_strncmp(redir, ">>", 3))
+		return (REDIRECT_OUT_APP);
+	return (0);
 }
 
 int	add_redirection(b_tree **branch, t_token **token, char *redir)
 {
-	b_tree *iterator;
-
+	b_tree	*iterator;
+	int		redirection_type;
+	
 	iterator = *branch;
+	redirection_type = get_redirection_type(redir);
 	while (iterator)
 	{
 		if (iterator->right == NULL)
 		{
-			if (!redirect_to_last(iterator, token, redir))
-                return (0);
-           return (1);
-        }
+			iterator->right = malloc(sizeof(b_tree));
+			if (iterator->right == NULL)
+				return (0);
+			iterator->right->type = redirection_type;
+			iterator->right->data = (*token)->next->data;
+			(*token)->next->used = 1;
+			(*token)->used = 1;
+			iterator->right->left = NULL;
+			iterator->right->right = NULL;
+			return (1);
+       	}
 		iterator = iterator->right;
 	}
 	return (0);

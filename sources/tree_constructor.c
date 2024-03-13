@@ -29,15 +29,15 @@ int	redirection_checker(b_tree **tree, t_token **token)
 	curr_branch = *tree;
 	while (curr_token)
 	{
-        if (!ft_strncmp(curr_token->data, redir, 2))
+        if (!ft_strncmp(curr_token->data, redir, 1))
 		{
-			if (!add_redirection(&curr_branch, &curr_token, redir))
+			if (!add_redirection(&curr_branch, &curr_token, curr_token->data))
 				return (0);	
 		}
 		curr_token = curr_token->next;
 		if (curr_token && !ft_strncmp(curr_token->data, "|", 2))
 			curr_branch = curr_branch->left;
-		if (curr_token == NULL && ft_strncmp(redir, "<", 2))
+		if (curr_token == NULL && ft_strncmp(redir, "<", 1))
 		{
 			curr_token = *token;
 			curr_branch = *tree;
@@ -47,23 +47,29 @@ int	redirection_checker(b_tree **tree, t_token **token)
 	return (1);
 }
 
-int	token_setter(b_tree **tree, t_token **token)
+int	command_builder(b_tree **tree, t_token **token)
 {
 	t_token		*curr_token;
 	b_tree		*curr_branch;
+	int			token_type;
 
 	curr_token = *token;
 	curr_branch = *tree;
+	token_type = COMMAND;
 	while (curr_token)
 	{
 		if (!curr_token->used)
 		{
-			if (!set_token(&curr_branch, &curr_token))
+			if (!set_token(&curr_branch, &curr_token, token_type))
 				return (0);
+			token_type = ARGUMENT;
 		}
 		curr_token = curr_token->next;
 		if (curr_token && !ft_strncmp(curr_token->data, "|", 2))
+		{
 			curr_branch = curr_branch->left;
+			token_type = COMMAND;
+		}
 	}
 	return (1);
 }
@@ -76,14 +82,14 @@ int	tree_constructor(b_tree **tree, t_token **token)
 	*tree = malloc(sizeof(b_tree));
 	(*tree)->left = NULL;
 	(*tree)->right = NULL;
-	(*tree)->type = 0;
+	(*tree)->type = FIRST_BRANCH;
 	(*tree)->data = NULL;
 
 	if (!pipe_brancher(tree, token))
 		return (0);
 	if (!redirection_checker(tree, token))
 		return (0);
-	if (!token_setter(tree, token))
+	if (!command_builder(tree, token))
 		return (0);
 	printf("\ncomplete tree:\n");
 	test = *tree;
