@@ -28,20 +28,22 @@ typedef struct s_tree_node
 
 }	b_tree;
 
-typedef struct s_cd_contents cd_contents;
 
-typedef struct s_cd_contents
-{
-	char *old_pwd;
-	char *home;
-	char *pwd;
-} cd_contents;
-
-char		**get_set_env(char **new_env);
-cd_contents *get_set_cd_contents(cd_contents *newcd_cont);
+char		**get_set_env(char ***new_env, int flag_to_free);
 int			set_env_old_pwd(char *new_old_pwd);
 int			set_env_pwd(char *new_pwd);
 void		ft_echo(char *str, int flag);
 void		free_char_pp(char **array);
+char		*get_var_from_env(char *var, int len);
+char		**copy_array(char **src);
+void		copy_array_2(char **src, char **dest);
+int			export(char *expression);
+int			array_len(char **arr);
+void		print_array(char **arr);
+void		ft_free(void **ptr);
+int			search_var_index(char *s);
+char		*search_var_value(char *var_name);
+void		cd_without_args(void);
+void		cd_with_arg(char *arg);
 
 #endif

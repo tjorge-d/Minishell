@@ -24,7 +24,7 @@ char *get_var_from_env(char *var, int len)
 	char	*var_with_equal;
 
 	i = 0;
-	env = get_set_env(NULL);
+	env = get_set_env(NULL, 0);
 	var_with_equal = ft_strjoin(var, "=");
 	while (env[i])
 	{

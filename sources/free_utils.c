@@ -5,13 +5,14 @@ void	free_char_pp(char **array)
 	int	i;
 
 	i = 0;
-	if (array)
+	printf("IN FREE %p\n", array);
+	if (array && array[i])
 	{
 		while (array[i])
 		{
 			free(array[i]);
 			i ++;
 		}
-		free(array);
 	}
+	free(array);
 }
