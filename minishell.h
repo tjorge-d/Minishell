@@ -61,6 +61,7 @@ void		skip_quote(char *line, int *i, char quote);
 int			iter_chars(t_token **head, char *line, int *x, int *i);
 
 //tree_constructor.c
+void		destroy_tree(b_tree **tree);
 int			pipe_brancher(b_tree **tree, t_token **token);
 int			redirection_checker(b_tree **tree, t_token **token);
 int			command_builder(b_tree **tree, t_token **token);

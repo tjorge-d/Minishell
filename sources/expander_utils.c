@@ -1,19 +1,5 @@
 #include "../minishell.h"
 
-/*int	check_for_invalid_sintax(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i])
-	{
-		while (is_space(line[i]))
-			i++;
-		if (!ft_strncmp(line[i], ">>>", 3) || !ft_strncmp(line[i], ">", 2) \
-			|| !ft_strncmp(line[i], "<<<", 3) || !ft_strncmp(line[i], "<", 2))
-	}
-}*/
-
 int	iter_single_quote(char *line, int i)
 {
 	while (line[i] && line[i] != '\'')

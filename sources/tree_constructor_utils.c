@@ -1,5 +1,19 @@
 #include "../minishell.h"
 
+b_tree	*init_node()
+{
+	b_tree	*node;
+
+	node = malloc(sizeof(b_tree));
+	if (!node)
+		return (NULL);
+	node->data = NULL;
+	node->type = 0;
+	node->left = NULL;
+	node->right = NULL;
+	return (node);
+}
+
 int	set_token(b_tree **branch, t_token **token, int	token_type)
 {
 	b_tree *iterator;
@@ -10,14 +24,12 @@ int	set_token(b_tree **branch, t_token **token, int	token_type)
 
 		if (iterator->right == NULL)
 		{
-			iterator->right = malloc(sizeof(b_tree));
+			iterator->right = init_node();
 			if (iterator->right == NULL)
 				return (0);
 			iterator->right->type = token_type;
 			iterator->right->data = (*token)->data;
 			(*token)->used = 1;
-			iterator->right->left = NULL;
-			iterator->right->right = NULL;
 			return (1);
 		}
 		iterator = iterator->right;
@@ -34,13 +46,10 @@ int	create_branch(b_tree **tree)
 	{
 		if (iterator->left == NULL)
 		{
-			iterator->left = malloc(sizeof(b_tree));
+			iterator->left = init_node();
 			if (iterator->left == NULL)
 				return (0);
 			iterator->left->type = PIPE;
-			iterator->left->data = NULL;
-			iterator->left->left = NULL;
-			iterator->left->right = NULL;
 			return (1);
 		}
 		iterator = iterator->left;
@@ -70,15 +79,16 @@ int	add_redirection(b_tree **branch, t_token **token, char *redir)
 	{
 		if (iterator->right == NULL)
 		{
-			iterator->right = malloc(sizeof(b_tree));
+			iterator->right = init_node();
 			if (iterator->right == NULL)
 				return (0);
 			iterator->right->type = redirection_type;
+			if ((*token)->next == NULL || (*token)->next->data[0] == '|' \
+				|| (*token)->next->data[0] == '>' || (*token)->next->data[0] == '<')
+				return (write(2, "Error: invalid syntax\n", 23), 0);
 			iterator->right->data = (*token)->next->data;
 			(*token)->next->used = 1;
 			(*token)->used = 1;
-			iterator->right->left = NULL;
-			iterator->right->right = NULL;
 			return (1);
        	}
 		iterator = iterator->right;

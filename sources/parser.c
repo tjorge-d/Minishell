@@ -1,29 +1,5 @@
 #include "../minishell.h"
 
-void	destroy_tree(b_tree **tree)
-{
-	b_tree		*curr_node;
-	b_tree		*prev_node;
-	b_tree		*next_branch;
-
-	curr_node = *tree;
-	prev_node = *tree;
-	next_branch = curr_node->left;
-	while (curr_node)
-	{
-		prev_node = curr_node;
-		curr_node = curr_node->right;
-		free(prev_node);
-		if (curr_node == NULL)
-		{
-			if (next_branch == NULL)
-				return ;
-			curr_node = next_branch;
-			next_branch = next_branch->left;
-		}
-	}
-}
-
 int	parser()
 {
 	char 		*line;
@@ -46,7 +22,8 @@ int	parser()
 		teste = teste->next;
 	}
 	free(line);
-	tree_constructor(&tree, &token);
+	if(!tree_constructor(&tree, &token))
+		return (destroy_tokens(token, 'd'), destroy_tree(&tree), 0);
 	destroy_tokens(token, 'd');
 	destroy_tree(&tree);
 	printf("========================\n");

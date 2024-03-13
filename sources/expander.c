@@ -15,13 +15,11 @@ char	*get_var(char *line, int var_pos, int len)
 	var_name[len - 1] = '=';
 	while (++i < len - 1)
 		var_name[i] = line[var_pos + i];
+	i = 0;
 	while (env[i])
 	{
 		if(!ft_strncmp(var_name, env[i], len))
-		{
-			free(var_name);
-			return (&env[i][len]);
-		}
+			return (free(var_name), &env[i][len]);
 		i++;
 	}
 	free(var_name);

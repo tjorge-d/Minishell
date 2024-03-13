@@ -1,5 +1,29 @@
 #include "../minishell.h"
 
+void	destroy_tree(b_tree **tree)
+{
+	b_tree		*curr_node;
+	b_tree		*prev_node;
+	b_tree		*next_branch;
+
+	curr_node = *tree;
+	prev_node = *tree;
+	next_branch = curr_node->left;
+	while (curr_node)
+	{
+		prev_node = curr_node;
+		curr_node = curr_node->right;
+		free(prev_node);
+		if (curr_node == NULL)
+		{
+			if (next_branch == NULL)
+				return ;
+			curr_node = next_branch;
+			next_branch = next_branch->left;
+		}
+	}
+}
+
 int	pipe_brancher(b_tree **tree, t_token **token)
 {
     t_token		*curr_token;
@@ -12,6 +36,8 @@ int	pipe_brancher(b_tree **tree, t_token **token)
 			if (!create_branch(tree))
 				return (0);
 			curr_token->used = 1;
+			if (curr_token->next == NULL)
+				return (write(2, "Error: invalid syntax\n", 23), 0);
 		}
 		curr_token = curr_token->next;
 	}
@@ -80,11 +106,12 @@ int	tree_constructor(b_tree **tree, t_token **token)
 	b_tree	*test2;
 
 	*tree = malloc(sizeof(b_tree));
+	if (!tree)
+		return (0);
+	(*tree)->type = FIRST_BRANCH;
 	(*tree)->left = NULL;
 	(*tree)->right = NULL;
-	(*tree)->type = FIRST_BRANCH;
 	(*tree)->data = NULL;
-
 	if (!pipe_brancher(tree, token))
 		return (0);
 	if (!redirection_checker(tree, token))
