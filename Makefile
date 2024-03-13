@@ -5,7 +5,7 @@ CFLAGS= -Wall -Werror -Wextra -g
 
 SRC= $(addprefix sources/, $(SOURCES))
 
-SOURCES= echo.c parser.c get_env.c free_utils.c main_test_echo.c export.c cd_built_in.c
+SOURCES= get_env.c free_utils.c main_test_export.c export.c cd_built_in.c utils.c
 
 OBJ_DIR= objects
 OBJ= $(addprefix $(OBJ_DIR)/, $(SRC:sources/%.c=%.o))
