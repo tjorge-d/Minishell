@@ -20,18 +20,18 @@ typedef enum node_type
 
 typedef struct s_token
 {
-	char 				*data;
-	struct s_token		*next;
-	int					used;
+	char 					*data;
+	struct s_token			*next;
+	int						used;
 
 }	t_token;
 
 typedef struct s_tree_node
 {
-	char 				*data;
-	node_type 			type;
-	struct s_tree_node *left;
-	struct s_tree_node *right;
+	char 					*data;
+	node_type 				type;
+	struct s_tree_node 		*left;
+	struct s_tree_node 		*right;
 
 }	b_tree;
 
@@ -68,11 +68,24 @@ int			command_builder(b_tree **tree, t_token **token);
 int			tree_constructor(b_tree **tree, t_token **token);
 
 //tree_constructor_utils.c
+b_tree		*init_node(char **data, int type);
 int			set_token(b_tree **branch, t_token **token, int	token_type);
 int			create_branch(b_tree **tree);
 int			get_redirection_type(char *redir);
 int			add_redirection(b_tree **branch, t_token **token, char *redir);
 
-char		 **get_set_env(char **new_env);
+//get_data_path.c
+int			is_built_in(char *line);
+char		*check_command(char **path, char* data);
+char		*get_data_path(char *data);
+
+
+void		print_array(char **arr);
+char 		*search_var_value(char *var_name);
+int			search_var_index(char *s);
+int			array_len(char **arr);
+char		**copy_array(char **src);
+void		free_char_pp(char **array);
+char		**get_set_env(char ***new_env, int);
 
 #endif

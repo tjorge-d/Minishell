@@ -4,7 +4,7 @@ CC= cc
 CFLAGS= -g -Wall -Werror -Wextra
 
 SRC= $(addprefix sources/, $(SOURCES))
-SOURCES= parser.c tokenizer.c tokenizer_utils.c expander.c expander_utils.c get_env.c tree_constructor.c tree_constructor_utils.c
+SOURCES= parser.c tokenizer.c tokenizer_utils.c expander.c expander_utils.c utils_update.c tree_constructor.c tree_constructor_utils.c get_data_path.c
 
 OBJ_DIR= objects
 OBJ= $(addprefix $(OBJ_DIR)/, $(SRC:sources/%.c=%.o))

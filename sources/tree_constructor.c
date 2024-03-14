@@ -75,25 +75,27 @@ int	redirection_checker(b_tree **tree, t_token **token)
 
 int	command_builder(b_tree **tree, t_token **token)
 {
-	t_token		*curr_token;
-	b_tree		*curr_branch;
+	t_token		*c_token;
+	b_tree		*c_branch;
 	int			token_type;
 
-	curr_token = *token;
-	curr_branch = *tree;
+	c_token = *token;
+	c_branch = *tree;
 	token_type = COMMAND;
-	while (curr_token)
+	while (c_token)
 	{
-		if (!curr_token->used)
+		if (!c_token->used)
 		{
-			if (!set_token(&curr_branch, &curr_token, token_type))
+			if (token_type == COMMAND)
+				c_token->data = get_data_path(c_token->data);
+			if (!c_token->data || !set_token(&c_branch, &c_token, token_type))
 				return (0);
 			token_type = ARGUMENT;
 		}
-		curr_token = curr_token->next;
-		if (curr_token && !ft_strncmp(curr_token->data, "|", 2))
+		c_token = c_token->next;
+		if (c_token && !ft_strncmp(c_token->data, "|", 2))
 		{
-			curr_branch = curr_branch->left;
+			c_branch = c_branch->left;
 			token_type = COMMAND;
 		}
 	}
@@ -105,13 +107,9 @@ int	tree_constructor(b_tree **tree, t_token **token)
 	b_tree	*test;
 	b_tree	*test2;
 
-	*tree = malloc(sizeof(b_tree));
+	*tree = init_node(NULL, FIRST_BRANCH);
 	if (!tree)
 		return (0);
-	(*tree)->type = FIRST_BRANCH;
-	(*tree)->left = NULL;
-	(*tree)->right = NULL;
-	(*tree)->data = NULL;
 	if (!pipe_brancher(tree, token))
 		return (0);
 	if (!redirection_checker(tree, token))

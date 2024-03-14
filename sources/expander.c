@@ -7,7 +7,7 @@ char	*get_var(char *line, int var_pos, int len)
 	char	*var_name;
 
 	i = -1;
-	env = get_set_env(NULL);
+	env = get_set_env(NULL, 0);
 	var_name = malloc(sizeof(char) * (len + 1));
 	if (!var_name)
 		return (NULL);
