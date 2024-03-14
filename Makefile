@@ -1,14 +1,10 @@
 NAME= minishell
 
 CC= cc
-CFLAGS= -Wall -Werror -Wextra -g
+CFLAGS= -g -Wall -Werror -Wextra
 
 SRC= $(addprefix sources/, $(SOURCES))
-<<<<<<< HEAD
-SOURCES= parser.c
-=======
-SOURCES= echo.c parser.c get_env.c free_utils.c main_test_echo.c
->>>>>>> 52ac8154cf6d327fc855aee28b8269db33efc3a0
+SOURCES= parser.c tokenizer.c tokenizer_utils.c expander.c expander_utils.c utils_update.c tree_constructor.c tree_constructor_utils.c get_data_path.c
 
 OBJ_DIR= objects
 OBJ= $(addprefix $(OBJ_DIR)/, $(SRC:sources/%.c=%.o))
@@ -35,7 +31,7 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 	$(MAKE) -C $(LIBFT_DIR) fclean
-	
+
 re: fclean all
 
 run: re
