@@ -1,118 +1,79 @@
 #include "../minishell.h"
 
-// b_tree	*parser(char *line)
-// {
-// 	b_tree	*head;
-// 	b_tree	*tail;
-// 	int		i;
-// 	int		x1;
-// 	int		x2;
-
-// 	tail = head;
-// 	x1 = 0;
-// 	x2 = 0;
-// 	i = -1;
-// 	while (line[++i])
-// 	{
-// 		while (line[i] == ' ' && line[i])
-// 			i++;
-// 		x1 = i;
-// 		while (line[i] != ' ' && line[i])
-// 			i++;
-// 		x2 = i - 1;
-// 		if (x1 && x2)
-// 		{
-// 			tail->data = tokenizer(line, x1, x2);
-// 			tail = tail->next;
-// 			x1 = 0;
-// 			x2 = 0;
-// 		}
-// 	}
-// }
-
-int	destroy_tokens(t_token *token)
+void	print_tree(b_tree **tree)
 {
-	while (token)
+	b_tree	*test1;
+	b_tree	*test2;
+	test1 = *tree;
+	test2 = *tree;
+	printf("\ntree:\n");
+	while(test2)
 	{
-		free(token->data);
-		token = token->next;
-	}
-	return (0);
-}
-
-int	is_space(char c)
-{
-	if (c == '\a' || c == '\b' || c == '\t' || c == '\n' \
-		|| c == '\v' || c == '\f' || c == '\r' || c == ' ')
-		return (1);
-	return (0);
-}
-
-int add_token(char *line, t_token *token, int x1, int x2)
-{
-	int	i;
-
-	token = malloc(sizeof(t_token));
-	if (!token)
-		return (0);
-	token->next = malloc(sizeof(t_token));
-	if (!token->next)
-		return (0);
-	token->data = malloc(sizeof(char) * (x2 - x1) + 2);
-	if (!token->data)
-		return (0);
-	i = 0;
-	while (x1 <= x2)
-	{
-		token->data[i] = line[x1];
-		i++;
-		x1++;
-	}
-	token->data[i] = '\0';
-	token = token->next;
-	return (1);
-} 
-
-int tokenizer(t_token *head, char *line, int x1, int x2)
-{
-	t_token		*tail;
-	int			i;
-
-	tail = head;
-	i = 0;
-	while (line[i])
-	{
-		while (is_space(line[i]))
-			i++;
-		x1 = i;
-		while (!is_space(line[i]) && line[i])
-			i++;
-		x2 = i - 1;
-		if (x1 <= x2 && !(x1 == 0 && x2 == 0))
+		while(test1)
 		{
-			if (!add_token(line, tail, x1, x2))
-				return (destroy_tokens(head));
-			x1 = 0;
-			x2 = 0;
+			printf("%i", test1->type);
+			if (test1->data)
+				printf("(%s)", test1->data);
+			printf(" -> ");
+			test1 = test1->right;
 		}
+		printf("\n");
+		test2 = test2->left;
+		test1 = test2;
 	}
-	tail = NULL;
-	return (1);
+	printf("\n========================\n");
 }
 
-int main()
+void	runner()
 {
-	char 		*line;
-	char 		**token;
+	b_tree	*tree;
+	char 	*line;
 
+	tree = NULL;
+	printf("line:\n");
 	line = readline(NULL);
-	if (!tokenizer(&token, line, 0, 0))
-		return (1);
-	while (token)
+	//to think trough if there is no line (no history)
+	add_history(line);
+	tree = parser(line);
+	free(line);
+	if (tree)
 	{
-		printf("%s\n", token->data);
-		free(token->data);
-		token = token->next;
+		print_tree(&tree);
+		destroy_tree(&tree);
+		runner();
 	}
 }
 
+b_tree	*parser(char *line)
+{
+	t_token		*token;
+	b_tree		*tree;
+
+	token = NULL;
+	tree = NULL;
+	line = expander(line);
+	printf("\nexpanded line:\n%s\n", line);
+	if(!tokenizer(&token, line))
+		return (destroy_tokens(token, 'e'), NULL);
+	if(!here_docker(&token))
+		return (destroy_tokens(token, 'e'), NULL);
+	if(!tree_constructor(&tree, &token))
+		return (destroy_tokens(token, 'd'), destroy_tree(&tree), NULL);
+	destroy_tokens(token, 'd');
+	return (tree);
+}
+
+int main(int argc, char **argv ,char **envp)
+{
+	(void)argv;
+	(void)argc;
+
+	get_set_env(&envp, 0);
+	runner();
+
+	rl_clear_history();
+	get_set_env(NULL, 1);
+	return (0);
+}
+
+//valgrind --track-fds=yes --leak-check=full --show-leak-kinds=all  --suppressions=".valgrind.supp" ./minishell
