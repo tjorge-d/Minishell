@@ -6,7 +6,8 @@ void	destroy_tokens(t_token *token, char mode)
 
 	while (token)
 	{
-		free(token->data);
+		if(token->data)
+			free(token->data);
 		temp = token;
 		token = token->next;
 		free(temp);
@@ -34,6 +35,7 @@ t_token	*token_creator(char *line, int x1, int x2)
 	}
 	new_token->data[i] = '\0';
 	new_token->next = NULL;	
+	new_token->type = 0;
 	new_token->used = 0;
 	return (new_token);
 }

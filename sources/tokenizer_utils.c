@@ -38,6 +38,8 @@ int	iter_chars(t_token **head, char *line, int *x, int *i)
 			x[0] = (*i);
 			if (line[(*i)] == '>' && line[(*i) + 1] == '>')
 				(*i)++;
+			if (line[(*i)] == '<' && line[(*i) + 1] == '<')
+				(*i)++;
 			if (!add_token(line, head, x[0], *i))
 				return (0);
 			x[0] = (*i) + 1;

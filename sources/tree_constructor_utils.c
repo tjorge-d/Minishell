@@ -10,7 +10,7 @@ b_tree	*init_node(char **data, int type)
 	if (!data)
 		node->data = NULL;
 	else
-		node->data = (*data);
+		node->data = ft_strdup((*data));
 	node->type = type;
 	node->left = NULL;
 	node->right = NULL;
@@ -85,7 +85,9 @@ int	add_redirection(b_tree **branch, t_token **token, char *redir)
 			if ((*token)->next == NULL || (*token)->next->data[0] == '|' \
 				|| (*token)->next->data[0] == '>' || (*token)->next->data[0] == '<')
 				return (write(2, "Error: invalid syntax\n", 23), 0);
-			iterator->right->data = (*token)->next->data;
+			if ((*token)->type == REDIRECT_IN_DOC)
+				iterator->right->type = REDIRECT_IN_DOC;
+			iterator->right->data = ft_strdup((*token)->next->data);
 			(*token)->next->used = 1;
 			(*token)->used = 1;
 			return (1);

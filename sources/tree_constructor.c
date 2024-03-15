@@ -13,6 +13,8 @@ void	destroy_tree(b_tree **tree)
 	{
 		prev_node = curr_node;
 		curr_node = curr_node->right;
+		if (prev_node->data)
+			free(prev_node->data);
 		free(prev_node);
 		if (curr_node == NULL)
 		{
@@ -104,9 +106,6 @@ int	command_builder(b_tree **tree, t_token **token)
 
 int	tree_constructor(b_tree **tree, t_token **token)
 {
-	b_tree	*test;
-	b_tree	*test2;
-
 	*tree = init_node(NULL, FIRST_BRANCH);
 	if (!tree)
 		return (0);
@@ -116,23 +115,5 @@ int	tree_constructor(b_tree **tree, t_token **token)
 		return (0);
 	if (!command_builder(tree, token))
 		return (0);
-	printf("\ncomplete tree:\n");
-	test = *tree;
-	test2 = *tree;
-	while(test2)
-	{
-		while(test)
-		{
-			printf("%i", test->type);
-			if (test->data)
-				printf("(%s)", test->data);
-			printf("->");
-			test = test->right;
-		}
-		printf("\n");
-		test2 = test2->left;
-		test = test2;
-	}
-	printf("\n");
 	return(1);
 }
