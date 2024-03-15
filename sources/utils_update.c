@@ -34,34 +34,7 @@ char *search_var_value(char *var_name)
 	return (&var_value[index]);
 }
 
-int	search_var_index(char *s)
-{
-	int		i;
-	int		env_counter;
-	char	*var_complete;
-	char	*variable;
-	char	**env;
 
-	i = 0;
-	env = get_set_env(NULL, 0);
-	env_counter = -1;
-	variable = NULL;
-	while (s[i] && s[i] != '=')
-		i++;
-	variable = malloc(sizeof(char) * (i + 1));
-	ft_strlcpy(variable, s, i + 1);
-	var_complete = ft_strjoin(variable, "=", 1, 0);
-	while (env[++env_counter])
-	{
-		if(!ft_strncmp(var_complete, env[env_counter], i + 1))
-		{	
-			free(var_complete);
-			return (env_counter);
-		}
-	}
-	free(var_complete);
-	return (-1);
-}
 
 int	array_len(char **arr)
 {
@@ -91,22 +64,6 @@ char	**copy_array(char **src)
 	return(new_dest);
 }
 
-void	free_char_pp(char **array)
-{
-	int	i;
-
-	i = 0;
-	printf("IN FREE %p\n", array);
-	if (array && array[i])
-	{
-		while (array[i])
-		{
-			free(array[i]);
-			i ++;
-		}
-	}
-	free(array);
-}
 
 char **get_set_env(char ***new_env, int flag_to_free)
 {

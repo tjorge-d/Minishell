@@ -39,7 +39,7 @@ int	search_var_index(char *s)
 	variable = malloc(sizeof(char) * (i + 1));
 	ft_strlcpy(variable, s, i + 1);
 	var_complete = ft_strjoin(variable, "=", 1, 0);
-	while (env[env_counter++])
+	while (env[++env_counter])
 	{
 		if(!ft_strncmp(var_complete, env[env_counter], i + 1))
 		{	

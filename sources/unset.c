@@ -24,8 +24,6 @@ int	unset(char *expression)
 	int		loc;
 
 	env = get_set_env(NULL, 0);
-	if (!validate_expression(expression))
-		return (-1);
 	loc = search_var_index(expression);
 	if (loc == -1)
 	{

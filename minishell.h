@@ -101,7 +101,7 @@ void		free_char_pp(char **array);
 char		**get_set_env(char ***new_env, int);
 
 //echo.c
-void		ft_echo(char *str, int flag);
+void		ft_echo(char **strs, int flag);
 
 //free_utils.c
 void		free_char_pp(char **array);
@@ -118,6 +118,6 @@ void		cd_without_args(void);
 void		cd_with_arg(char *arg);
 
 //unset.c
-void	copy_array_skip(char **src, char **dest, int index)
+void	copy_array_skip(char **src, char **dest, int index);
 
 #endif

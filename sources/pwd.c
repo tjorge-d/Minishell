@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-int	print_pwd(void)
+void	print_pwd(void)
 {
-	printf(search_var_value("PWD"));
+	printf("%s\n",getcwd(NULL, 0));
 }
