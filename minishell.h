@@ -11,6 +11,7 @@ typedef enum node_type
 	COMMAND,
 	ARGUMENT,
 	REDIRECT_IN,
+	REDIRECT_IN_DOC,
 	REDIRECT_OUT,
 	REDIRECT_OUT_APP,
 	PIPE,
@@ -20,7 +21,9 @@ typedef enum node_type
 
 typedef struct s_token
 {
+
 	char 					*data;
+	node_type 				type;
 	struct s_token			*next;
 	int						used;
 
@@ -36,7 +39,7 @@ typedef struct s_tree_node
 }	b_tree;
 
 //parser.c
-int			parser();
+b_tree		*parser(char *line);
 
 //expander.c
 char		*get_var(char *line, int var_pos, int len);
@@ -78,6 +81,10 @@ int			add_redirection(b_tree **branch, t_token **token, char *redir);
 int			is_built_in(char *line);
 char		*check_command(char **path, char* data);
 char		*get_data_path(char *data);
+
+//here_docker.c
+int			create_here_doc(char *exit);
+int			here_docker(t_token **token);
 
 
 void		print_array(char **arr);
