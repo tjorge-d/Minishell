@@ -1,0 +1,41 @@
+#include "../minishell.h"
+
+void	copy_array_skip(char **src, char **dest, int index)
+{
+	int	i;
+
+	i = 0;
+
+	while (i < index && src[i])
+	{
+		dest[i] = ft_strdup(src[i]);
+	}
+	while (src[i + 1])
+	{
+		dest[i] = ft_strdup(src[i + 1]);
+	}
+	dest[i] = NULL;
+}
+
+int	unset(char *expression)
+{
+	char	**env;
+	char	**new_env;
+	int		loc;
+
+	env = get_set_env(NULL, 0);
+	if (!validate_expression(expression))
+		return (-1);
+	loc = search_var_index(expression);
+	if (loc == -1)
+	{
+		return (1);
+	}
+	new_env = malloc(sizeof(char *) * (array_len(env)));
+	if (!new_env)
+		return (0);
+	copy_array_skip(env, new_env, loc);
+	get_set_env(&new_env,1);
+	free_char_pp(new_env);
+	return (1);
+}
