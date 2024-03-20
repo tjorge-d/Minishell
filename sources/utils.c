@@ -1,5 +1,21 @@
 #include "../minishell.h"
 
+int	is_special(char c)
+{
+	if (c == '<' || c == '>' || c == '|' || c == '\'')
+		return (1);
+	return (0);
+}
+
+void free_matrix(char **matrix)
+{
+	int	i;
+
+	i = -1;
+	while(matrix[++i])
+		free(matrix[i]);
+	free(matrix);
+}
 
 void	copy_array_2(char **src, char **dest)
 {

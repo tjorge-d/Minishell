@@ -57,7 +57,7 @@ int	redirection_checker(b_tree **tree, t_token **token)
 	curr_branch = *tree;
 	while (curr_token)
 	{
-        if (!ft_strncmp(curr_token->data, redir, 1))
+        if (curr_token->type == SPECIAL && !ft_strncmp(curr_token->data, redir, 1))
 		{
 			if (!add_redirection(&curr_branch, &curr_token, curr_token->data))
 				return (0);	

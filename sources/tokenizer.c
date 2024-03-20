@@ -20,21 +20,26 @@ t_token	*token_creator(char *line, int x1, int x2)
 {
 	t_token		*new_token;
 	int			i;
-	i = 0;
+	int			j;
+
 	new_token = malloc(sizeof(t_token));
 	if (!new_token)
 		return (NULL);
 	new_token->data = malloc(sizeof(char) * (x2 - x1) + 2);
 	if (!new_token->data)
 		return (free(new_token), NULL);
-	while (x1 <= x2)
+	i = 0;
+	j = x1 -1;
+	while (++j <= x2)
 	{
-		new_token->data[i] = line[x1];
+		new_token->data[i] = line[j];
 		i++;
-		x1++;
 	}
 	new_token->data[i] = '\0';
-	new_token->next = NULL;	
+	new_token->next = NULL;
+	if (is_special_token(line, x1, x2))
+		new_token->type = SPECIAL;
+	else
 	new_token->type = 0;
 	new_token->used = 0;
 	return (new_token);
@@ -55,7 +60,7 @@ int	add_token(char *line, t_token **token, int x1, int x2)
 	while (current->next != NULL)
 		current = current->next;
 	current->next = token_creator(line, x1, x2);
-	if (!token)
+	if (!current->next)
 			return (0);
 	return (1);
 }

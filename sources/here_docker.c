@@ -31,11 +31,10 @@ int	here_docker(t_token **token)
 	t_token *prev_token;
 	t_token *curr_token;
 
-	curr_token = *token;
 	prev_token = *token;
-	while (curr_token)
+	while (prev_token)
 	{
-		curr_token = curr_token->next;
+		curr_token = prev_token->next;
 		if (!ft_strncmp(prev_token->data, "<<", 3) \
 		&& curr_token && curr_token->data[0] != '|' \
 		&& curr_token->data[0] != '>' && curr_token->data[0] != '<')
@@ -49,6 +48,7 @@ int	here_docker(t_token **token)
 				return (0);
 			prev_token->type = REDIRECT_IN_DOC;
 		}
+		prev_token = prev_token->next;
 	}
 	return (1);
 }

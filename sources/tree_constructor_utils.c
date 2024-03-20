@@ -24,7 +24,6 @@ int	set_token(b_tree **branch, t_token **token, int	token_type)
 	iterator = *branch;
 	while (iterator)
 	{
-
 		if (iterator->right == NULL)
 		{
 			iterator->right = init_node(&((*token)->data), token_type);
@@ -84,7 +83,7 @@ int	add_redirection(b_tree **branch, t_token **token, char *redir)
 				return (0);
 			if ((*token)->next == NULL || (*token)->next->data[0] == '|' \
 				|| (*token)->next->data[0] == '>' || (*token)->next->data[0] == '<')
-				return (write(2, "Error: invalid syntax\n", 23), 0);
+				return (write(2, "Error: invalid syntaaaax\n", 23), 0);
 			if ((*token)->type == REDIRECT_IN_DOC)
 				iterator->right->type = REDIRECT_IN_DOC;
 			iterator->right->data = ft_strdup((*token)->next->data);

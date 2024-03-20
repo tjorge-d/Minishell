@@ -6,6 +6,9 @@ char	*get_var(char *line, int var_pos, int len)
 	int		i;
 	char	*var_name;
 
+	printf("1: %i\n",var_pos);
+	printf("2: %i\n",len);
+	printf("3: %s\n",line);
 	i = -1;
 	env = get_set_env(NULL, 0);
 	var_name = malloc(sizeof(char) * (len + 1));
@@ -50,7 +53,86 @@ char	*refresh_line(char *line, int x1, int x2, char *expansion)
 	return (new_line);
 }
 
-char	*search_and_add_variable(char *line, int *i)
+
+char	*capsulate_special_characters(char *expansion, int *special_pos, char quote)
+{
+	int		i;
+	char	*new_expansion;
+
+	new_expansion = malloc(sizeof(char) * ft_strlen(expansion) + 3);
+	if(!new_expansion)
+		return (free(expansion), NULL);
+	i = -1;
+	while (++i < (*special_pos))
+		new_expansion[i] = expansion[i];
+	new_expansion[i++] = quote;
+	new_expansion[i++] = expansion[(*special_pos)];
+	new_expansion[i++] = quote;
+	while (expansion[i - 2])
+	{
+		new_expansion[i] = expansion[i - 2];
+		i++;
+	}
+	(*special_pos) +=2;
+	new_expansion[i] = '\0';
+	free(expansion);
+	printf("expansion: %s\n", new_expansion);
+	return (new_expansion);
+}
+
+char	*capsulate_double_quote(char *expansion, int *special_pos)
+{
+	int		i;
+	char	*new_expansion;
+
+	new_expansion = malloc(sizeof(char) * ft_strlen(expansion) + 5);
+	if(!new_expansion)
+		return (free(expansion), NULL);
+	i = -1;
+	while (++i < (*special_pos))
+		new_expansion[i] = expansion[i];
+	new_expansion[i++] = '"';
+	new_expansion[i++] = '\'';
+	new_expansion[i++] = expansion[(*special_pos)];
+	new_expansion[i++] = '\'';
+	new_expansion[i++] = '"';
+	while (expansion[i - 4])
+	{
+		new_expansion[i] = expansion[i - 4];
+		i++;
+	}
+	(*special_pos) +=4;
+	new_expansion[i] = '\0';
+	free(expansion);
+	return (new_expansion);
+}
+
+char	*expansion_handler(char *expansion, int outside_quotes)
+{
+	int		i;
+	char	*new_expansion;
+
+	new_expansion = ft_strdup(expansion);
+	free(expansion);
+	if (!new_expansion)
+		return (NULL);
+	i = -1;
+	while (new_expansion[++i])
+	{
+		if (is_special(new_expansion[i]) && outside_quotes)
+			new_expansion = capsulate_special_characters(new_expansion, &i, '"');
+		else if (new_expansion[i] == '"' && outside_quotes)
+			new_expansion = capsulate_special_characters(new_expansion, &i, '\'');
+		else if (new_expansion[i] == '"' && !outside_quotes)
+			new_expansion = capsulate_double_quote(new_expansion, &i);
+		if (!new_expansion)
+			return (NULL);
+	}
+	printf("expansion: %s\n", new_expansion);
+	return (new_expansion);
+}
+
+char	*search_and_add_variable(char *line, int *i, int outside_quotes)
 {
 	char		*expansion;
 	int			j;
@@ -58,12 +140,18 @@ char	*search_and_add_variable(char *line, int *i)
 	j = (*i) + 1;
 	while (ft_isalnum(line[j]) || line[j] == '_')
 		j++;
-	expansion = get_var(line, (*i) + 1, j - (*i));
+	printf("1: %i\n",((*i) + 1));
+	printf("2: %i\n",(j - (*i)));
+	printf("3: %s\n",line);
+	expansion = ft_strdup(get_var(line, (*i) + 1, j - (*i)));
 	if (!expansion)
 	{
 		(*i) = j;
 		return(line);
 	}
+	expansion = expansion_handler(expansion, outside_quotes);
+	if (!expansion)
+		return (NULL);
 	return (refresh_line(line, *i, j, expansion));
 }
 
@@ -80,7 +168,7 @@ char	*expander(char *line)
 			i = iter_double_quote(&line, i + 1);
 		else if(line[i] == '$')
 		{
-			line = search_and_add_variable(line, &i);
+			line = search_and_add_variable(line, &i, 1);
 			if (!line)
 				return (NULL);
 		}
@@ -90,4 +178,19 @@ char	*expander(char *line)
 			return (free(line), NULL);
 	}
 	return (line);
+}
+
+int	expand_tokens(t_token **token)
+{
+	t_token *iterator;
+
+	iterator = *token;
+	while (iterator)
+	{
+		iterator->data = expander(iterator->data);
+		if (!iterator->data)
+			return (0);
+		iterator = iterator->next;
+	}
+	return (1);
 }

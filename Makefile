@@ -14,6 +14,7 @@ SOURCES=parser.c \
 		utils_update.c \
 		tree_constructor.c \
 		tree_constructor_utils.c \
+		signals.c \
 		get_data_path.c \
 		here_docker.c \
 		built_in_exp.c \

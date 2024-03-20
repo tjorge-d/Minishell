@@ -52,5 +52,6 @@ char	*get_data_path(char *data)
 	if (!paths)
 		return (data);
 	data = check_command(paths, data);
+	free_matrix(paths);
 	return (data);
 }
