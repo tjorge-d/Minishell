@@ -6,9 +6,6 @@ char	*get_var(char *line, int var_pos, int len)
 	int		i;
 	char	*var_name;
 
-	printf("1: %i\n",var_pos);
-	printf("2: %i\n",len);
-	printf("3: %s\n",line);
 	i = -1;
 	env = get_set_env(NULL, 0);
 	var_name = malloc(sizeof(char) * (len + 1));
@@ -29,22 +26,26 @@ char	*get_var(char *line, int var_pos, int len)
 	return (NULL);
 }
 
-char	*refresh_line(char *line, int x1, int x2, char *expansion)
+char	*refresh_line(char *line, int *x1, int x2, char *expansion)
 {
 	int		i;
 	int		j;
 	char	*new_line;
 
-	new_line = malloc(sizeof(char) * ((ft_strlen(line) - (x2 - x1)) \
+	new_line = malloc(sizeof(char) * ((ft_strlen(line) - (x2 - (*x1))) \
 					+ (ft_strlen(expansion)) + 1));
 	if (!new_line)
 		return (NULL);
 	i = -1;
-	while (++i < x1)
+	while (++i < (*x1))
 		new_line[i] = line[i];
 	j = 0;
-	while (expansion[j])
-		new_line[i++] = expansion[j++];
+	if (expansion)
+	{
+		while (expansion[j])
+			new_line[i++] = expansion[j++];
+	}
+	(*x1) = i;
 	j = x2;
 	while(line[j])
 		new_line[i++] = line[j++];
@@ -76,7 +77,6 @@ char	*capsulate_special_characters(char *expansion, int *special_pos, char quote
 	(*special_pos) +=2;
 	new_expansion[i] = '\0';
 	free(expansion);
-	printf("expansion: %s\n", new_expansion);
 	return (new_expansion);
 }
 
@@ -128,7 +128,6 @@ char	*expansion_handler(char *expansion, int outside_quotes)
 		if (!new_expansion)
 			return (NULL);
 	}
-	printf("expansion: %s\n", new_expansion);
 	return (new_expansion);
 }
 
@@ -140,19 +139,13 @@ char	*search_and_add_variable(char *line, int *i, int outside_quotes)
 	j = (*i) + 1;
 	while (ft_isalnum(line[j]) || line[j] == '_')
 		j++;
-	printf("1: %i\n",((*i) + 1));
-	printf("2: %i\n",(j - (*i)));
-	printf("3: %s\n",line);
 	expansion = ft_strdup(get_var(line, (*i) + 1, j - (*i)));
 	if (!expansion)
-	{
-		(*i) = j;
-		return(line);
-	}
+		return(refresh_line(line, i, j, NULL));
 	expansion = expansion_handler(expansion, outside_quotes);
 	if (!expansion)
 		return (NULL);
-	return (refresh_line(line, *i, j, expansion));
+	return (refresh_line(line, i, j, expansion));
 }
 
 char	*expander(char *line)

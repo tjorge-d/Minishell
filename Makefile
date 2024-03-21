@@ -18,7 +18,6 @@ SOURCES=parser.c \
 		get_data_path.c \
 		here_docker.c \
 		built_in_exp.c \
-		cd_built_in.c \
 		echo.c \
 		unset.c \
 		pwd.c \

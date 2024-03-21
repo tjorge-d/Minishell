@@ -65,7 +65,7 @@ int	add_token(char *line, t_token **token, int x1, int x2)
 	return (1);
 }
 
-int tokenizer(t_token **head, char *line)
+int tokenizer(t_token **head, char **line)
 {
 	int		i;
 	int		x[2];
@@ -73,14 +73,14 @@ int tokenizer(t_token **head, char *line)
 	i = 0;
 	x[0] = 0;
 	x[1] = 0;
-	while (line[i])
+	while ((*line)[i])
 	{
-		iter_spaces(line, x, &i);
+		iter_spaces((*line), x, &i);
 		if (!iter_chars(head, line, x, &i))
 			return(0);
-		if (x[0] <= x[1] && line[x[1]] != '\0' && !is_space(line[x[1]]))
+		if (x[0] <= x[1] && (*line)[x[1]] != '\0' && !is_space((*line)[x[1]]))
 		{
-			if (!add_token(line, head, x[0], x[1]))
+			if (!add_token((*line), head, x[0], x[1]))
 				return (0);
 		}
 	}

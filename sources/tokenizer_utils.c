@@ -49,14 +49,14 @@ char	*quote_remover(char *line, int x)
 	return (new_line);
 }
 
-void	skip_quote(char *line, int *i, char quote)
+void	skip_quote(char **line, int *i, char quote)
 {
-	line = quote_remover(line, (*i));
-	while (line[(*i)])
+	(*line) = quote_remover((*line), (*i));
+	while ((*line)[(*i)])
 	{
-		if (line[(*i)] == quote)
+		if ((*line)[(*i)] == quote)
 		{
-			line = quote_remover(line, (*i));
+			(*line) = quote_remover((*line), (*i));
 			(*i)--;
 			break ;
 		}
@@ -65,26 +65,26 @@ void	skip_quote(char *line, int *i, char quote)
 	return ;
 }
 
-int	iter_chars(t_token **head, char *line, int *x, int *i)
+int	iter_chars(t_token **head, char **line, int *x, int *i)
 {
-	while (!is_space(line[(*i)]) && line[(*i)])
+	while (!is_space((*line)[(*i)]) && (*line)[(*i)])
 	{
-		if ( line[(*i)] == '|' || line[(*i)] == '<' || line[(*i)] == '>')
+		if ( (*line)[(*i)] == '|' || (*line)[(*i)] == '<' || (*line)[(*i)] == '>')
 		{
 			x[1] = (*i) - 1;
-			if (x[0] <= x[1] && !add_token(line, head, x[0], x[1]))
+			if (x[0] <= x[1] && !add_token((*line), head, x[0], x[1]))
 				return (0);
 			x[0] = (*i);
-			if (line[(*i)] == '>' && line[(*i) + 1] == '>')
+			if ((*line)[(*i)] == '>' && (*line)[(*i) + 1] == '>')
 				(*i)++;
-			if (line[(*i)] == '<' && line[(*i) + 1] == '<')
+			if ((*line)[(*i)] == '<' && (*line)[(*i) + 1] == '<')
 				(*i)++;
-			if (!add_token(line, head, x[0], *i))
+			if (!add_token((*line), head, x[0], *i))
 				return (0);
 			x[0] = (*i) + 1;
 		}
-		else if (line[(*i)] == '"' || line[(*i)] == '\'')
-			skip_quote(line, i, line[(*i)]);
+		else if ((*line)[(*i)] == '"' || (*line)[(*i)] == '\'')
+			skip_quote(line, i, (*line)[(*i)]);
 		(*i)++;
 	}
 	x[1] = (*i) - 1;

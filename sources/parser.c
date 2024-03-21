@@ -72,7 +72,7 @@ b_tree	*parser(char *line)
 	line_to_parse = expander(line_to_parse);
 	if(!line_to_parse)
 		return (NULL);
-	if(!tokenizer(&token, line_to_parse))
+	if(!tokenizer(&token, &line_to_parse))
 		return (free(line_to_parse), destroy_tokens(token, 'e'), NULL);
 	free(line_to_parse);
 	print_tokens(&token);
