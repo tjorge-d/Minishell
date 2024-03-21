@@ -94,12 +94,12 @@ int	command_builder(b_tree **tree, t_token **token)
 				return (0);
 			token_type = ARGUMENT;
 		}
-		c_token = c_token->next;
 		if (c_token && !ft_strncmp(c_token->data, "|", 2))
 		{
 			c_branch = c_branch->left;
 			token_type = COMMAND;
 		}
+		c_token = c_token->next;
 	}
 	return (1);
 }

@@ -22,7 +22,8 @@ typedef enum node_type
 	PIPE,
 	FIRST_BRANCH,
 	FLAGS,
-	SPECIAL
+	SPECIAL,
+	EMPTY_NODE
 
 }	node_type;
 
