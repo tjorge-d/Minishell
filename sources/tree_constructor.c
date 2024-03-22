@@ -52,7 +52,7 @@ int	redirection_checker(b_tree **tree, t_token **token)
 	b_tree		*curr_branch;
 	char		*redir;
 
-	redir = ">";
+	redir = "<";
 	curr_token = *token;
 	curr_branch = *tree;
 	while (curr_token)
@@ -65,11 +65,11 @@ int	redirection_checker(b_tree **tree, t_token **token)
 		curr_token = curr_token->next;
 		if (curr_token && !ft_strncmp(curr_token->data, "|", 2))
 			curr_branch = curr_branch->left;
-		if (curr_token == NULL && ft_strncmp(redir, "<", 1))
+		if (curr_token == NULL && ft_strncmp(redir, ">", 1))
 		{
 			curr_token = *token;
 			curr_branch = *tree;
-			redir = "<";
+			redir = ">";
 		}
 	}
 	return (1);
