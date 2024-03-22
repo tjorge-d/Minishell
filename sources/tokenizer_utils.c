@@ -22,11 +22,19 @@ int	is_space(char c)
 	return (0);
 }
 
-void	iter_spaces(char *line, int *x, int *i)
+int	iter_spaces(char *line, int *x, int *i)
 {
+	int	j;
+
+	j = 0;
+	if ((*i) > 0)
+		j = (*i) - 1;
 	while (is_space(line[(*i)]))
 		(*i)++;
 	x[0] = (*i);
+	if (line[x[0]] == '|' && (x[0] == 0 || line[j] == '|' || j == 0))
+		return (write(2, "Error: Invalid syntax\n", 23), 0);
+	return (1);
 }
 char	*quote_remover(char *line, int x)
 {

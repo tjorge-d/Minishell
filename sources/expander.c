@@ -141,7 +141,12 @@ char	*search_and_add_variable(char *line, int *i, int outside_quotes)
 		j++;
 	expansion = ft_strdup(get_var(line, (*i) + 1, j - (*i)));
 	if (!expansion)
-		return(refresh_line(line, i, j, NULL));
+	{
+		if (outside_quotes)
+			return(refresh_line(line, i, j, "''"));
+		else
+			return(refresh_line(line, i, j, "\"\""));
+	}
 	expansion = expansion_handler(expansion, outside_quotes);
 	if (!expansion)
 		return (NULL);
@@ -152,6 +157,8 @@ char	*expander(char *line)
 {
 	int		i;
 
+	if (!line)
+		return (NULL);
 	i = 0;
 	while (line[i])
 	{

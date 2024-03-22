@@ -59,6 +59,7 @@ int	runner()
 	return (1);
 }
 
+
 b_tree	*parser(char *line)
 {
 	t_token		*token;
@@ -67,9 +68,8 @@ b_tree	*parser(char *line)
 
 	token = NULL;
 	tree = NULL;
-	line_to_parse = ft_strdup(line);
+	line_to_parse = expander(ft_strdup(line));
 	free(line);
-	line_to_parse = expander(line_to_parse);
 	if(!line_to_parse)
 		return (NULL);
 	if(!tokenizer(&token, &line_to_parse))

@@ -68,7 +68,7 @@ int			expand_tokens(t_token **token);
 //tokenizer_utils.c
 int			is_special_token(char *line, int x1, int x2);
 int			is_space(char c);
-void 		iter_spaces(char *line, int *x, int *i);
+int 		iter_spaces(char *line, int *x, int *i);
 void		skip_quote(char **line, int *i, char quote);
 int			iter_chars(t_token **head, char **line, int *x, int *i);
 

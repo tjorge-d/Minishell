@@ -75,7 +75,8 @@ int tokenizer(t_token **head, char **line)
 	x[1] = 0;
 	while ((*line)[i])
 	{
-		iter_spaces((*line), x, &i);
+		if (!iter_spaces((*line), x, &i))
+			return(0);
 		if (!iter_chars(head, line, x, &i))
 			return(0);
 		if (x[0] <= x[1] && (*line)[x[1]] != '\0' && !is_space((*line)[x[1]]))
