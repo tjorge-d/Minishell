@@ -58,35 +58,35 @@ int	create_branch(b_tree **tree)
 
 int	get_redirection_type(char *redir)
 {
-	if (!ft_strncmp(redir, "<", 2))
-		return (REDIRECT_IN);
-	if (!ft_strncmp(redir, ">", 2))
-		return (REDIRECT_OUT);
-	if (!ft_strncmp(redir, ">>", 3))
+
+	if (redir[0] == GREATER && redir[1] == GREATER)
 		return (REDIRECT_OUT_APP);
+	if (redir[0] == GREATER)
+		return (REDIRECT_OUT);
+	if (redir[0] == LESS)
+		return (REDIRECT_IN);
 	return (0);
 }
 
 int	add_redirection(b_tree **branch, t_token **token, char *redir)
 {
 	b_tree	*iterator;
-	int		redirection_type;
 	
 	iterator = *branch;
-	redirection_type = get_redirection_type(redir);
 	while (iterator)
 	{
 		if (iterator->right == NULL)
 		{
-			iterator->right = init_node(NULL, redirection_type);
+			iterator->right = init_node(NULL, get_redirection_type(redir));
 			if (iterator->right == NULL)
 				return (0);
-			if ((*token)->next == NULL || (*token)->next->data[0] == '|' \
-				|| (*token)->next->data[0] == '>' || (*token)->next->data[0] == '<')
-				return (write(2, "Error: invalid syntaaaax\n", 23), 0);
+			if ((*token)->next == NULL || is_special((*token)->next->data[0]))
+				return (write(2, "Error: invalid syntax\n", 23), 0);
 			if ((*token)->type == REDIRECT_IN_DOC)
 				iterator->right->type = REDIRECT_IN_DOC;
 			iterator->right->data = ft_strdup((*token)->next->data);
+			if (!iterator->right->data)
+				return (0);
 			(*token)->next->used = 1;
 			(*token)->used = 1;
 			return (1);

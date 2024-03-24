@@ -33,13 +33,11 @@ int	pipe_brancher(b_tree **tree, t_token **token)
 	curr_token = *token;
 	while (curr_token)
 	{
-        if (!ft_strncmp(curr_token->data, "|", 2))
+        if (curr_token->data[0] == V_BAR)
 		{
 			if (!create_branch(tree))
 				return (0);
 			curr_token->used = 1;
-			if (curr_token->next == NULL)
-				return (write(2, "Error: invalid syntax\n", 23), 0);
 		}
 		curr_token = curr_token->next;
 	}
@@ -50,26 +48,27 @@ int	redirection_checker(b_tree **tree, t_token **token)
 {
 	t_token		*curr_token;
 	b_tree		*curr_branch;
-	char		*redir;
+	char		redir[2];
 
-	redir = "<";
+	redir[0] = LESS;
+	redir[1] = '\0';
 	curr_token = *token;
 	curr_branch = *tree;
 	while (curr_token)
 	{
-        if (curr_token->type == SPECIAL && !ft_strncmp(curr_token->data, redir, 1))
+        if (curr_token->data[0] == redir[0])
 		{
 			if (!add_redirection(&curr_branch, &curr_token, curr_token->data))
 				return (0);	
 		}
 		curr_token = curr_token->next;
-		if (curr_token && !ft_strncmp(curr_token->data, "|", 2))
+		if (curr_token && curr_token->data[0] == V_BAR)
 			curr_branch = curr_branch->left;
-		if (curr_token == NULL && ft_strncmp(redir, ">", 1))
+		if (curr_token == NULL && redir[0] != GREATER)
 		{
 			curr_token = *token;
 			curr_branch = *tree;
-			redir = ">";
+			redir[0] = GREATER;
 		}
 	}
 	return (1);
@@ -94,7 +93,7 @@ int	command_builder(b_tree **tree, t_token **token)
 				return (0);
 			token_type = ARGUMENT;
 		}
-		if (c_token && !ft_strncmp(c_token->data, "|", 2))
+		if (c_token && c_token->data[0] == V_BAR)
 		{
 			c_branch = c_branch->left;
 			token_type = COMMAND;

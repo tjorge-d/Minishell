@@ -26,23 +26,40 @@ int	create_here_doc(char *exit)
 	return (fd[0]);
 }
 
-int	here_docker(t_token **token)
+int	is_here_doc(t_token *prev_token)
 {
-	t_token *prev_token;
-	t_token *curr_token;
+	if (prev_token->data[0] == LESS && prev_token->data[1] == LESS)
+		return (1);
+	return (0);
+}
+
+int	invalid_here_doc_exit(t_token *curr_token)
+{
+	if(curr_token && (curr_token->data[0] == V_BAR \
+		|| curr_token->data[0] == GREATER || curr_token->data[0] == LESS))
+		return (1);
+	return (0);
+}
+
+int	here_doc(t_token **token)
+{
+	t_token	*prev_token;
+	t_token	*curr_token;
 
 	prev_token = *token;
 	while (prev_token)
 	{
 		curr_token = prev_token->next;
-		if (!ft_strncmp(prev_token->data, "<<", 3) \
-		&& curr_token && curr_token->data[0] != '|' \
-		&& curr_token->data[0] != '>' && curr_token->data[0] != '<')
+		if (is_here_doc(prev_token))
 		{
+			if (invalid_here_doc_exit(curr_token))
+				return (write(2, "Error: Invalid syntax\n", 23), 0);
 			free(prev_token->data);
-			prev_token->data = ft_strdup("<");
-			if (!prev_token)
+			prev_token->data = malloc(sizeof(char) * 2);
+			if (!prev_token->data)
 				return (0);
+			prev_token->data[0] = LESS;
+			prev_token->data[1] = '\0';
 			curr_token->data = ft_itoa(create_here_doc(curr_token->data));
 			if (curr_token->data[0] == '0')
 				return (0);

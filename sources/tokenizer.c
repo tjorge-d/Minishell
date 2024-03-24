@@ -36,11 +36,8 @@ t_token	*token_creator(char *line, int x1, int x2)
 		i++;
 	}
 	new_token->data[i] = '\0';
-	new_token->next = NULL;
-	if (is_special_token(line, x1, x2))
-		new_token->type = SPECIAL;
-	else
 	new_token->type = 0;
+	new_token->next = NULL;
 	new_token->used = 0;
 	return (new_token);
 }
@@ -75,8 +72,7 @@ int tokenizer(t_token **head, char **line)
 	x[1] = 0;
 	while ((*line)[i])
 	{
-		if (!iter_spaces((*line), x, &i))
-			return(0);
+		iter_spaces((*line), x, &i);
 		if (!iter_chars(head, line, x, &i))
 			return(0);
 		if (x[0] <= x[1] && (*line)[x[1]] != '\0' && !is_space((*line)[x[1]]))

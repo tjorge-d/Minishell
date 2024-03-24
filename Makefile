@@ -6,17 +6,17 @@ CFLAGS= -g -Wall -Werror -Wextra
 SRC= $(addprefix sources/, $(SOURCES))
 
 SOURCES=parser.c \
-		tokenizer.c \
-		tokenizer_utils.c \
+		parser_utils.c \
 		expander.c \
 		expander_utils.c \
-		utils.c \
-		utils_update.c \
+		tokenizer.c \
+		tokenizer_utils.c \
+		here_doc.c \
 		tree_constructor.c \
 		tree_constructor_utils.c \
 		signals.c \
+		utils_update.c \
 		get_data_path.c \
-		here_docker.c \
 		built_in_exp.c \
 		echo.c \
 		unset.c \

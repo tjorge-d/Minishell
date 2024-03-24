@@ -1,41 +1,12 @@
 #include "../minishell.h"
 
-int	is_special_token(char *line, int x1, int x2)
+void	iter_spaces(char *line, int *x, int *i)
 {
-	if ((line[x1] == '<' && line[x2] == '<' &&  x1 == x2 - 1) \
-		|| (line[x1] == '<' && line[x2] == '<' && x1 == x2) \
-		|| (line[x1] == '>' && line[x2] == '>' &&  x1 == x2 - 1) \
-		|| (line[x1] == '>' && line[x2] == '>' &&  x1 == x2) \
-		|| (line[x1] == '|' && line[x2] == '|' &&  x1 == x2))
-	{
-		return (1);
-	}
-	else
-		return (0);
-}
-
-int	is_space(char c)
-{
-	if (c == '\a' || c == '\b' || c == '\t' || c == '\n' \
-		|| c == '\v' || c == '\f' || c == '\r' || c == ' ')
-		return (1);
-	return (0);
-}
-
-int	iter_spaces(char *line, int *x, int *i)
-{
-	int	j;
-
-	j = 0;
-	if ((*i) > 0)
-		j = (*i) - 1;
 	while (is_space(line[(*i)]))
 		(*i)++;
 	x[0] = (*i);
-	if (line[x[0]] == '|' && (x[0] == 0 || line[j] == '|' || j == 0))
-		return (write(2, "Error: Invalid syntax\n", 23), 0);
-	return (1);
 }
+
 char	*quote_remover(char *line, int x)
 {
 	int		i;
@@ -77,21 +48,20 @@ int	iter_chars(t_token **head, char **line, int *x, int *i)
 {
 	while (!is_space((*line)[(*i)]) && (*line)[(*i)])
 	{
-		if ( (*line)[(*i)] == '|' || (*line)[(*i)] == '<' || (*line)[(*i)] == '>')
+		if ( (*line)[(*i)] == V_BAR || (*line)[(*i)] == LESS || (*line)[(*i)] == GREATER)
 		{
 			x[1] = (*i) - 1;
 			if (x[0] <= x[1] && !add_token((*line), head, x[0], x[1]))
 				return (0);
 			x[0] = (*i);
-			if ((*line)[(*i)] == '>' && (*line)[(*i) + 1] == '>')
-				(*i)++;
-			if ((*line)[(*i)] == '<' && (*line)[(*i) + 1] == '<')
+			if (((*line)[(*i)] == GREATER && (*line)[(*i) + 1] == GREATER) \
+				|| ((*line)[(*i)] == LESS && (*line)[(*i) + 1] == LESS))
 				(*i)++;
 			if (!add_token((*line), head, x[0], *i))
 				return (0);
 			x[0] = (*i) + 1;
 		}
-		else if ((*line)[(*i)] == '"' || (*line)[(*i)] == '\'')
+		else if ((*line)[(*i)] == DOUBLE_Q || (*line)[(*i)] == SINGLE_Q)
 			skip_quote(line, i, (*line)[(*i)]);
 		(*i)++;
 	}
