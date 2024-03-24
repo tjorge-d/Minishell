@@ -88,8 +88,8 @@ int main(int argc, char **argv ,char **envp)
 	(void)argv;
 	(void)argc;
 
-	//signal(SIGINT, exit_signal);
-	signal(SIGQUIT, quit_signal);
+	signal(SIGINT, exit_signal);
+	signal(SIGQUIT, SIG_IGN);
 	get_set_env(&envp, 0);
 	while (runner())
 		;
