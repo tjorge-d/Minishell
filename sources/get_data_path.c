@@ -43,7 +43,7 @@ char	*get_data_path(char *data)
 	char	**paths;
 	char	*path;
 
-	if (is_built_in(data))
+	if (is_built_in(data) || data[0] == '\0')
 		return (data);
 	path = search_var_value("PATH");
 	if (!path)

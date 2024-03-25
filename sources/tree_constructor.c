@@ -85,7 +85,7 @@ int	command_builder(b_tree **tree, t_token **token)
 	token_type = COMMAND;
 	while (c_token)
 	{
-		if (!c_token->used)
+		if (!c_token->used && c_token->data[0] != EMPTY)
 		{
 			if (token_type == COMMAND)
 				c_token->data = get_data_path(c_token->data);

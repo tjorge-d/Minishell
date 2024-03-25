@@ -3,12 +3,16 @@
 char	*search_and_add_variable(char *line, int *i)
 {
 	char		*expansion;
-	char		empty_expansion[3];		
+	char		empty_expansion[2];		
 	int			j;
 
-	empty_expansion[0]= DOUBLE_Q;
-	empty_expansion[1]= DOUBLE_Q;
-	empty_expansion[2]= '\0';
+	empty_expansion[0]= EMPTY;
+	empty_expansion[1]= '\0';
+	if (!is_to_expand(line, *i))
+	{
+		(*i)++;
+		return(line);
+	}
 	j = (*i) + 1;
 	while (ft_isalnum(line[j]) || line[j] == '_')
 		j++;
@@ -66,7 +70,7 @@ char	*expander(char *line)
 	{
 		line[i] = refiner(line[i]);
 		if (line[i] == SINGLE_Q)
-			i = iter_single_quote(line, i + 1);
+			i = iter_single_quote(&line, i + 1);
 		else if (line[i] == DOUBLE_Q)
 			i = iter_double_quote(&line, i + 1);
 		else if(line[i] == '$')

@@ -16,4 +16,4 @@ void    exit_signal(int signal)
 	rl_redisplay();
 }
 
-void	exit_signal_eof(int signal)
+//void	exit_signal_eof(int signal)

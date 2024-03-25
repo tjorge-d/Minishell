@@ -1,5 +1,22 @@
 #include "../minishell.h"
 
+int	is_to_expand(char *line, int i)
+{
+	while(!is_space(line[i]))
+	{
+		i--;
+		if (i > 0 && line[i] == LESS && line[i - 1] == LESS)
+			return (0);
+	}
+	while(is_space(line[i]))
+	{
+		i--;
+		if (i > 0 && line[i] == LESS && line[i - 1] == LESS)
+			return (0);
+	}
+	return (1);
+}
+
 char	*refresh_line(char *line, int *x1, int x2, char *expansion)
 {
 	int		i;
@@ -54,19 +71,41 @@ char	*get_var(char *line, int var_pos, int len)
 	return (NULL);
 }
 
-
-int	iter_single_quote(char *line, int i)
+int	is_null_token(char *line, int i, char quote)
 {
-	while (line[i] && line[i] != '\'')
+	if (line[i] == quote)
+	{
+		if (line[i + 1] == '|' || line[i + 1] == '<' \
+		|| line[i + 1] == '>' || line[i + 1] == '\0' || is_space(line[i + 1]))
+				return (1);
+	}
+	return (0);
+}
+
+int	iter_single_quote(char **line, int i)
+{
+	if (is_null_token((*line), i, '\''))
+	{
+		(*line)[i - 1] = NULL_TOKEN;
+		(*line)[i] = ' ';
+		return (i);
+	}
+	while ((*line)[i] && (*line)[i] != '\'')
 		i++;
-	if (line[i] == '\0')
+	if ((*line)[i] == '\0')
 		return (write(2, "Error: Invalid syntax\n", 23), -1);
-	line[i] = SINGLE_Q;
+	(*line)[i] = SINGLE_Q;
 	return (i + 1);
 }
 
 int	iter_double_quote(char **line, int i)
 {
+	if (is_null_token((*line), i, '"'))
+	{
+		(*line)[i - 1] = NULL_TOKEN;
+		(*line)[i] = ' ';
+		return (i);
+	}
 	while((*line)[i] && (*line)[i] != '"')
 	{
 		if((*line)[i] == '$')
