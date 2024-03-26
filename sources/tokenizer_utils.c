@@ -1,13 +1,5 @@
 #include "../minishell.h"
 
-int	is_space(char c)
-{
-	if (c == '\a' || c == '\b' || c == '\t' || c == '\n' \
-		|| c == '\v' || c == '\f' || c == '\r' || c == ' ')
-		return (1);
-	return (0);
-}
-
 void	iter_spaces(char *line, int *x, int *i)
 {
 	while (is_space(line[(*i)]))
@@ -15,37 +7,62 @@ void	iter_spaces(char *line, int *x, int *i)
 	x[0] = (*i);
 }
 
-void	skip_quote(char *line, int *i, char quote)
+char	*quote_remover(char *line, int x)
 {
-	while (line[(*i)])
+	int		i;
+	char	*new_line;
+
+	new_line = malloc(ft_strlen(line));
+	if (!new_line)
+		return (NULL);
+	i = -1;
+	while(++i < x)
+		new_line[i] = line[i];
+	while(line[i + 1])
 	{
-		(*i)++;
-		if (line[(*i)] == quote)
+		new_line[i] = line[i + 1];
+		i++;
+	}
+	new_line[i] = '\0';
+	free(line);
+	return (new_line);
+}
+
+void	skip_quote(char **line, int *i, char quote)
+{
+	(*line) = quote_remover((*line), (*i));
+	while ((*line)[(*i)])
+	{
+		if ((*line)[(*i)] == quote)
+		{
+			(*line) = quote_remover((*line), (*i));
+			(*i)--;
 			break ;
+		}
+		(*i)++;
 	}
 	return ;
 }
 
-int	iter_chars(t_token **head, char *line, int *x, int *i)
+int	iter_chars(t_token **head, char **line, int *x, int *i)
 {
-	while (!is_space(line[(*i)]) && line[(*i)])
+	while (!is_space((*line)[(*i)]) && (*line)[(*i)])
 	{
-		if ( line[(*i)] == '|' || line[(*i)] == '<' || line[(*i)] == '>')
+		if ( (*line)[(*i)] == V_BAR || (*line)[(*i)] == LESS || (*line)[(*i)] == GREATER)
 		{
 			x[1] = (*i) - 1;
-			if (x[0] <= x[1] && !add_token(line, head, x[0], x[1]))
+			if (x[0] <= x[1] && !add_token((*line), head, x[0], x[1]))
 				return (0);
 			x[0] = (*i);
-			if (line[(*i)] == '>' && line[(*i) + 1] == '>')
+			if (((*line)[(*i)] == GREATER && (*line)[(*i) + 1] == GREATER) \
+				|| ((*line)[(*i)] == LESS && (*line)[(*i) + 1] == LESS))
 				(*i)++;
-			if (line[(*i)] == '<' && line[(*i) + 1] == '<')
-				(*i)++;
-			if (!add_token(line, head, x[0], *i))
+			if (!add_token((*line), head, x[0], *i))
 				return (0);
 			x[0] = (*i) + 1;
 		}
-		else if (line[(*i)] == '"' || line[(*i)] == '\'')
-			skip_quote(line, i, line[(*i)]);
+		else if ((*line)[(*i)] == DOUBLE_Q || (*line)[(*i)] == SINGLE_Q)
+			skip_quote(line, i, (*line)[(*i)]);
 		(*i)++;
 	}
 	x[1] = (*i) - 1;

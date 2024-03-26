@@ -1,5 +1,19 @@
 #include "../minishell.h"
 
+void	print_tokens(t_token **token)
+{
+	t_token	*test1;
+
+	test1 = *token;
+	printf("\ntokens:\n");
+	while(test1)
+	{
+		printf("%s$\n",test1->data);
+		test1 = test1->next;
+	}
+	printf("\n========================\n");
+}
+
 void	print_tree(b_tree **tree)
 {
 	b_tree	*test1;
@@ -24,41 +38,47 @@ void	print_tree(b_tree **tree)
 	printf("\n========================\n");
 }
 
-void	runner()
+int	runner()
 {
 	b_tree	*tree;
 	char 	*line;
 
 	tree = NULL;
-	printf("line:\n");
-	line = readline(NULL);
-	//to think trough if there is no line (no history)
+	line = readline("<Minishell> ");
+	if (!line)
+		return (free(line), 0);
 	add_history(line);
 	tree = parser(line);
-	free(line);
+	if (!tree)
+		return (1);
 	if (tree)
 	{
 		print_tree(&tree);
 		executor(tree);
 		destroy_tree(&tree);
-		runner();
 	}
+	return (1);
 }
 
 b_tree	*parser(char *line)
 {
 	t_token		*token;
 	b_tree		*tree;
+	char		*line_to_parse;
 
 	token = NULL;
 	tree = NULL;
-	line = expander(line);
-	printf("\nexpanded line:\n%s\n", line);
-	if(!tokenizer(&token, line))
+	line_to_parse = expander(ft_strdup(line));
+	free(line);
+	if (!line_to_parse)
+		return (NULL);
+	if (!tokenizer(&token, &line_to_parse))
+		return (free(line_to_parse), destroy_tokens(token, 'e'), NULL);
+	free(line_to_parse);
+	print_tokens(&token);
+	if (!here_doc(&token))
 		return (destroy_tokens(token, 'e'), NULL);
-	if(!here_docker(&token))
-		return (destroy_tokens(token, 'e'), NULL);
-	if(!tree_constructor(&tree, &token))
+	if (!tree_constructor(&tree, &token))
 		return (destroy_tokens(token, 'd'), destroy_tree(&tree), NULL);
 	destroy_tokens(token, 'd');
 	return (tree);
@@ -69,9 +89,11 @@ int main(int argc, char **argv ,char **envp)
 	(void)argv;
 	(void)argc;
 
+	signal(SIGINT, exit_signal);
+	signal(SIGQUIT, SIG_IGN);
 	get_set_env(&envp, 0);
-	runner();
-
+	while (runner())
+		;
 	rl_clear_history();
 	get_set_env(NULL, 1);
 	return (0);

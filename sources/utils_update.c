@@ -34,6 +34,19 @@ char *search_var_value(char *var_name)
 	return (&var_value[index]);
 }
 
+void	copy_array_2(char **src, char **dest)
+{
+	int	i;
+
+	i = 0;
+	while (src[i])
+	{
+		dest[i] = strdup(src[i]);
+		i ++;
+	}
+	dest[i] = NULL;
+} 
+
 
 
 int	array_len(char **arr)

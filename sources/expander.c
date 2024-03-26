@@ -1,70 +1,60 @@
 #include "../minishell.h"
 
-char	*get_var(char *line, int var_pos, int len)
-{
-	char	**env;
-	int		i;
-	char	*var_name;
-
-	i = -1;
-	env = get_set_env(NULL, 0);
-	var_name = malloc(sizeof(char) * (len + 1));
-	if (!var_name)
-		return (NULL);
-	var_name[len] = '\0';
-	var_name[len - 1] = '=';
-	while (++i < len - 1)
-		var_name[i] = line[var_pos + i];
-	i = 0;
-	while (env[i])
-	{
-		if(!ft_strncmp(var_name, env[i], len))
-			return (free(var_name), &env[i][len]);
-		i++;
-	}
-	free(var_name);
-	return (NULL);
-}
-
-char	*refresh_line(char *line, int x1, int x2, char *expansion)
-{
-	int		i;
-	int		j;
-	char	*new_line;
-
-	new_line = malloc(sizeof(char) * ((ft_strlen(line) - (x2 - x1)) \
-					+ (ft_strlen(expansion)) + 1));
-	if (!new_line)
-		return (NULL);
-	i = -1;
-	while (++i < x1)
-		new_line[i] = line[i];
-	j = 0;
-	while (expansion[j])
-		new_line[i++] = expansion[j++];
-	j = x2;
-	while(line[j])
-		new_line[i++] = line[j++];
-	new_line[i] = '\0';
-	free (line);
-	return (new_line);
-}
-
 char	*search_and_add_variable(char *line, int *i)
 {
 	char		*expansion;
+	char		empty_expansion[3];		
 	int			j;
 
+	empty_expansion[0]= DOUBLE_Q;
+	empty_expansion[1]= DOUBLE_Q;
+	empty_expansion[2]= '\0';
 	j = (*i) + 1;
 	while (ft_isalnum(line[j]) || line[j] == '_')
 		j++;
-	expansion = get_var(line, (*i) + 1, j - (*i));
+	expansion = ft_strdup(get_var(line, (*i) + 1, j - (*i)));
 	if (!expansion)
+		return(refresh_line(line, i, j, empty_expansion));
+	return (refresh_line(line, i, j, expansion));
+}
+
+char	refiner(char c)
+{
+	if (c == '>')
+		return (GREATER);
+	else if (c == '<')
+		return (LESS);
+	else if (c == '|')
+		return (V_BAR);
+	else if (c == '\'')
+		return (SINGLE_Q);
+	else if (c == '"')
+		return (DOUBLE_Q);
+	else
+		return (c);
+}
+
+int	invalid_syntax(char *line)
+{
+	int 	i;
+
+	i = 0;
+	while(is_space(line[i]))
+		i++;
+	if(line[i] == V_BAR)
+		return (write(2, "Error: Invalid syntax\n", 23), 1);
+	while(line[i])
 	{
-		(*i) = j;
-		return(line);
+		if (line[i] == V_BAR)
+		{
+			while(is_space(line[++i]))
+				;
+			if (line[i] == V_BAR || line[i] == '\0')
+				return (write(2, "Error: Invalid syntax\n", 23), 1);
+		}
+		i++;
 	}
-	return (refresh_line(line, *i, j, expansion));
+	return (0);
 }
 
 char	*expander(char *line)
@@ -74,9 +64,10 @@ char	*expander(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if(line[i] == '\'')
+		line[i] = refiner(line[i]);
+		if (line[i] == SINGLE_Q)
 			i = iter_single_quote(line, i + 1);
-		else if (line[i] == '"')
+		else if (line[i] == DOUBLE_Q)
 			i = iter_double_quote(&line, i + 1);
 		else if(line[i] == '$')
 		{
@@ -89,5 +80,7 @@ char	*expander(char *line)
 		if (i == -1)
 			return (free(line), NULL);
 	}
+	if (invalid_syntax(line))
+		return (free(line), NULL);
 	return (line);
 }

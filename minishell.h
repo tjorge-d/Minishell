@@ -9,6 +9,17 @@
 #include <readline/history.h>
 #include <dirent.h>
 #include <errno.h>
+#include <signal.h>
+
+typedef enum special_chars
+{
+	GREATER = -1,
+	LESS = -2,
+	V_BAR = -3,
+	SINGLE_Q = -4,
+	DOUBLE_Q = -5
+
+}	special_chars;
 
 typedef enum node_type
 {
@@ -20,12 +31,12 @@ typedef enum node_type
 	REDIRECT_OUT_APP,
 	PIPE,
 	FIRST_BRANCH,
-	FLAGS
+	FLAGS,
+
 }	node_type;
 
 typedef struct s_token
 {
-
 	char 					*data;
 	node_type 				type;
 	struct s_token			*next;
@@ -52,12 +63,14 @@ typedef struct s_pipes
 b_tree		*parser(char *line);
 
 //expander.c
-char		*get_var(char *line, int var_pos, int len);
-char		*refresh_line(char *line, int x1, int x2, char *expansion);
 char		*search_and_add_variable(char *line, int *i);
+char		refiner(char c);
+int			invalid_syntax(char *line);
 char		*expander(char *line);
 
 //expander_utils.c
+char		*refresh_line(char *line, int *x1, int x2, char *expansion);
+char		*get_var(char *line, int var_pos, int len);
 int			iter_single_quote(char *line, int i);
 int			iter_double_quote(char **line, int i);
 
@@ -65,13 +78,13 @@ int			iter_double_quote(char **line, int i);
 void		destroy_tokens(t_token *token, char mode);
 t_token		*token_creator(char *line, int x1, int x2);
 int			add_token(char *line, t_token **token, int x1, int x2);
-int 		tokenizer(t_token **head, char *line);
+int 		tokenizer(t_token **head, char **line);
 
 //tokenizer_utils.c
-int			is_space(char c);
 void 		iter_spaces(char *line, int *x, int *i);
-void		skip_quote(char *line, int *i, char quote);
-int			iter_chars(t_token **head, char *line, int *x, int *i);
+char		*quote_remover(char *line, int x);
+void		skip_quote(char **line, int *i, char quote);
+int			iter_chars(t_token **head, char **line, int *x, int *i);
 
 //tree_constructor.c
 void		destroy_tree(b_tree **tree);
@@ -87,16 +100,34 @@ int			create_branch(b_tree **tree);
 int			get_redirection_type(char *redir);
 int			add_redirection(b_tree **branch, t_token **token, char *redir);
 
+//here_doc.c
+int			create_here_doc(char *exit);
+int			is_here_doc(t_token *prev_token);
+int			invalid_here_doc_exit(t_token *curr_token);
+int			here_doc(t_token **token);
+
+//parser_utils.c
+int			is_space(char c);
+int			is_special(char c);
+void 		free_matrix(char **matrix);
+
+//signal.c
+void    	quit_signal(int signal);
+void		exit_signal(int signal);
+
+
+
+
+
+
 //get_data_path.c
 int			is_built_in(char *line);
 char		*check_command(char **path, char* data);
 char		*get_data_path(char *data);
 
-//here_docker.c
-int			create_here_doc(char *exit);
-int			here_docker(t_token **token);
 
 //utils_update
+void		copy_array_2(char **src, char **dest);
 char		**get_set_env(char ***new_env, int flag_to_free);
 void		print_array(char **arr);
 char 		*search_var_value(char *var_name);
@@ -111,10 +142,6 @@ void		ft_echo(char **strs, int flag);
 
 //free_utils.c
 void		free_char_pp(char **array);
-
-//utils.c
-void		copy_array_2(char **src, char **dest);
-int			array_len(char **arr);
 
 //built_in_exp.c
 int			export(char *expression);
