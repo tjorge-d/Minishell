@@ -2,13 +2,13 @@
 
 int	is_built_in(char *line)
 {
-	if (!ft_strncmp(line, "echo", 6) \
+	if (!ft_strncmp(line, "echo", 5) \
 		|| !ft_strncmp(line, "cd", 3) \
 		|| !ft_strncmp(line, "pwd", 4) \
 		|| !ft_strncmp(line, "export", 8) \
-		|| !ft_strncmp(line, "unset", 7) \
+		|| !ft_strncmp(line, "unset", 6) \
 		|| !ft_strncmp(line, "env", 4) \
-		|| !ft_strncmp(line, "exit", 6))
+		|| !ft_strncmp(line, "exit", 5))
 		return (1);
 	return (0);
 }

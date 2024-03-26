@@ -21,10 +21,7 @@ SOURCES=parser.c \
 		echo.c \
 		unset.c \
 		pwd.c \
-		free_utils.c\
-		exec.c \
-		exec_utils.c\
-		exec_utils2.c
+		free_utils.c
 
 OBJ_DIR= objects
 OBJ= $(addprefix $(OBJ_DIR)/, $(SRC:sources/%.c=%.o))

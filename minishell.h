@@ -42,6 +42,12 @@ typedef struct s_tree_node
 
 }	b_tree;
 
+typedef struct s_pipes
+{
+	int *pipes[2];
+	int *wasredirected;
+
+} t_pipes;
 //parser.c
 b_tree		*parser(char *line);
 
@@ -120,4 +126,19 @@ void		cd_with_arg(char *arg);
 //unset.c
 void	copy_array_skip(char **src, char **dest, int index);
 
+//exec_utils2.c
+int	count_args(b_tree *tree);
+
+//exec_utils.c
+char **build_args(b_tree *tree);
+int	red_out_app(b_tree *tree, int *pipe);
+int	red_out(b_tree *tree, int *pipe);
+int red_in_doc(b_tree *tree, int *pipe);
+int	red_in(b_tree *tree, int *pipe);
+
+
+void	run(char *command,char **args, int**pipes ,int command_n);
+
+//exec.c
+int	executor(b_tree *tree);
 #endif

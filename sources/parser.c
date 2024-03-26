@@ -39,6 +39,7 @@ void	runner()
 	if (tree)
 	{
 		print_tree(&tree);
+		executor(tree);
 		destroy_tree(&tree);
 		runner();
 	}
