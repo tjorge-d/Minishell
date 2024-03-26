@@ -48,15 +48,12 @@ int	redirection_checker(b_tree **tree, t_token **token)
 {
 	t_token		*curr_token;
 	b_tree		*curr_branch;
-	char		redir[2];
 
-	redir[0] = LESS;
-	redir[1] = '\0';
 	curr_token = *token;
 	curr_branch = *tree;
 	while (curr_token)
 	{
-        if (curr_token->data[0] == redir[0])
+        if (curr_token->data[0] == LESS || curr_token->data[0] == GREATER)
 		{
 			if (!add_redirection(&curr_branch, &curr_token, curr_token->data))
 				return (0);	
@@ -64,12 +61,6 @@ int	redirection_checker(b_tree **tree, t_token **token)
 		curr_token = curr_token->next;
 		if (curr_token && curr_token->data[0] == V_BAR)
 			curr_branch = curr_branch->left;
-		if (curr_token == NULL && redir[0] != GREATER)
-		{
-			curr_token = *token;
-			curr_branch = *tree;
-			redir[0] = GREATER;
-		}
 	}
 	return (1);
 }
@@ -85,7 +76,7 @@ int	command_builder(b_tree **tree, t_token **token)
 	token_type = COMMAND;
 	while (c_token)
 	{
-		if (!c_token->used)
+		if (!c_token->used && c_token->data[0] != EMPTY)
 		{
 			if (token_type == COMMAND)
 				c_token->data = get_data_path(c_token->data);

@@ -26,7 +26,11 @@ void	print_tree(b_tree **tree)
 		while(test1)
 		{
 			printf("%i", test1->type);
-			if (test1->data)
+			if (test1->data && test1->data[0] == '\0')
+				printf("(EMPTY TOKEN)");
+			else if (test1->data && test1->data[0] == EMPTY)
+				printf("(EMPTY EXPANSION)");
+			else if (test1->data)
 				printf("(%s)", test1->data);
 			printf(" -> ");
 			test1 = test1->right;

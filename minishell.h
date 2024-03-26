@@ -11,15 +11,20 @@
 #include <errno.h>
 #include <signal.h>
 
+
 typedef enum special_chars
 {
-	GREATER = -1,
-	LESS = -2,
-	V_BAR = -3,
-	SINGLE_Q = -4,
-	DOUBLE_Q = -5
+	GREATER = -7,
+	LESS,
+	V_BAR,
+	SINGLE_Q,
+	DOUBLE_Q,
+	EMPTY,
+	NULL_TOKEN,
 
 }	special_chars;
+
+#define EMPTY_STRING {EMPTY, '\0'}
 
 typedef enum node_type
 {
@@ -69,9 +74,10 @@ int			invalid_syntax(char *line);
 char		*expander(char *line);
 
 //expander_utils.c
+int			is_to_expand(char *line, int i);
 char		*refresh_line(char *line, int *x1, int x2, char *expansion);
 char		*get_var(char *line, int var_pos, int len);
-int			iter_single_quote(char *line, int i);
+int			iter_single_quote(char **line, int i);
 int			iter_double_quote(char **line, int i);
 
 //tokenizer.c

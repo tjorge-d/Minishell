@@ -22,23 +22,23 @@ t_token	*token_creator(char *line, int x1, int x2)
 	int			i;
 	int			j;
 
-	new_token = malloc(sizeof(t_token));
+	new_token = ft_calloc(1, sizeof(t_token));
 	if (!new_token)
 		return (NULL);
-	new_token->data = malloc(sizeof(char) * (x2 - x1) + 2);
+	new_token->data = ft_calloc((x2 - x1) + 2, sizeof(char));
 	if (!new_token->data)
 		return (free(new_token), NULL);
 	i = 0;
 	j = x1 -1;
 	while (++j <= x2)
 	{
+		if (line[j] == NULL_TOKEN || (line[j] == EMPTY && x1 != x2))
+			j++;
+		if (j > x2)
+			break ;
 		new_token->data[i] = line[j];
 		i++;
 	}
-	new_token->data[i] = '\0';
-	new_token->type = 0;
-	new_token->next = NULL;
-	new_token->used = 0;
 	return (new_token);
 }
 
