@@ -55,8 +55,7 @@ int	here_doc(t_token **token)
 			if (invalid_here_doc_exit(curr_token))
 				return (write(2, "Error: Invalid syntax\n", 23), 0);
 			free(prev_token->data);
-			prev_token->data = mal			printf("entered run_child\n");
-			printf("%s\n", args[0]);loc(sizeof(char) * 2);
+			prev_token->data = malloc(sizeof(char) * 2);
 			if (!prev_token->data)
 				return (0);
 			prev_token->data[0] = LESS;
