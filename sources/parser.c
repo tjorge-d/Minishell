@@ -1,5 +1,7 @@
 #include "../minishell.h"
 
+int	global_var;
+
 void	print_tokens(t_token **token)
 {
 	t_token	*test1;
@@ -48,9 +50,12 @@ int	runner()
 	char 	*line;
 
 	tree = NULL;
+	signal(SIGINT, ctrl_c_signal);
 	line = readline("<Minishell> ");
 	if (!line)
-		return (free(line), 0);
+		return (printf("Exit\n"), 0);
+	if (line[0] == '\0')
+		return (free(line), 1);
 	add_history(line);
 	tree = parser(line);
 	if (!tree)
@@ -92,7 +97,7 @@ int main(int argc, char **argv ,char **envp)
 	(void)argv;
 	(void)argc;
 
-	signal(SIGINT, exit_signal);
+	global_var = 0;
 	signal(SIGQUIT, SIG_IGN);
 	get_set_env(&envp, 0);
 	while (runner())

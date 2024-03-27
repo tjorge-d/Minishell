@@ -1,16 +1,20 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-#include "libft/libft.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <dirent.h>
-#include <errno.h>
-#include <signal.h>
+# include "libft/libft.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <time.h>
+# include <sys/types.h> 
+# include <sys/wait.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <dirent.h>
+# include <errno.h>
+# include <signal.h>
 
+extern int		global_var;
 
 typedef enum special_chars
 {
@@ -23,8 +27,6 @@ typedef enum special_chars
 	NULL_TOKEN,
 
 }	special_chars;
-
-#define EMPTY_STRING {EMPTY, '\0'}
 
 typedef enum node_type
 {
@@ -112,8 +114,9 @@ int			is_special(char c);
 void 		free_matrix(char **matrix);
 
 //signal.c
+void		sigint_handler_nonl(int sig);
 void    	quit_signal(int signal);
-void		exit_signal(int signal);
+void		ctrl_c_signal(int signal);
 
 
 
