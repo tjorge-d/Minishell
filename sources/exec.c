@@ -98,13 +98,39 @@ void do_child(b_tree *tree, int command_n ,t_command *commands, int total)
 		while(tree && (tree->type !=COMMAND))
 			tree = tree->right;
 		if(tree)
-		{
-			run(tree->data, commands, command_n, total);
-		}
+			run(commands[command_n].command, commands, command_n, total);
 		exit(112);
 	}
 }
 
+void	fill_command(int n_cmd,t_command *commands, b_tree *tree)
+{
+	int i;
+
+	i = 1;
+	while (i < n_cmd)
+	{
+		tree = tree->left;
+		i ++;
+	}
+	while (tree && tree->type != COMMAND)
+	{
+		tree = tree->right;
+	}
+	if (tree)
+		commands[n_cmd].command = tree->data;
+}
+void	fill_commands(int n_commands,t_command *commands, b_tree *tree)
+{
+	int i;
+
+	i = 0;
+	while (i < n_commands)
+	{
+		fill_command(i, commands, tree);
+		i++;
+	}
+}
 
 
 int	executor(b_tree *tree)
@@ -116,7 +142,10 @@ int	executor(b_tree *tree)
 	i = -1;
 	n_commands = get_n_commands(tree);
 	commands = malloc(sizeof(t_command) * n_commands);
+	fill_commands(n_commands, commands, tree);
 	create_pipes(n_commands, commands);
+	if (n_commands == 1 && commands[0].command && is_built_in(commands[0].command))
+		return (run_built_in(commands[0].command, build_args(tree)));
 	while (++i < n_commands)
 	{
 		commands[i].args = build_args(tree);

@@ -13,20 +13,17 @@ int	count_args(b_tree *tree)
 	return (i);
 }
 
-void	run(char *command, t_command *commands ,int command_n, int total_cmds)
+void	run(char *command, t_command *cmds ,int cmd_n, int total_cmds)
 {
-	printf("command -> %s\n",command);
-	printf("command args-> %s\n",commands[command_n].args[0]);
-	printf("command fd_in-> %d\n",commands[command_n].fd_in);
-	printf("command fd_out-> %d\n\n",commands[command_n].fd_out);
-	dup2(commands[command_n].fd_in,STDIN_FILENO);
-	if(commands[command_n].fd_out != 1)
-	{
-		dup2(commands[command_n].fd_out,STDOUT_FILENO);
-	}
-	close_fds(commands, total_cmds);
-	execve(command, commands[command_n].args, get_set_env(NULL, 0));
-	perror(command);
+	dup2(cmds[cmd_n].fd_in,STDIN_FILENO);
+	if(cmds[cmd_n].fd_out != 1)
+		dup2(cmds[cmd_n].fd_out,STDOUT_FILENO);
+	close_fds(cmds, total_cmds);
+	if(!is_built_in(cmds[cmd_n].command))
+		execve(cmds[cmd_n].command, cmds[cmd_n].args, get_set_env(NULL, 0));
+	else 
+		run_built_in(cmds[cmd_n].command,cmds[cmd_n].args);
+	perror(cmds[cmd_n].command);
 }
 
 int	wait_loop(int n_commands,t_command *commands)
@@ -41,4 +38,19 @@ int	wait_loop(int n_commands,t_command *commands)
 		i++;
 	}
 	return (exit_status);
+}
+
+int	run_built_in(char *built_in, char ** args)
+{
+	if (!ft_strncmp(built_in, "echo", 5))
+		return (run_echo(args));
+	else if (!ft_strncmp(built_in, "cd", 3))
+		return (run_cd(args))
+		|| !ft_strncmp(line, "pwd", 4) \
+		|| !ft_strncmp(line, "export", 8) \
+		|| !ft_strncmp(line, "unset", 6) \
+		|| !ft_strncmp(line, "env", 4) \
+		|| !ft_strncmp(line, "exit", 5))
+		return (1);
+	return (0);
 }
