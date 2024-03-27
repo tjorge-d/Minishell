@@ -13,110 +13,122 @@ int	get_n_commands(b_tree *tree)
 	return (ans);
 }
 
-void	close_fds(int **ans)
+void create_pipes(int n_commands, t_command *commands)
 {
 	int	i;
+	int pipes[2];
 
 	i = 0;
-	while (ans[i])
-	{
-		close(ans[i][0]);
-		close(ans[i][1]);
-		i ++;
-	}
-}
-
-int	**create_pipes(int n_commands)
-{
-	int	i;
-	int **ans;
-
-	i = 0;
-	ans = malloc(sizeof(int[2]) * (n_commands + 1));
 	while (i < n_commands)
 	{
-		if(pipe(ans[i]))
+		if (i == 0)
+			commands[i].fd_in = 0;
+		if (n_commands != 1)
 		{
-			close_fds(ans);
-			free(ans);
-			return (NULL);
+			pipe(pipes);
+		}
+		if(i == n_commands - 1)
+			commands[i].fd_out = 1;
+		else
+		{
+			commands[i].fd_out = pipes[1];
+			commands[i+1].fd_in = pipes[0];
 		}
 		i ++;
 	}
-	ans[i] = NULL;
-	return (ans);
 }
-int do_redirects(b_tree *tree, int **pipes, int command_n)
+int do_redirects(b_tree *tree, t_command *commands, int command_n)
 {
-	while (tree->type == REDIRECT_IN || tree->type == REDIRECT_IN_DOC ||
-				tree->type == REDIRECT_OUT || tree->type == REDIRECT_OUT)
+	while (tree && tree->type != PIPE)
 		{
 			if (tree->type == REDIRECT_IN)
 			{
-				if (red_in(tree, pipes[command_n]) == 0)
+				if (red_in(tree, &commands[command_n].fd_in) == 0)
 					return (0);
 			}
-			if (tree->type == REDIRECT_IN_DOC)
-				red_in_doc(tree, pipes[command_n]);
-			if (tree->type == REDIRECT_OUT)
+			else if (tree->type == REDIRECT_IN_DOC)
+				red_in_doc(tree, &commands[command_n].fd_in);
+			else if (tree->type == REDIRECT_OUT)
 			{
-				if(!red_out(tree, pipes[command_n]))
+				if(!red_out(tree, &commands[command_n].fd_out))
 					return (0);
 			}
-			if (tree->type == REDIRECT_OUT_APP)
+			else if (tree->type == REDIRECT_OUT_APP)
 			{
-				if(!red_out_app(tree, pipes[command_n]))
+				if(!red_out_app(tree, &commands[command_n].fd_out))
 					return (0);
 			}
 			tree = tree->right;
 		}
 	return (1);
 }
+void	close_fds(t_command *coms, int total)
+{
+	int i;
 
-void do_child(b_tree *tree, int command_n, int **pipes)
+	fprintf(stderr, "Total :%d\n\n", total);
+	i = 0;
+	while (i < total)
+	{
+
+		if(coms[i].fd_in != STDIN_FILENO)
+			
+			{
+				fprintf(stderr,"closed FD_in %d\n",coms[i].fd_in);
+				close(coms[i].fd_in);
+			}
+		if(coms[i].fd_out != STDOUT_FILENO)
+			{
+				fprintf(stderr,"closed FD_out %d\n",coms[i].fd_out);
+				close(coms[i].fd_out);
+			}
+		i++;
+	}
+}
+void do_child(b_tree *tree, int command_n ,t_command *commands, int total)
 {
 	int	i;
-	char **args;
 
 	i = 0; 
-	while (i++ < command_n)
-		tree = tree->left;
-	if (tree->type == PIPE || tree->type == FIRST_BRANCH)
+	if ((tree->type == PIPE || tree->type == FIRST_BRANCH))
 	{
 		tree = tree->right;
-		if (!do_redirects(tree, pipes, command_n))
-			return ;
-		args = build_args(tree);
+		if (!do_redirects(tree, commands, command_n))
+		 	return ;
 		while(tree && (tree->type !=COMMAND))
 			tree = tree->right;
 		if(tree)
 		{
-			run(tree->data, args, pipes ,command_n);
+			run(tree->data, commands, command_n, total);
 		}
-		close_fds(pipes);
+		exit(112);
 	}
 }
+
+
 
 int	executor(b_tree *tree)
 {
 	int	n_commands;
+	t_command *commands;
 	int	i;
-	int	**pipes;
-	int	fork_res;
 
-	i = 0;
+	i = -1;
 	n_commands = get_n_commands(tree);
-	pipes = create_pipes(n_commands);
-	while (i < n_commands)
+	commands = malloc(sizeof(t_command) * n_commands);
+	create_pipes(n_commands, commands);
+	while (++i < n_commands)
 	{
-		fork_res = fork();
-		if (!fork_res)
-			do_child(tree , i, pipes);
-		else if (fork_res < 0)
+		commands[i].args = build_args(tree);
+		commands[i].process_id = fork();
+		if (!commands[i].process_id)
+			do_child(tree , i, commands, n_commands);
+		else if (commands[i].process_id < 0)
 			return (12);
 		else
-			i ++;
+			tree = tree->left;
 	}
-	printf("%d\n", i);
+	close_fds(commands,n_commands);
+	wait_loop(n_commands, commands);
 	return (i);
 }

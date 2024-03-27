@@ -10,6 +10,7 @@
 #include <dirent.h>
 #include <errno.h>
 #include <signal.h>
+#include <sys/wait.h>
 
 
 typedef enum special_chars
@@ -58,12 +59,14 @@ typedef struct s_tree_node
 
 }	b_tree;
 
-typedef struct s_pipes
+typedef struct s_command
 {
-	int *pipes[2];
-	int *wasredirected;
-
-} t_pipes;
+	int		fd_in;
+	int		fd_out;
+	char	*command;
+	char	**args;
+	pid_t	process_id;
+} t_command;
 //parser.c
 b_tree		*parser(char *line);
 
@@ -161,17 +164,18 @@ void	copy_array_skip(char **src, char **dest, int index);
 
 //exec_utils2.c
 int	count_args(b_tree *tree);
+int	wait_loop(int n_commands,t_command *commands);
 
 //exec_utils.c
 char **build_args(b_tree *tree);
-int	red_out_app(b_tree *tree, int *pipe);
-int	red_out(b_tree *tree, int *pipe);
-int red_in_doc(b_tree *tree, int *pipe);
-int	red_in(b_tree *tree, int *pipe);
-
-
-void	run(char *command,char **args, int**pipes ,int command_n);
+int	red_out_app(b_tree *tree, int *fd_out);
+int	red_out(b_tree *tree, int *fd_out);
+int red_in_doc(b_tree *tree, int *fd_in);
+int	red_in(b_tree *tree, int *fd_in);
 
 //exec.c
-int	executor(b_tree *tree);
+void	run(char *cmd_path, t_command *commands ,int cmd_n, int total_cmds);
+void	close_fds(t_command *coms, int total);
+int		executor(b_tree *tree);
+
 #endif

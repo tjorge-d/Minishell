@@ -50,7 +50,7 @@ int	runner()
 	tree = NULL;
 	line = readline("<Minishell> ");
 	if (!line)
-		return (free(line), 0);
+		return (0);
 	add_history(line);
 	tree = parser(line);
 	if (!tree)
@@ -97,7 +97,8 @@ int main(int argc, char **argv ,char **envp)
 	signal(SIGQUIT, SIG_IGN);
 	get_set_env(&envp, 0);
 	while (runner())
-		;
+	{
+	}
 	rl_clear_history();
 	get_set_env(NULL, 1);
 	return (0);

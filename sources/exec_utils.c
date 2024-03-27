@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-int	red_in(b_tree *tree, int *pipe)
+int	red_in(b_tree *tree, int *fd_in)
 {
 	int fd;
 
@@ -12,20 +12,26 @@ int	red_in(b_tree *tree, int *pipe)
 	}
 	else
 	{
-		dup2(fd, pipe[1]);
+		if(*fd_in != STDIN_FILENO)
+			close(*fd_in);
+		*fd_in  = fd;
 		return (1);
 	}
 }
 
-int red_in_doc(b_tree *tree, int *pipe)
+int red_in_doc(b_tree *tree, int *fd_in)
 {
-	dup2(ft_atoi(tree->data), pipe[1]);
+	int	atoi;
+
+	atoi = ft_atoi(tree->data);
+	*fd_in = atoi;
 	return (1);
 }
 
-int	red_out(b_tree *tree, int *pipe)
+int	red_out(b_tree *tree, int *fd_out)
 {
 	int fd;
+	
 	fd = open(tree->data, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd == -1)
 	{
@@ -34,15 +40,17 @@ int	red_out(b_tree *tree, int *pipe)
 	}
 	else
 	{
-		dup2(fd,pipe[0]);\
-		//testar com close pipe[1];
-		return(1);
+		if(*fd_out != STDOUT_FILENO)
+			close(*fd_out);
+		*fd_out  = fd;
+		return (1);
 	}
 }
 
-int	red_out_app(b_tree *tree, int *pipe)
+int	red_out_app(b_tree *tree, int *fd_out)
 {
 	int fd;
+	
 	fd = open(tree->data, O_CREAT | O_WRONLY | O_APPEND, 0644);
 	if (fd == -1)
 	{
@@ -51,8 +59,10 @@ int	red_out_app(b_tree *tree, int *pipe)
 	}
 	else
 	{
-		dup2(fd,pipe[0]);
-		return(1);
+		if(*fd_out != STDOUT_FILENO)
+			close(*fd_out);
+		*fd_out  = fd;
+		return (1);
 	}
 }
 
