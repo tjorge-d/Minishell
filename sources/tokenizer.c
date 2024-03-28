@@ -6,8 +6,11 @@ void	destroy_tokens(t_token *token, char mode)
 
 	while (token)
 	{
+		if((mode == 'e' || mode == 'h') && token->type == REDIRECT_IN_DOC)
+			close(ft_atoi(token->next->data));
 		if(token->data)
 			free(token->data);
+
 		temp = token;
 		token = token->next;
 		free(temp);

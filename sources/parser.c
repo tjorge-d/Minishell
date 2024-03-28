@@ -59,7 +59,7 @@ int	runner()
 	add_history(line);
 	tree = parser(line);
 	if (!tree)
-		return (1);
+		return (0);
 	if (tree)
 	{
 		print_tree(&tree);
@@ -85,9 +85,9 @@ b_tree	*parser(char *line)
 	free(line_to_parse);
 	print_tokens(&token);
 	if (!here_doc(&token))
-		return (destroy_tokens(token, 'e'), NULL);
+		return (destroy_tokens(token, 'h'), NULL);
 	if (!tree_constructor(&tree, &token))
-		return (destroy_tokens(token, 'd'), destroy_tree(&tree), NULL);
+		return (destroy_tokens(token, 'h'), destroy_tree(&tree), NULL);
 	destroy_tokens(token, 'd');
 	return (tree);
 }

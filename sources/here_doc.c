@@ -1,47 +1,55 @@
 #include "../minishell.h"
 
+void	here_doc_proccess(char *exit_statement, t_token **token, int fd[2])
+{
+	char	*line;
+
+	signal(SIGINT, quit_here_doc);
+	global_var = 0;
+	line = readline("> ");
+	while(line && (ft_strncmp(line, exit_statement, ft_strlen(exit_statement)) != 0 \
+	|| ft_strlen(exit_statement) != ft_strlen(line)))
+	{
+		ft_putstr_fd(line, fd[1]);
+		ft_putstr_fd("\n", fd[1]);
+		free(line);
+		line = readline("> ");
+	}
+	if (line)
+		free(line);
+	else if (!line && global_var == 0)
+		printf("warning: here-document delimited by end-of-file (wanted `%s')\n", exit_statement);
+	close(fd[1]);
+	close(fd[0]);
+	destroy_tokens((*token), 'h');
+	get_set_env(NULL, 1);
+	if (global_var == 2)
+		exit(2);
+	exit(0);
+}
+
 int	create_here_doc(char *exit_statement, t_token **token)
 {
 	int		fd[2];
-	char	*line;
 	int		id;
+	int		error_code;
 	
+	signal(SIGINT, ctrl_c_signal_hd);
 	if (pipe(fd) == -1)
 		return (write(2, "Error: failed to create a pipe\n", 32), 0);
 	id = fork();
 	if (id == 0)
-	{
-		signal(SIGINT, SIG_DFL);
-		line = readline("> ");
-		if (!line)
-			return (free(exit_statement), close(fd[1]), fd[0]);
-		while(ft_strncmp(line, exit_statement, ft_strlen(exit_statement)) != 0 \
-		|| ft_strlen(exit_statement) != ft_strlen(line))
-		{
-			ft_putstr_fd(line, fd[1]);
-			ft_putstr_fd("\n", fd[1]);
-			free(line);
-			line = readline("> ");
-			if (!line)
-			{
-				close(fd[1]);
-				close(fd[0]);
-				destroy_tokens(*token, 'd');
-				exit(0);
-			}
-		}
-		free(line);
-		close(fd[1]);
-		close(fd[0]);
-		destroy_tokens(*token, 'd');
-		get_set_env(NULL, 1);
-		exit(0);
-	}
+		here_doc_proccess(exit_statement, token, fd);
 	else
 	{
-		wait(0);
-		free(exit_statement);
+		wait(&error_code);
 		close(fd[1]);
+		if (error_code != 0)
+		{
+			write(1, "> ^C\n", 6);
+			close(fd[0]);
+			return (0);
+		}
 	}
 	return (fd[0]);
 }

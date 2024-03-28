@@ -113,9 +113,9 @@ int			is_space(char c);
 int			is_special(char c);
 void 		free_matrix(char **matrix);
 
-//signal.c
-void		sigint_handler_nonl(int sig);
-void    	quit_signal(int signal);
+//signals.c
+void		ctrl_c_signal_hd(int signal);
+void		quit_here_doc(int signal);
 void		ctrl_c_signal(int signal);
 
 
