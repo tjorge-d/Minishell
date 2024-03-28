@@ -10,7 +10,9 @@ void	free_char_pp(char **array)
 	{
 		while (array[i])
 		{
+			//fprintf(stderr,"freed string = %s\n\n",array[i]);
 			free(array[i]);
+			array[i] = NULL;
 			i ++;
 		}
 	}

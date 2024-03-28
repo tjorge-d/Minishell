@@ -77,11 +77,12 @@ char **build_args(b_tree *tree)
 	if (tree)
 	{
 		args = malloc(sizeof(char *) *(count_args(tree) + 1));
+		fprintf(stderr,"n_args = %d\n\n",count_args(tree));
 		if(!args)
 			return (NULL);
 		while(tree && (tree->type == COMMAND | tree->type == ARGUMENT))
 		{
-			args[i++] = tree->data;
+			args[i++] = strdup(tree->data);
 			tree = tree->right;
 		}
 		args[i] = NULL;

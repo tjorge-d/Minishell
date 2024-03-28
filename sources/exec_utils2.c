@@ -27,7 +27,7 @@ void	run(t_command *cmds ,int cmd_n, int total_cmds)
 		perror(cmds[cmd_n].command);
 	}
 	else 
-		run_built_in(cmds[cmd_n].command,cmds[cmd_n].args);
+		run_built_in(cmds[cmd_n].command, cmds, cmd_n);
 	
 }
 
@@ -40,26 +40,55 @@ int	wait_loop(int n_commands,t_command *commands)
 	while (i < n_commands)
 	{
 		waitpid(commands[i].process_id, &exit_status, 0);
+		free_char_pp(commands[i].args);
 		i++;
 	}
+	free(commands);
 	return (exit_status);
 }
 
-int	run_built_in(char *built_in, char ** args)
+int	run_built_in_solo(char *built_in, t_command *cmd, char **args, int cmd_n)
 {
+	int ans;
+
+	cmd[cmd_n].args = args;
+	ans = 2;
 	if (!ft_strncmp(built_in, "echo", 5))
-		return (run_echo(args));
+		ans = run_echo(cmd[cmd_n].args);
 	else if (!ft_strncmp(built_in, "cd", 3))
-	 	return (run_cd(args));
+	 	ans = run_cd(cmd[cmd_n].args);
 	else if (!ft_strncmp(built_in, "pwd", 4))
-	 	return (print_pwd());
+		ans = print_pwd();
 	else if (!ft_strncmp(built_in, "export", 8))
-	 	return (run_export(args));
+	 	ans = run_exp(cmd[cmd_n].args);
 	// else if (!ft_strncmp(built_in, "unset", 6))
 	// 	return (run_unset(args));
 	// else if (!ft_strncmp(built_in, "env", 4))
 	// 	return (run_env(args));
 	// else if(!ft_strncmp(built_in, "exit", 5))
 	// 	return (run_exit(args));
-	return (0);
+	free_char_pp(cmd[cmd_n].args);
+	free(cmd);
+	return (ans);
+}
+int	run_built_in(char *built_in, t_command *cmd, int cmd_n)
+{
+	int ans;
+
+	ans = 2;
+	if (!ft_strncmp(built_in, "echo", 5))
+		ans = run_echo(cmd[cmd_n].args);
+	else if (!ft_strncmp(built_in, "cd", 3))
+	 	ans = run_cd(cmd[cmd_n].args);
+	else if (!ft_strncmp(built_in, "pwd", 4))
+		ans = print_pwd();
+	else if (!ft_strncmp(built_in, "export", 8))
+	 	ans = run_exp(cmd[cmd_n].args);
+	// else if (!ft_strncmp(built_in, "unset", 6))
+	// 	return (run_unset(args));
+	// else if (!ft_strncmp(built_in, "env", 4))
+	// 	return (run_env(args));
+	// else if(!ft_strncmp(built_in, "exit", 5))
+	// 	return (run_exit(args));
+	return (ans);
 }

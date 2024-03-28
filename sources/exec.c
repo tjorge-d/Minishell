@@ -146,7 +146,7 @@ int	executor(b_tree *tree)
 	fill_commands(n_commands, commands, tree);
 	create_pipes(n_commands, commands);
 	if (n_commands == 1 && commands[0].command && is_built_in(commands[0].command))
-		return (run_built_in(commands[0].command, build_args(tree)));
+		return (run_built_in_solo(commands[0].command, commands, build_args(tree),0));
 	while (++i < n_commands)
 	{
 		commands[i].args = build_args(tree);

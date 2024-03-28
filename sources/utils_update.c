@@ -78,14 +78,14 @@ char	**copy_array(char **src)
 }
 
 
-char **get_set_env(char ***new_env, int flag_to_free)
+char **get_set_env(char **new_env, int flag_to_free)
 {
 	static char **env;
 	if (new_env)
 	{
 		if(flag_to_free)
 			free_char_pp(env);
-		env = copy_array(*new_env);
+		env = copy_array(new_env);
 	}
 	else if(flag_to_free == 1)
 	{

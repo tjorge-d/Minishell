@@ -95,7 +95,7 @@ int main(int argc, char **argv ,char **envp)
 
 	signal(SIGINT, exit_signal);
 	signal(SIGQUIT, SIG_IGN);
-	get_set_env(&envp, 0);
+	get_set_env(envp, 0);
 	while (runner())
 	{
 	}

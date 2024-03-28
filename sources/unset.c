@@ -33,7 +33,7 @@ int	unset(char *expression)
 	if (!new_env)
 		return (0);
 	copy_array_skip(env, new_env, loc);
-	get_set_env(&new_env,1);
+	get_set_env(new_env,1);
 	free_char_pp(new_env);
 	return (1);
 }
