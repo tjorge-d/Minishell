@@ -147,7 +147,12 @@ void		free_char_pp(char **array);
 char		**get_set_env(char ***new_env, int);
 
 //echo.c
-void		ft_echo(char **strs, int flag);
+int			ft_echo(char **strs, int flag);
+int			is_valid_flag(char *arg);
+int			run_echo(char **args);
+
+//pwd.c
+int			print_pwd(void);
 
 //free_utils.c
 void		free_char_pp(char **array);
@@ -156,8 +161,9 @@ void		free_char_pp(char **array);
 int			export(char *expression);
 
 //cd_built_in.c
-void		cd_without_args(void);
-void		cd_with_arg(char *arg);
+int		cd_without_args(void);
+int		cd_with_arg(char *arg);
+int			run_cd(char **args);
 
 //unset.c
 void	copy_array_skip(char **src, char **dest, int index);
@@ -165,6 +171,7 @@ void	copy_array_skip(char **src, char **dest, int index);
 //exec_utils2.c
 int	count_args(b_tree *tree);
 int	wait_loop(int n_commands,t_command *commands);
+int	run_built_in(char *built_in, char ** args);
 
 //exec_utils.c
 char **build_args(b_tree *tree);
@@ -174,8 +181,9 @@ int red_in_doc(b_tree *tree, int *fd_in);
 int	red_in(b_tree *tree, int *fd_in);
 
 //exec.c
-void	run(char *cmd_path, t_command *commands ,int cmd_n, int total_cmds);
+void	run(t_command *commands ,int cmd_n, int total_cmds);
 void	close_fds(t_command *coms, int total);
 int		executor(b_tree *tree);
+
 
 #endif

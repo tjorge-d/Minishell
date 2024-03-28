@@ -97,8 +97,9 @@ void do_child(b_tree *tree, int command_n ,t_command *commands, int total)
 		 	return ;
 		while(tree && (tree->type !=COMMAND))
 			tree = tree->right;
+		fprintf(stderr, "entered do child and command is %s \n", commands[command_n].command);
 		if(tree)
-			run(commands[command_n].command, commands, command_n, total);
+			run(commands, command_n, total);
 		exit(112);
 	}
 }
@@ -107,7 +108,7 @@ void	fill_command(int n_cmd,t_command *commands, b_tree *tree)
 {
 	int i;
 
-	i = 1;
+	i = 0;
 	while (i < n_cmd)
 	{
 		tree = tree->left;
