@@ -2,9 +2,13 @@
 
 void    quit_signal(int signal)
 {
-	rl_on_new_line();
-	rl_replace_line("BOAS", 0);
+	char str[2];
+
+	str[0] = -1;
+	str[1] = '\0';
+	write(0, str, 2);
 	global_var = signal;
+	(void) signal;
 }
 
 void    ctrl_c_signal(int signal)

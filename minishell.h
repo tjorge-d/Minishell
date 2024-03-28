@@ -103,7 +103,7 @@ int			get_redirection_type(char *redir);
 int			add_redirection(b_tree **branch, t_token **token, char *redir);
 
 //here_doc.c
-int			create_here_doc(char *exit);
+int			create_here_doc(char *exit_statement, t_token **token);
 int			is_here_doc(t_token *prev_token);
 int			invalid_here_doc_exit(t_token *curr_token);
 int			here_doc(t_token **token);
