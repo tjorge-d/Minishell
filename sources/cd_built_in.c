@@ -8,9 +8,6 @@ char *get_error_msg_cd(char *arg)
 
 void	ft_chdir_our_env(char *new_dir)
 {
-	char **env;
-
-	env = get_set_env(NULL, 0);
 	export (ft_strjoin("OLDPWD=", search_var_value("PWD"),0,0));
 	export (ft_strjoin("PWD=", new_dir,0,0));
 }

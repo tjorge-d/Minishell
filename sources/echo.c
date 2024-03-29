@@ -39,10 +39,14 @@ int is_valid_flag(char *arg)
 	int i;
 
 	i = 0;
-	if(arg[i] == '-')
+	if (arg[i] && arg[i] == '-')
 		i ++;
-	else
-		return (0);
+	    else
+		    return (0);
+    if (arg[i] && arg[i] == 'n')
+        i++;
+        else 
+            return (0);
 	while (arg[i])
 	{
 		if(arg[i] != 'n')
