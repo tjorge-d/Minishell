@@ -31,11 +31,14 @@ int red_in_doc(b_tree *tree, int *fd_in)
 int	red_out(b_tree *tree, int *fd_out)
 {
 	int fd;
+	char *str;
 	
 	fd = open(tree->data, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd == -1)
 	{
-		printf("ERROR COULD NOT OPEN :%s", tree->data);
+		str = ft_strjoin("ERROR COULD NOT OPEN :", tree->data, 0, 0);
+		ft_putstr_fd(str, 2);
+		free(str);
 		return (0);
 	}
 	else
@@ -50,11 +53,14 @@ int	red_out(b_tree *tree, int *fd_out)
 int	red_out_app(b_tree *tree, int *fd_out)
 {
 	int fd;
+	char *str;
 	
 	fd = open(tree->data, O_CREAT | O_WRONLY | O_APPEND, 0644);
 	if (fd == -1)
-	{
-		printf("ERROR COULD NOT OPEN :%s", tree->data);
+	{	
+		str = ft_strjoin("ERROR COULD NOT OPEN :", tree->data, 0, 0);
+		ft_putstr_fd(str, 2);
+		free(str);
 		return (0);
 	}
 	else
@@ -77,7 +83,6 @@ char **build_args(b_tree *tree)
 	if (tree)
 	{
 		args = malloc(sizeof(char *) *(count_args(tree) + 1));
-		fprintf(stderr,"n_args = %d\n\n",count_args(tree));
 		if(!args)
 			return (NULL);
 		while(tree && (tree->type == COMMAND || tree->type == ARGUMENT))

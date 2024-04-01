@@ -152,6 +152,7 @@ int			print_pwd(void);
 
 //free_utils.c
 void		free_char_pp(char **array);
+void		free_all(int n_commands, t_command *commands, b_tree *tree);
 
 //built_in_exp.c
 int			export(char *expression);
@@ -170,7 +171,8 @@ int     run_unset(char **args);
 int     run_env(char **args);
 
 //exit.c
-int run_exit(t_command *cmd, int cmd_n, b_tree *tree, int flag);
+int		run_exit(t_command *cmd, int cmd_n, b_tree *tree, int flag);
+void	increase_shell_lvl(void);
 
 //exec_utils2.c
 int     count_args(b_tree *tree);

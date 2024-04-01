@@ -60,7 +60,7 @@ int if_built_in_sequence(t_command *cmd, int cmd_n, b_tree *tree, int flag)
 	 	return (run_env(cmd[cmd_n].args));
 	else if(!ft_strncmp(cmd[cmd_n].command, "exit", 5))
 	 	return (run_exit(cmd, cmd_n, tree, flag));
-        return (-1);
+    return (-1);
 }
 
 int	run_built_in_solo(b_tree *tree, t_command *cmd, char **args, int cmd_n)

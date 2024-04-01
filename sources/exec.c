@@ -13,7 +13,7 @@ int	get_n_commands(b_tree *tree)
 	return (ans);
 }
 
-void create_pipes(int n_commands, t_command *commands)
+int create_pipes(int n_commands, t_command *commands,b_tree *tree)
 {
 	int	i;
 	int pipes[2];
@@ -25,7 +25,11 @@ void create_pipes(int n_commands, t_command *commands)
 			commands[i].fd_in = 0;
 		if (n_commands != 1)
 		{
-			pipe(pipes);
+			if(pipe(pipes) == -1)
+				{	
+					free_all(n_commands, commands, tree);
+					return (failure_msg('P'), 0);
+				}
 		}
 		if(i == n_commands - 1)
 			commands[i].fd_out = 1;
@@ -67,22 +71,13 @@ void	close_fds(t_command *coms, int total)
 {
 	int i;
 
-	fprintf(stderr, "Total :%d\n\n", total);
 	i = 0;
 	while (i < total)
 	{
-
 		if(coms[i].fd_in != STDIN_FILENO)
-			
-			{
-				fprintf(stderr,"closed FD_in %d\n",coms[i].fd_in);
-				close(coms[i].fd_in);
-			}
+			close(coms[i].fd_in);
 		if(coms[i].fd_out != STDOUT_FILENO)
-			{
-				fprintf(stderr,"closed FD_out %d\n",coms[i].fd_out);
-				close(coms[i].fd_out);
-			}
+			close(coms[i].fd_out);
 		i++;
 	}
 }
@@ -140,7 +135,7 @@ int	executor(b_tree *tree)
 	n_commands = get_n_commands(tree);
 	commands = malloc(sizeof(t_command) * n_commands);
 	fill_commands(n_commands, commands, tree);
-	create_pipes(n_commands, commands);
+	create_pipes(n_commands, commands, tree);
 	if (n_commands == 1 && commands[0].command && is_built_in(commands[0].command))
 		return (run_built_in_solo(tree, commands, build_args(tree),0));
 	while (++i < n_commands)

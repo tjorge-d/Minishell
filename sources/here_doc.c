@@ -90,7 +90,7 @@ int	here_doc(t_token **token)
 			prev_token->data[1] = '\0';
 			curr_token->data = ft_itoa(create_here_doc(curr_token->data, token));
 			if (curr_token->data[0] == '0')
-				return (0);
+				return (1);
 			prev_token->type = REDIRECT_IN_DOC;
 		}
 		prev_token = prev_token->next;
