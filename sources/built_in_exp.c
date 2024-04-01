@@ -39,29 +39,29 @@ int validate_expression(char *expression)
 int	search_var_index(char *s)
 {
 	int		i;
-	int		env_counter;
-	char	*var_complete;
-	char	*variable;
+	int		j;
+	char	*var_c;
+	char	*var;
 	char	**env;
 
 	i = 0;
 	env = get_set_env(NULL, 0);
-	env_counter = -1;
-	variable = NULL;
+	j = -1;
 	while (s[i] && s[i] != '=')
 		i++;
-	variable = malloc(sizeof(char) * (i + 1));
-	ft_strlcpy(variable, s, i + 1);
-	var_complete = ft_strjoin(variable, "=", 1, 0);
-	while (env[++env_counter])
+	var = malloc(sizeof(char) * (i + 1));
+	ft_strlcpy(var, s, i + 1);
+	var_c = ft_strjoin(var, "=", 0, 0);
+	while (env[++j])
 	{
-		if(!ft_strncmp(var_complete, env[env_counter], i + 1))
+		if(!ft_strncmp(var_c, env[j], i + 1) ||
+             !ft_strncmp(var , env[j] , i + 1))
 		{	
-			free(var_complete);
-			return (env_counter);
+			free(ft_strjoin(var,var_c,1,1));
+			return (j);
 		}
 	}
-	free(var_complete);
+	free(ft_strjoin(var,var_c,1,1));
 	return (-1);
 }
 
@@ -99,13 +99,13 @@ int	run_exp(char **args)
 	int res;
 
 	i = 1;
-	if (args && !args[1])
+	if (args && !args[i])
 	{
 		return (print_declare());
 	}
 	while (args[i])
 	{
-		res = export(args[1]);
+		res = export(args[i]);
 		if (res == -1)
 		{
 			ft_putstr_fd("export:",2);

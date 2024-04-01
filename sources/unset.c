@@ -9,10 +9,12 @@ void	copy_array_skip(char **src, char **dest, int index)
 	while (i < index && src[i])
 	{
 		dest[i] = ft_strdup(src[i]);
+        i ++;
 	}
 	while (src[i + 1])
 	{
 		dest[i] = ft_strdup(src[i + 1]);
+        i ++;
 	}
 	dest[i] = NULL;
 }
@@ -27,13 +29,31 @@ int	unset(char *expression)
 	loc = search_var_index(expression);
 	if (loc == -1)
 	{
-		return (1);
+		return (0);
 	}
 	new_env = malloc(sizeof(char *) * (array_len(env)));
 	if (!new_env)
-		return (0);
+		return (2);
 	copy_array_skip(env, new_env, loc);
 	get_set_env(new_env,1);
 	free_char_pp(new_env);
-	return (1);
+	return (0);
+}
+
+int run_unset(char **args)
+{
+    int	i;
+	int res;
+
+	i = 1;
+	if (args && !args[i])
+	{
+		return (0);
+	}
+	while (args[i])
+	{
+		res = unset(args[i]);
+		i ++;
+	}
+	return (res);
 }

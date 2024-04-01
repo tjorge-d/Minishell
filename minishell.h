@@ -167,24 +167,32 @@ int			run_cd(char **args);
 
 //unset.c
 void	copy_array_skip(char **src, char **dest, int index);
+int     run_unset(char **args);
+
+//env.c
+int     run_env(char **args);
+
+//exit.c
+int run_exit(t_command *cmd, int cmd_n, b_tree *tree, int flag);
 
 //exec_utils2.c
-int	count_args(b_tree *tree);
-int	wait_loop(int n_commands,t_command *commands);
-int	run_built_in(char *built_in, t_command *cmd, int cmd_n);
-int	run_built_in_solo(char *built_in, t_command *cmd, char **args, int cmd_n);
+int     count_args(b_tree *tree);
+int     wait_loop(int n_commands,t_command *commands);
+int     run_built_in(t_command *cmd, int cmd_n, b_tree *tree);
+int     run_built_in_solo(b_tree *tree, t_command *cmd, char **args, int cmd_n);
 
 //exec_utils.c
-char **build_args(b_tree *tree);
-int	red_out_app(b_tree *tree, int *fd_out);
-int	red_out(b_tree *tree, int *fd_out);
-int red_in_doc(b_tree *tree, int *fd_in);
-int	red_in(b_tree *tree, int *fd_in);
+char ** build_args(b_tree *tree);
+int     red_out_app(b_tree *tree, int *fd_out);
+int     red_out(b_tree *tree, int *fd_out);
+int     red_in_doc(b_tree *tree, int *fd_in);
+int     red_in(b_tree *tree, int *fd_in);
 
 //exec.c
-void	run(t_command *commands ,int cmd_n, int total_cmds);
+void	run(t_command *commands ,int cmd_n, int total_cmds, b_tree *tree);
 void	close_fds(t_command *coms, int total);
 int		executor(b_tree *tree);
+int     do_redirects(b_tree *tree, t_command *commands, int command_n);
 
 
 #endif

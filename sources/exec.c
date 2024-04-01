@@ -37,6 +37,7 @@ void create_pipes(int n_commands, t_command *commands)
 		i ++;
 	}
 }
+
 int do_redirects(b_tree *tree, t_command *commands, int command_n)
 {
 	while (tree && tree->type != PIPE)
@@ -87,9 +88,6 @@ void	close_fds(t_command *coms, int total)
 }
 void do_child(b_tree *tree, int command_n ,t_command *commands, int total)
 {
-	int	i;
-
-	i = 0; 
 	if ((tree->type == PIPE || tree->type == FIRST_BRANCH))
 	{
 		tree = tree->right;
@@ -97,9 +95,8 @@ void do_child(b_tree *tree, int command_n ,t_command *commands, int total)
 		 	return ;
 		while(tree && (tree->type !=COMMAND))
 			tree = tree->right;
-		fprintf(stderr, "entered do child and command is %s \n", commands[command_n].command);
 		if(tree)
-			run(commands, command_n, total);
+			run(commands, command_n, total, tree);
 		exit(112);
 	}
 }
@@ -133,7 +130,6 @@ void	fill_commands(int n_commands,t_command *commands, b_tree *tree)
 	}
 }
 
-
 int	executor(b_tree *tree)
 {
 	int	n_commands;
@@ -146,7 +142,7 @@ int	executor(b_tree *tree)
 	fill_commands(n_commands, commands, tree);
 	create_pipes(n_commands, commands);
 	if (n_commands == 1 && commands[0].command && is_built_in(commands[0].command))
-		return (run_built_in_solo(commands[0].command, commands, build_args(tree),0));
+		return (run_built_in_solo(tree, commands, build_args(tree),0));
 	while (++i < n_commands)
 	{
 		commands[i].args = build_args(tree);

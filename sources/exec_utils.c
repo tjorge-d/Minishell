@@ -80,7 +80,7 @@ char **build_args(b_tree *tree)
 		fprintf(stderr,"n_args = %d\n\n",count_args(tree));
 		if(!args)
 			return (NULL);
-		while(tree && (tree->type == COMMAND | tree->type == ARGUMENT))
+		while(tree && (tree->type == COMMAND || tree->type == ARGUMENT))
 		{
 			args[i++] = strdup(tree->data);
 			tree = tree->right;
