@@ -62,8 +62,7 @@ int	runner()
 		return (1);
 	if (tree)
 	{
-		print_tree(&tree);
-		executor(tree);
+		global_var = executor(tree);
 		destroy_tree(&tree);
 	}
 	return (1);
@@ -86,7 +85,6 @@ b_tree	*parser(char *line)
 	if (!tokenizer(&token, &line_to_parse))
 		return (free(line_to_parse), destroy_tokens(token, 'e'), NULL);
 	free(line_to_parse);
-	print_tokens(&token);
 	if (!here_doc(&token))
 		return (destroy_tokens(token, 'h'), NULL);
 	if (!tree_constructor(&tree, &token))
@@ -103,6 +101,7 @@ int main(int argc, char **argv ,char **envp)
 	global_var = 0;
 	signal(SIGQUIT, SIG_IGN);
 	get_set_env(envp, 0);
+	increase_shell_lvl();
 	while (runner())
 	{
 	}

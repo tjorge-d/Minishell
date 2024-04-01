@@ -13,7 +13,7 @@ int	get_n_commands(b_tree *tree)
 	return (ans);
 }
 
-void create_pipes(int n_commands, t_command *commands)
+int create_pipes(int n_commands, t_command *commands,b_tree *tree)
 {
 	int	i;
 	int pipes[2];
@@ -25,7 +25,9 @@ void create_pipes(int n_commands, t_command *commands)
 			commands[i].fd_in = 0;
 		if (n_commands != 1)
 		{
-			pipe(pipes);
+			if(pipe(pipes) == -1)
+					return (free_all(n_commands, commands, tree), \
+						failure_msg('P'),global_var = 126, exit(126), 0);
 		}
 		if(i == n_commands - 1)
 			commands[i].fd_out = 1;
@@ -36,6 +38,7 @@ void create_pipes(int n_commands, t_command *commands)
 		}
 		i ++;
 	}
+	return (1);
 }
 
 int do_redirects(b_tree *tree, t_command *commands, int command_n)
@@ -67,22 +70,13 @@ void	close_fds(t_command *coms, int total)
 {
 	int i;
 
-	fprintf(stderr, "Total :%d\n\n", total);
 	i = 0;
 	while (i < total)
 	{
-
 		if(coms[i].fd_in != STDIN_FILENO)
-			
-			{
-				fprintf(stderr,"closed FD_in %d\n",coms[i].fd_in);
-				close(coms[i].fd_in);
-			}
+			close(coms[i].fd_in);
 		if(coms[i].fd_out != STDOUT_FILENO)
-			{
-				fprintf(stderr,"closed FD_out %d\n",coms[i].fd_out);
-				close(coms[i].fd_out);
-			}
+			close(coms[i].fd_out);
 		i++;
 	}
 }
@@ -97,7 +91,6 @@ void do_child(b_tree *tree, int command_n ,t_command *commands, int total)
 			tree = tree->right;
 		if(tree)
 			run(commands, command_n, total, tree);
-		exit(112);
 	}
 }
 
@@ -133,28 +126,27 @@ void	fill_commands(int n_commands,t_command *commands, b_tree *tree)
 int	executor(b_tree *tree)
 {
 	int	n_commands;
-	t_command *commands;
+	t_command *cmds;
 	int	i;
 
 	i = -1;
 	n_commands = get_n_commands(tree);
-	commands = malloc(sizeof(t_command) * n_commands);
-	fill_commands(n_commands, commands, tree);
-	create_pipes(n_commands, commands);
-	if (n_commands == 1 && commands[0].command && is_built_in(commands[0].command))
-		return (run_built_in_solo(tree, commands, build_args(tree),0));
+	cmds = malloc(sizeof(t_command) * n_commands);
+	fill_commands(n_commands, cmds, tree);
+	create_pipes(n_commands, cmds, tree);
+	if (n_commands == 1 && cmds[0].command && is_built_in(cmds[0].command))
+		return (run_built_in_solo(tree, cmds, build_args(tree),0));
 	while (++i < n_commands)
 	{
-		commands[i].args = build_args(tree);
-		commands[i].process_id = fork();
-		if (!commands[i].process_id)
-			do_child(tree , i, commands, n_commands);
-		else if (commands[i].process_id < 0)
-			return (12);
+		cmds[i].args = build_args(tree);
+		cmds[i].process_id = fork();
+		if (!cmds[i].process_id)
+			do_child(tree , i, cmds, n_commands);
+		else if (cmds[i].process_id < 0)
+			return (failure_msg('F'), free_all(n_commands, cmds, tree) , 126);
 		else
 			tree = tree->left;
 	}
-	close_fds(commands,n_commands);
-	wait_loop(n_commands, commands);
-	return (i);
+	close_fds(cmds,n_commands);
+	return (wait_loop(n_commands, cmds));
 }

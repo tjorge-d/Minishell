@@ -23,14 +23,16 @@ void	run(t_command *cmds ,int cmd_n, int total_cmds, b_tree *tree)
 	{
 		execve(cmds[cmd_n].command, cmds[cmd_n].args, get_set_env(NULL, 0));
 		perror(cmds[cmd_n].command);
+		exit(256 + 127);
 	}
 	else 
-		run_built_in(cmds, cmd_n, tree);
+		exit(run_built_in(cmds, cmd_n, tree));
+	
 }
 
 int	wait_loop(int n_commands,t_command *commands)
 {
-	int i;
+	int 			i;
 	int	exit_status;
 
 	i = 0;
@@ -41,7 +43,7 @@ int	wait_loop(int n_commands,t_command *commands)
 		i++;
 	}
 	free(commands);
-	return (exit_status);
+	return (WEXITSTATUS(exit_status));
 }
 
 int if_built_in_sequence(t_command *cmd, int cmd_n, b_tree *tree, int flag)
@@ -60,7 +62,7 @@ int if_built_in_sequence(t_command *cmd, int cmd_n, b_tree *tree, int flag)
 	 	return (run_env(cmd[cmd_n].args));
 	else if(!ft_strncmp(cmd[cmd_n].command, "exit", 5))
 	 	return (run_exit(cmd, cmd_n, tree, flag));
-        return (-1);
+    return (-1);
 }
 
 int	run_built_in_solo(b_tree *tree, t_command *cmd, char **args, int cmd_n)

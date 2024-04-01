@@ -22,3 +22,4 @@ void    ctrl_c_signal(int signal)
 	global_var = 130;
 	(void)signal;
 }
+
