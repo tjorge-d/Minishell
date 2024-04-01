@@ -26,7 +26,7 @@ char	*refresh_line(char *line, int *x1, int x2, char *expansion)
 	new_line = malloc(sizeof(char) * ((ft_strlen(line) - (x2 - (*x1))) \
 					+ (ft_strlen(expansion)) + 1));
 	if (!new_line)
-		return (NULL);
+		return (free(line), free(expansion), exit(0), NULL);
 	i = -1;
 	while (++i < (*x1))
 		new_line[i] = line[i];

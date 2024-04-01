@@ -59,7 +59,7 @@ int	runner()
 	add_history(line);
 	tree = parser(line);
 	if (!tree)
-		return (0);
+		return (1);
 	if (tree)
 	{
 		print_tree(&tree);
@@ -74,11 +74,13 @@ b_tree	*parser(char *line)
 	t_token		*token;
 	b_tree		*tree;
 	char		*line_to_parse;
+	//int			error;
 
-	token = NULL;
-	tree = NULL;
-	line_to_parse = expander(ft_strdup(line));
+	line_to_parse = ft_strdup(line);
+	if(!line_to_parse)
+		return (free(line), write(2, "Error: Malloc failed\n", 22), exit(0), NULL);
 	free(line);
+	line_to_parse = expander(line_to_parse);
 	if (!line_to_parse)
 		return (NULL);
 	if (!tokenizer(&token, &line_to_parse))

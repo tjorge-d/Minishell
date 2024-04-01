@@ -9,11 +9,18 @@ char	*search_and_add_variable(char *line, int *i)
 	empty_expansion[0]= EMPTY;
 	empty_expansion[1]= '\0';
 	if (!is_to_expand(line, *i))
-	{
-		(*i)++;
-		return(line);
-	}
+		return ((*i)++, line);
 	j = (*i) + 1;
+	if (line[(*i) + 1] == '?')
+	{
+		expansion = ft_itoa(global_var);
+		if(!expansion)
+			return (free(line), exit(0), NULL);
+		line = refresh_line(line, i, *i + 2, expansion);
+		if(!line)
+			return (free(line), exit(0), NULL);
+		return(free(expansion), line);
+	}
 	while (ft_isalnum(line[j]) || line[j] == '_')
 		j++;
 	expansion = ft_strdup(get_var(line, (*i) + 1, j - (*i)));
@@ -66,6 +73,8 @@ char	*expander(char *line)
 	int		i;
 
 	i = 0;
+	if (!line)
+		return (failure_msg('M'), exit(0), NULL);
 	while (line[i])
 	{
 		line[i] = refiner(line[i]);
@@ -73,14 +82,12 @@ char	*expander(char *line)
 			i = iter_single_quote(&line, i + 1);
 		else if (line[i] == DOUBLE_Q)
 			i = iter_double_quote(&line, i + 1);
-		else if(line[i] == '$')
-		{
+		else if (line[i] == '$')
 			line = search_and_add_variable(line, &i);
-			if (!line)
-				return (NULL);
-		}
 		else
 			i++;
+		if (!line)
+			return (NULL);
 		if (i == -1)
 			return (free(line), NULL);
 	}

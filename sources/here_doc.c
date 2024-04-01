@@ -36,7 +36,7 @@ int	create_here_doc(char *exit_statement, t_token **token)
 	
 	signal(SIGINT, ctrl_c_signal_hd);
 	if (pipe(fd) == -1)
-		return (write(2, "Error: failed to create a pipe\n", 32), 0);
+		return (write(2, "Error: Failed to create a pipe\n", 32), 0);
 	id = fork();
 	if (id == 0)
 		here_doc_proccess(exit_statement, token, fd);

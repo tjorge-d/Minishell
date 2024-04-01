@@ -15,7 +15,7 @@ int	is_special(char c)
 	return (0);
 }
 
-void free_matrix(char **matrix)
+void	free_matrix(char **matrix)
 {
 	int	i;
 
@@ -23,4 +23,11 @@ void free_matrix(char **matrix)
 	while(matrix[++i])
 		free(matrix[i]);
 	free(matrix);
+}
+void	failure_msg(char mode)
+{
+	if (mode == 'P')
+		write(2, "Error: Failed to create a pipe\n", 32);
+	else if (mode == 'M')
+		write(2, "Error: Malloc failed\n", 22);
 }

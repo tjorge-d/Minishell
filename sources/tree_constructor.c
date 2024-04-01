@@ -96,6 +96,7 @@ int	command_builder(b_tree **tree, t_token **token)
 
 int	tree_constructor(b_tree **tree, t_token **token)
 {
+	*tree = NULL;
 	*tree = init_node(NULL, FIRST_BRANCH);
 	if (!tree)
 		return (0);
