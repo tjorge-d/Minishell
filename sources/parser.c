@@ -76,8 +76,6 @@ b_tree	*parser(char *line)
 	//int			error;
 
 	line_to_parse = ft_strdup(line);
-	if(!line_to_parse)
-		return (free(line), write(2, "Error: Malloc failed\n", 22), exit(0), NULL);
 	free(line);
 	line_to_parse = expander(line_to_parse);
 	if (!line_to_parse)
@@ -103,8 +101,7 @@ int main(int argc, char **argv ,char **envp)
 	get_set_env(envp, 0);
 	increase_shell_lvl();
 	while (runner())
-	{
-	}
+		;
 	rl_clear_history();
 	get_set_env(NULL, 1);
 	return (0);

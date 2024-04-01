@@ -15,17 +15,17 @@ char	*search_and_add_variable(char *line, int *i)
 	{
 		expansion = ft_itoa(global_var);
 		if(!expansion)
-			return (free(line), exit(0), NULL);
-		line = refresh_line(line, i, *i + 2, expansion);
-		if(!line)
-			return (free(line), exit(0), NULL);
-		return(free(expansion), line);
+			return (free(line), failure_msg('M'), exit(0), NULL);
+		return(free(expansion), refresh_line(line, i, *i + 2, expansion));
 	}
 	while (ft_isalnum(line[j]) || line[j] == '_')
 		j++;
-	expansion = ft_strdup(get_var(line, (*i) + 1, j - (*i)));
+	expansion = get_var(line, (*i) + 1, j - (*i));
 	if (!expansion)
 		return(refresh_line(line, i, j, empty_expansion));
+	expansion = ft_strdup(expansion);
+	if (!expansion)
+		return(free(line), exit(0), NULL);
 	return (refresh_line(line, i, j, expansion));
 }
 
@@ -53,7 +53,7 @@ int	invalid_syntax(char *line)
 	while(is_space(line[i]))
 		i++;
 	if(line[i] == V_BAR)
-		return (write(2, "Error: Invalid syntax\n", 23), 1);
+		return (failure_msg('S'), 1);
 	while(line[i])
 	{
 		if (line[i] == V_BAR)
@@ -61,7 +61,7 @@ int	invalid_syntax(char *line)
 			while(is_space(line[++i]))
 				;
 			if (line[i] == V_BAR || line[i] == '\0')
-				return (write(2, "Error: Invalid syntax\n", 23), 1);
+				return (failure_msg('S'), 1);
 		}
 		i++;
 	}
@@ -86,8 +86,6 @@ char	*expander(char *line)
 			line = search_and_add_variable(line, &i);
 		else
 			i++;
-		if (!line)
-			return (NULL);
 		if (i == -1)
 			return (free(line), NULL);
 	}

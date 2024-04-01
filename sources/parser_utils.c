@@ -29,5 +29,9 @@ void	failure_msg(char mode)
 	if (mode == 'P')
 		write(2, "Error: Failed to create a pipe\n", 32);
 	else if (mode == 'M')
-		write(2, "Error: Malloc failed\n", 22);
+		write(2, "Error: Failed to allocate memory\n", 34);
+	else if (mode == 'S')
+		write(2, "Error: Invalid syntax\n", 23);
+	else if (mode == 'F')
+		write(2, "Error: Failed to fork the program\n", 35);
 }

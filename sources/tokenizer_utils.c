@@ -7,14 +7,14 @@ void	iter_spaces(char *line, int *x, int *i)
 	x[0] = (*i);
 }
 
-char	*quote_remover(char *line, int x)
+char	*quote_remover(t_token **head, char *line, int x)
 {
 	int		i;
 	char	*new_line;
 
 	new_line = malloc(ft_strlen(line));
 	if (!new_line)
-		return (NULL);
+		return (free(line), free((*head)), NULL);
 	i = -1;
 	while(++i < x)
 		new_line[i] = line[i];
@@ -28,14 +28,14 @@ char	*quote_remover(char *line, int x)
 	return (new_line);
 }
 
-void	skip_quote(char **line, int *i, char quote)
+void	skip_quote(t_token **head, char **line, int *i, char quote)
 {
-	(*line) = quote_remover((*line), (*i));
+	(*line) = quote_remover(head, (*line), (*i));
 	while ((*line)[(*i)])
 	{
 		if ((*line)[(*i)] == quote)
 		{
-			(*line) = quote_remover((*line), (*i));
+			(*line) = quote_remover(head, (*line), (*i));
 			(*i)--;
 			break ;
 		}
@@ -62,7 +62,7 @@ int	iter_chars(t_token **head, char **line, int *x, int *i)
 			x[0] = (*i) + 1;
 		}
 		else if ((*line)[(*i)] == DOUBLE_Q || (*line)[(*i)] == SINGLE_Q)
-			skip_quote(line, i, (*line)[(*i)]);
+			skip_quote(head, line, i, (*line)[(*i)]);
 		(*i)++;
 	}
 	x[1] = (*i) - 1;
