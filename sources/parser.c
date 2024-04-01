@@ -63,6 +63,7 @@ int	runner()
 	if (tree)
 	{
 		print_tree(&tree);
+		executor(tree);
 		destroy_tree(&tree);
 	}
 	return (1);
@@ -99,9 +100,10 @@ int main(int argc, char **argv ,char **envp)
 
 	global_var = 0;
 	signal(SIGQUIT, SIG_IGN);
-	get_set_env(&envp, 0);
+	get_set_env(envp, 0);
 	while (runner())
-		;
+	{
+	}
 	rl_clear_history();
 	get_set_env(NULL, 1);
 	return (0);

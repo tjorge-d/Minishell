@@ -60,6 +60,14 @@ typedef struct s_tree_node
 
 }	b_tree;
 
+typedef struct s_command
+{
+	int		fd_in;
+	int		fd_out;
+	char	*command;
+	char	**args;
+	pid_t	process_id;
+} t_command;
 //parser.c
 b_tree		*parser(char *line);
 
@@ -118,11 +126,6 @@ void		ctrl_c_signal_hd(int signal);
 void		quit_here_doc(int signal);
 void		ctrl_c_signal(int signal);
 
-
-
-
-
-
 //get_data_path.c
 int			is_built_in(char *line);
 char		*check_command(char **path, char* data);
@@ -131,29 +134,62 @@ char		*get_data_path(char *data);
 
 //utils_update
 void		copy_array_2(char **src, char **dest);
-char		**get_set_env(char ***new_env, int flag_to_free);
 void		print_array(char **arr);
 char 		*search_var_value(char *var_name);
 int			search_var_index(char *s);
 int			array_len(char **arr);
 char		**copy_array(char **src);
 void		free_char_pp(char **array);
-char		**get_set_env(char ***new_env, int);
+char		**get_set_env(char **new_env, int flag_to_free);
 
 //echo.c
-void		ft_echo(char **strs, int flag);
+int			ft_echo(char **strs, int flag);
+int			is_valid_flag(char *arg);
+int			run_echo(char **args);
+
+//pwd.c
+int			print_pwd(void);
 
 //free_utils.c
 void		free_char_pp(char **array);
 
 //built_in_exp.c
 int			export(char *expression);
+int			run_exp(char **args);
 
 //cd_built_in.c
-void		cd_without_args(void);
-void		cd_with_arg(char *arg);
+int			cd_without_args(void);
+int			cd_with_arg(char *arg);
+int			run_cd(char **args);
 
 //unset.c
 void	copy_array_skip(char **src, char **dest, int index);
+int     run_unset(char **args);
+
+//env.c
+int     run_env(char **args);
+
+//exit.c
+int run_exit(t_command *cmd, int cmd_n, b_tree *tree, int flag);
+
+//exec_utils2.c
+int     count_args(b_tree *tree);
+int     wait_loop(int n_commands,t_command *commands);
+int     run_built_in(t_command *cmd, int cmd_n, b_tree *tree);
+int     run_built_in_solo(b_tree *tree, t_command *cmd, char **args, int cmd_n);
+
+//exec_utils.c
+char ** build_args(b_tree *tree);
+int     red_out_app(b_tree *tree, int *fd_out);
+int     red_out(b_tree *tree, int *fd_out);
+int     red_in_doc(b_tree *tree, int *fd_in);
+int     red_in(b_tree *tree, int *fd_in);
+
+//exec.c
+void	run(t_command *commands ,int cmd_n, int total_cmds, b_tree *tree);
+void	close_fds(t_command *coms, int total);
+int		executor(b_tree *tree);
+int     do_redirects(b_tree *tree, t_command *commands, int command_n);
+
 
 #endif
