@@ -87,7 +87,6 @@ char **get_set_env(char **new_env, int flag_to_free)
 	{
 		if(flag_to_free)
 		{
-			printf("FREEEING ENV\n");
 			freeable = env;
 			env = NULL;
 			free_char_pp(freeable);
@@ -96,7 +95,6 @@ char **get_set_env(char **new_env, int flag_to_free)
 	}
 	else if(flag_to_free == 1)
 	{
-		printf("FREEEING ENV\n");
 		freeable = env;
 		env = NULL;
 		free_char_pp(freeable);

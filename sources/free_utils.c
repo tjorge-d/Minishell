@@ -27,7 +27,6 @@ void	free_char_pp(char **array)
 	{
 		while (array[i])
 		{
-			printf("freed an env var i = %d\n, array was %s\n", i, array[i]);
 			free(array[i]);
 			i ++;
 		}

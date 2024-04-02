@@ -88,8 +88,7 @@ int	export(char *expression)
 		return (1);
 	}
 	free(env[old_loc]);
-	env[old_loc] = expression;
-	get_set_env(env, 0);
+	env[old_loc] = strdup(expression);
 	return (1);
 }
 
