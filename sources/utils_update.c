@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   utils_update.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
+/*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/02 17:01:55 by tjorge-d          #+#    #+#             */
-/*   Updated: 2024/04/02 17:43:54 by tjorge-d         ###   ########.fr       */
+/*   Created: 2024/04/02 17:53:39 by dcota-pa          #+#    #+#             */
+/*   Updated: 2024/04/02 17:53:55 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../minishell.h"
 

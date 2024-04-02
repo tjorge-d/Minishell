@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
+/*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/02 17:01:38 by tjorge-d          #+#    #+#             */
-/*   Updated: 2024/04/02 17:01:39 by tjorge-d         ###   ########.fr       */
+/*   Created: 2024/04/02 17:53:28 by dcota-pa          #+#    #+#             */
+/*   Updated: 2024/04/02 17:53:31 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	copy_array_skip(char **src, char **dest, int index)
 	int	i;
 
 	i = 0;
-
 	while (i < index && src[i])
 	{
 		dest[i] = ft_strdup(src[i]);
