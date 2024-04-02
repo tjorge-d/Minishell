@@ -6,7 +6,7 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:16 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/02 17:52:20 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/02 17:56:25 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,10 @@ int	create_pipes(int n_commands, t_command *commands, b_tree *tree)
 			commands[i].fd_in = 0;
 		if (n_commands != 1)
 		{
-<<<<<<< HEAD
-			if(pipe(pipes) == -1)
-					return (free_all(n_commands, commands, tree), \
-						fail_msg('P'), g_var = 126, \
-						get_set_env(NULL, 1, 126), 0);
-=======
 			if (pipe(pipes) == -1)
 				return (free_all(n_commands, commands, tree), \
-					failure_msg('P'), global_var = 126, \
+					fail_msg('P'), g_var = 126, \
 					get_set_env(NULL, 1, 126), 0);
->>>>>>> main
 		}
 		if (i == n_commands - 1)
 			commands[i].fd_out = 1;
@@ -121,7 +114,7 @@ int	executor(b_tree *tree)
 		if (!cmds[i].process_id)
 			do_child(tree, i, cmds, n_commands);
 		else if (cmds[i].process_id < 0)
-			return (failure_msg('F'), free_all(n_commands, cmds, tree),
+			return (fail_msg('F'), free_all(n_commands, cmds, tree),
 				g_var = 126, get_set_env(NULL, 1, 126), 126);
 		else
 			tree = tree->left;

@@ -13,21 +13,23 @@ SOURCES=parser.c \
 		tokenizer_utils.c \
 		here_doc.c \
 		tree_constructor.c \
-		tree_constructor_utils.c \
-		signals.c \
-		utils_update.c \
-		get_data_path.c \
-		built_in_exp.c \
-		echo.c \
-		unset.c \
-		pwd.c \
-		free_utils.c\
-		exec.c \
-		exec_utils.c\
-		exec_utils2.c\
-		cd_built_in.c \
+		tree_constructor_utils.c	\
+		signals.c					\
+		utils_update.c				\
+		get_data_path.c				\
+		built_in_exp.c 			 \
+		echo.c 					 \
+		unset.c  				 \
+		pwd.c                    \
+		free_utils.c     \
+		exec.c           \
+		exec_utils.c     \
+		exec_utils2.c    \
+		exec_utils3.c    \
+		cd_built_in.c    \
 		env.c\
 		exit.c
+		
 
 OBJ_DIR= objects
 OBJ= $(addprefix $(OBJ_DIR)/, $(SRC:sources/%.c=%.o))
