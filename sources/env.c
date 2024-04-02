@@ -20,7 +20,7 @@ int print_env()
 	int i;
 
 	i = 0;
-	env = get_set_env(NULL, 0);
+	env = get_set_env(NULL, 0, 0);
 	while (env[i])
 	{
 		if(has_equal(env[i]))

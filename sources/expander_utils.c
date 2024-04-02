@@ -26,8 +26,8 @@ char	*refresh_line(char *line, int *x1, int x2, char *expansion)
 	new_line = malloc(sizeof(char) * ((ft_strlen(line) - (x2 - (*x1))) \
 					+ (ft_strlen(expansion)) + 1));
 	if (!new_line)
-		return (free(line), free(expansion), \
-		get_set_env(NULL, 1), failure_msg('M'), exit(0), NULL);
+		return (free(line), free(expansion), failure_msg('M'), \
+		get_set_env(NULL, 1, 2), NULL);
 	i = -1;
 	while (++i < (*x1))
 		new_line[i] = line[i];
@@ -53,7 +53,7 @@ char	*get_var(char *line, int var_pos, int len)
 	char	*var_name;
 
 	i = -1;
-	env = get_set_env(NULL, 0);
+	env = get_set_env(NULL, 0, 0);
 	var_name = malloc(sizeof(char) * (len + 1));
 	if (!var_name)
 		return (free(line), failure_msg('M'), exit(0), NULL);

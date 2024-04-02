@@ -21,7 +21,7 @@ char *search_var_value(char *var_name)
 	char	*var_value;
 	char	**env;
 
-	env = get_set_env(NULL, 0);
+	env = get_set_env(NULL, 0, 0);
 	index = search_var_index(var_name);
 	if (index == -1)
 		return (NULL);
@@ -79,25 +79,18 @@ char	**copy_array(char **src)
 }
 
 
-char **get_set_env(char **new_env, int flag_to_free)
+char **get_set_env(char **new_env, int flag_to_free, int flag_to_exit)
 {
 	static char **env;
-	char **freeable;
 	if (new_env)
 	{
 		if(flag_to_free)
-		{
-			freeable = env;
-			env = NULL;
-			free_char_pp(freeable);
-		}
+			free_char_pp(env);
 		env = copy_array(new_env);
 	}
 	else if(flag_to_free == 1)
-	{
-		freeable = env;
-		env = NULL;
-		free_char_pp(freeable);
-	}
+		free_char_pp(env);
+	if(flag_to_exit)
+		exit(flag_to_free);
 	return (env);
 }

@@ -16,7 +16,7 @@ void	destroy_tokens(t_token *token, char mode)
 	}
 	if (mode == 'e')
 	{
-		get_set_env(NULL, 1);
+		get_set_env(NULL, 1, 0);
 		write(2, "Error: Failed to create a token", 32);
 	}
 }

@@ -22,7 +22,7 @@ void	here_doc_proccess(char *exit_str, t_token **token, int fd[2])
 	close(fd[1]);
 	close(fd[0]);
 	destroy_tokens((*token), 'h');
-	get_set_env(NULL, 1);
+	get_set_env(NULL, 1, 0);
 	if (global_var == 2)
 		exit(2);
 	exit(0);

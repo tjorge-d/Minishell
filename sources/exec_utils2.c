@@ -24,7 +24,7 @@ void	run(t_command *cmds ,int cmd_n, int total_cmds, b_tree *tree)
 	if(!is_built_in(cmds[cmd_n].command))
 	{
 
-		execve(cmds[cmd_n].command, cmds[cmd_n].args, get_set_env(NULL, 0));
+		execve(cmds[cmd_n].command, cmds[cmd_n].args, get_set_env(NULL, 0, 0));
 		if (access(cmds[cmd_n].command, X_OK) == 0)
 			perror(cmds[cmd_n].command);
 		else
@@ -33,7 +33,7 @@ void	run(t_command *cmds ,int cmd_n, int total_cmds, b_tree *tree)
 			ft_putstr_fd(error_msg, 2);
 			free(error_msg);
 			free_all(total_cmds, cmds, tree);
-			get_set_env(NULL, 1);
+			get_set_env(NULL, 1, 0);
 		}
 		exit(256 + 127);
 	}

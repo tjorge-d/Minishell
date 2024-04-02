@@ -96,12 +96,12 @@ int main(int argc, char **argv ,char **envp)
 
 	global_var = 0;
 	signal(SIGQUIT, SIG_IGN);
-	get_set_env(envp, 0);
+	get_set_env(envp, 0,0);
 	increase_shell_lvl();
 	while (runner())
 		;
 	rl_clear_history();
-	get_set_env(NULL, 1);
+	get_set_env(NULL, 1, 0);
 	return (0);
 }
 

@@ -6,7 +6,7 @@ int	print_declare()
 	int i;
 
 	i = 0;
-	env = get_set_env(NULL, 0);
+	env = get_set_env(NULL, 0, 0);
 	while (env[i])
 	{
 		printf("declare -x %s\n", env[i]);
@@ -45,7 +45,7 @@ int	search_var_index(char *s)
 	char	**env;
 
 	i = 0;
-	env = get_set_env(NULL, 0);
+	env = get_set_env(NULL, 0, 0);
 	j = -1;
 	while (s[i] && s[i] != '=')
 		i++;
@@ -71,7 +71,7 @@ int	export(char *expression)
 	char	**new_env;
 	int		old_loc;
 
-	env = get_set_env(NULL, 0);
+	env = get_set_env(NULL, 0, 0);
 	if (!validate_expression(expression))
 		return (-1);
 	old_loc = search_var_index(expression);
@@ -83,7 +83,7 @@ int	export(char *expression)
 		copy_array_2(env, new_env);
 		new_env[array_len(env)] = strdup(expression);
 		new_env[array_len(env) + 1] = NULL;
-		get_set_env(new_env,1);
+		get_set_env(new_env, 1, 0);
 		free_char_pp(new_env);
 		return (1);
 	}

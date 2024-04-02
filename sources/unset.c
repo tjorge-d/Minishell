@@ -25,7 +25,7 @@ int	unset(char *expression)
 	char	**new_env;
 	int		loc;
 
-	env = get_set_env(NULL, 0);
+	env = get_set_env(NULL, 0, 0);
 	loc = search_var_index(expression);
 	if (loc == -1)
 	{
@@ -35,7 +35,7 @@ int	unset(char *expression)
 	if (!new_env)
 		return (2);
 	copy_array_skip(env, new_env, loc);
-	get_set_env(new_env,1);
+	get_set_env(new_env, 1, 0);
 	free_char_pp(new_env);
 	return (0);
 }

@@ -27,8 +27,8 @@ int create_pipes(int n_commands, t_command *commands,b_tree *tree)
 		{
 			if(pipe(pipes) == -1)
 					return (free_all(n_commands, commands, tree), \
-						failure_msg('P'), get_set_env(NULL, 1), \
-						global_var = 126, exit(126), 0);
+						failure_msg('P'), global_var = 126, \
+						get_set_env(NULL, 1, 126), 0);
 		}
 		if(i == n_commands - 1)
 			commands[i].fd_out = 1;
@@ -145,7 +145,7 @@ int	executor(b_tree *tree)
 			do_child(tree , i, cmds, n_commands);
 		else if (cmds[i].process_id < 0)
 			return (failure_msg('F'), free_all(n_commands, cmds, tree) ,
-			global_var = 126, get_set_env(NULL, 1), 126);
+			global_var = 126, get_set_env(NULL, 1 , 126), 126);
 		else
 			tree = tree->left;
 	}
