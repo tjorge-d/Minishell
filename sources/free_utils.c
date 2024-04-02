@@ -6,12 +6,14 @@ void free_all(int n_commands, t_command *commands, b_tree *tree)
 
 	j = 0;
 	while (j < n_commands)
-		{	
-			if (commands[j].args)
-				free_char_pp(commands[j++].args);
-		}
+	{	
+		if (commands[j].args)
+			free_char_pp(commands[j++].args);
+		else 
+			break;
+	}
+	close_fds(commands, n_commands);
 	free(commands);
-	get_set_env(NULL,1);
 	destroy_tree (&tree);
 }
 
@@ -20,12 +22,12 @@ void	free_char_pp(char **array)
 	int	i;
 
 	i = 0;
-	if (array && array[i])
+	if (array)
 	{
 		while (array[i])
 		{
+			printf("freed an env var i = %d\n, array was %s\n", i, array[i]);
 			free(array[i]);
-			array[i] = NULL;
 			i ++;
 		}
 	}

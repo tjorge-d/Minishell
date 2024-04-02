@@ -140,7 +140,6 @@ char 		*search_var_value(char *var_name);
 int			search_var_index(char *s);
 int			array_len(char **arr);
 char		**copy_array(char **src);
-void		free_char_pp(char **array);
 char		**get_set_env(char **new_env, int flag_to_free);
 
 //echo.c

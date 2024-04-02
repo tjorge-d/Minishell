@@ -47,15 +47,16 @@ void	copy_array_2(char **src, char **dest)
 	dest[i] = NULL;
 } 
 
-
-
 int	array_len(char **arr)
 {
 	int	i;
 
 	i = 0;
-	while (arr[i])
-		i ++;
+	if(arr)
+	{
+		while (arr[i])
+			i ++;
+	}
 	return (i);
 }
 
@@ -84,11 +85,15 @@ char **get_set_env(char **new_env, int flag_to_free)
 	if (new_env)
 	{
 		if(flag_to_free)
+		{
+			printf("FREEEING ENV\n");
 			free_char_pp(env);
+		}
 		env = copy_array(new_env);
 	}
 	else if(flag_to_free == 1)
 	{
+		printf("FREEEING ENV\n");
 		free_char_pp(env);
 	}
 	return (env);

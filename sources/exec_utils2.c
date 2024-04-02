@@ -15,14 +15,26 @@ int	count_args(b_tree *tree)
 
 void	run(t_command *cmds ,int cmd_n, int total_cmds, b_tree *tree)
 {
+	char *error_msg;
+
 	dup2(cmds[cmd_n].fd_in,STDIN_FILENO);
 	if(cmds[cmd_n].fd_out != 1)
 		dup2(cmds[cmd_n].fd_out,STDOUT_FILENO);
 	close_fds(cmds, total_cmds);
 	if(!is_built_in(cmds[cmd_n].command))
 	{
+
 		execve(cmds[cmd_n].command, cmds[cmd_n].args, get_set_env(NULL, 0));
-		perror(cmds[cmd_n].command);
+		if (access(cmds[cmd_n].command, X_OK) == 0)
+			perror(cmds[cmd_n].command);
+		else
+		{	
+			error_msg = ft_strjoin(cmds[cmd_n].command, ": Command not found\n", 0, 0);
+			ft_putstr_fd(error_msg, 2);
+			free(error_msg);
+			free_all(total_cmds, cmds, tree);
+			get_set_env(NULL, 1);
+		}
 		exit(256 + 127);
 	}
 	else 
