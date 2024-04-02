@@ -135,7 +135,6 @@ char		*get_data_path(char *data);
 
 //utils_update
 void		copy_array_2(char **src, char **dest);
-void		print_array(char **arr);
 char 		*search_var_value(char *var_name);
 int			search_var_index(char *s);
 int			array_len(char **arr);
@@ -152,6 +151,7 @@ int			print_pwd(void);
 
 //free_utils.c
 void		free_char_pp(char **array);
+int			wait_loop(int n_commands,t_command *commands);
 void		free_all(int n_commands, t_command *commands, b_tree *tree);
 
 //built_in_exp.c
@@ -174,9 +174,13 @@ int     run_env(char **args);
 int		run_exit(t_command *cmd, int cmd_n, b_tree *tree, int flag);
 void	increase_shell_lvl(void);
 
+//exec_utils3.c
+void	close_fds(t_command *coms, int total);
+void	fill_commands(int n_commands, t_command *commands, b_tree *tree);
+void	fill_command(int n_cmd, t_command *commands, b_tree *tree);
+
 //exec_utils2.c
 int     count_args(b_tree *tree);
-int     wait_loop(int n_commands,t_command *commands);
 int     run_built_in(t_command *cmd, int cmd_n, b_tree *tree);
 int     run_built_in_solo(b_tree *tree, t_command *cmd, char **args, int cmd_n);
 
@@ -189,7 +193,6 @@ int     red_in(b_tree *tree, int *fd_in);
 
 //exec.c
 void	run(t_command *commands ,int cmd_n, int total_cmds, b_tree *tree);
-void	close_fds(t_command *coms, int total);
 int		executor(b_tree *tree);
 int     do_redirects(b_tree *tree, t_command *commands, int command_n);
 
