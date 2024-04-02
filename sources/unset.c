@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   unset.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/02 16:37:56 by dcota-pa          #+#    #+#             */
+/*   Updated: 2024/04/02 16:39:13 by dcota-pa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	copy_array_skip(char **src, char **dest, int index)
@@ -5,7 +17,6 @@ void	copy_array_skip(char **src, char **dest, int index)
 	int	i;
 
 	i = 0;
-
 	while (i < index && src[i])
 	{
 		dest[i] = ft_strdup(src[i]);

@@ -1,19 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_update.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/02 16:39:55 by dcota-pa          #+#    #+#             */
+/*   Updated: 2024/04/02 16:40:05 by dcota-pa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
-void	print_array(char **arr)
-{
-	int	i;
-
-	i = 0;
-	if(arr && arr[i])
-	{
-		while (arr[i])
-		{
-			printf("%s\n", arr[i]);
-			i ++;
-		}
-	}
-}
 
 char *search_var_value(char *var_name)
 {

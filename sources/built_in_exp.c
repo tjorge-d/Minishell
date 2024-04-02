@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   built_in_exp.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/02 16:36:08 by dcota-pa          #+#    #+#             */
+/*   Updated: 2024/04/02 16:47:28 by dcota-pa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
-int	print_declare()
+int	print_declare(void)
 {
-	char **env;
-	int i;
+	char	**env;
+	int		i;
 
 	i = 0;
 	env = get_set_env(NULL, 0, 0);
@@ -15,20 +27,20 @@ int	print_declare()
 	return (0);
 }
 
-int validate_expression(char *expression)
+int	validate_expression(char *expression)
 {
 	int	i;
+
 	i = 0;
-	if(ft_isalpha(expression[i]) || expression[i] == '_')
+	if (ft_isalpha(expression[i]) || expression[i] == '_')
 	{
 		i++;
 		while (expression[i] && expression[i] != '=')
 		{
-
-			if(ft_isalnum(expression[i]) || expression[i] == '_')
-			 	i++;
+			if (ft_isalnum(expression[i]) || expression[i] == '_')
+				i++;
 			else
-			 	return (0);
+				return (0);
 		}
 	}
 	else
@@ -54,14 +66,14 @@ int	search_var_index(char *s)
 	var_c = ft_strjoin(var, "=", 0, 0);
 	while (env[++j])
 	{
-		if(!ft_strncmp(var_c, env[j], i + 1) ||
-             !ft_strncmp(var , env[j] , i + 1))
-		{	
-			free(ft_strjoin(var,var_c,1,1));
+		if (!ft_strncmp(var_c, env[j], i + 1)
+			|| !ft_strncmp(var, env[j], i + 1))
+		{
+			free(ft_strjoin(var, var_c, 1, 1));
 			return (j);
 		}
 	}
-	free(ft_strjoin(var,var_c,1,1));
+	free(ft_strjoin(var, var_c, 1, 1));
 	return (-1);
 }
 
@@ -95,7 +107,7 @@ int	export(char *expression)
 int	run_exp(char **args)
 {
 	int	i;
-	int res;
+	int	res;
 
 	i = 1;
 	if (args && !args[i])
@@ -107,9 +119,9 @@ int	run_exp(char **args)
 		res = export(args[i]);
 		if (res == -1)
 		{
-			ft_putstr_fd("export:",2);
-			ft_putstr_fd(args[i],2);
-			ft_putstr_fd(": not a valid identifier\n",2);
+			ft_putstr_fd("export:", 2);
+			ft_putstr_fd(args[i], 2);
+			ft_putstr_fd(": not a valid identifier\n", 2);
 		}
 		i ++;
 	}
