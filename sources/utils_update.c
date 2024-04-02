@@ -82,19 +82,24 @@ char	**copy_array(char **src)
 char **get_set_env(char **new_env, int flag_to_free)
 {
 	static char **env;
+	char **freeable;
 	if (new_env)
 	{
 		if(flag_to_free)
 		{
 			printf("FREEEING ENV\n");
-			free_char_pp(env);
+			freeable = env;
+			env = NULL;
+			free_char_pp(freeable);
 		}
 		env = copy_array(new_env);
 	}
 	else if(flag_to_free == 1)
 	{
 		printf("FREEEING ENV\n");
-		free_char_pp(env);
+		freeable = env;
+		env = NULL;
+		free_char_pp(freeable);
 	}
 	return (env);
 }
