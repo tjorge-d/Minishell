@@ -14,7 +14,7 @@
 # include <errno.h>
 # include <signal.h>
 
-extern int		global_var;
+extern int		g_var;
 
 typedef enum special_chars
 {
@@ -117,7 +117,7 @@ int			invalid_here_doc_exit(t_token *curr_token);
 int			here_doc(t_token **token);
 
 //parser_utils.c
-void		failure_msg(char mode);
+void		fail_msg(char mode);
 int			is_space(char c);
 int			is_special(char c);
 void 		free_matrix(char **matrix);
@@ -130,7 +130,7 @@ void		ctrl_c_signal(int signal);
 //get_data_path.c
 int			is_built_in(char *line);
 char		*check_command(char **path, char* data);
-char		*get_data_path(char *data);
+char		*get_data_path(char *data, b_tree **tree, t_token **token);
 
 
 //utils_update

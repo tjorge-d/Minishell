@@ -1,27 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_update.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/02 17:01:55 by tjorge-d          #+#    #+#             */
+/*   Updated: 2024/04/02 17:43:54 by tjorge-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
-void	print_array(char **arr)
-{
-	int	i;
-
-	i = 0;
-	if(arr && arr[i])
-	{
-		while (arr[i])
-		{
-			printf("%s\n", arr[i]);
-			i ++;
-		}
-	}
-}
-
-char *search_var_value(char *var_name)
+char	*search_var_value(char *var_name)
 {
 	int		index;
 	char	*var_value;
 	char	**env;
 
 	env = get_set_env(NULL, 0, 0);
+	if (!env)
+		return(g_var = -1, NULL);
 	index = search_var_index(var_name);
 	if (index == -1)
 		return (NULL);
@@ -45,14 +44,14 @@ void	copy_array_2(char **src, char **dest)
 		i ++;
 	}
 	dest[i] = NULL;
-} 
+}
 
 int	array_len(char **arr)
 {
 	int	i;
 
 	i = 0;
-	if(arr)
+	if (arr)
 	{
 		while (arr[i])
 			i ++;
@@ -62,8 +61,8 @@ int	array_len(char **arr)
 
 char	**copy_array(char **src)
 {
-	int	i;
-	char **new_dest;
+	int		i;
+	char	**new_dest;
 
 	if (!src)
 		return (NULL);
@@ -75,22 +74,24 @@ char	**copy_array(char **src)
 		i ++;
 	}
 	new_dest[i] = NULL;
-	return(new_dest);
+	return (new_dest);
 }
 
-
-char **get_set_env(char **new_env, int flag_to_free, int flag_to_exit)
+char	**get_set_env(char **new_env, int flag_to_free, int flag_to_exit)
 {
-	static char **env;
+	static char	**env;
+
 	if (new_env)
 	{
-		if(flag_to_free)
+		if (flag_to_free)
 			free_char_pp(env);
 		env = copy_array(new_env);
+		if(!env)
+			return (NULL);
 	}
-	else if(flag_to_free == 1)
+	else if (flag_to_free == 1)
 		free_char_pp(env);
-	if(flag_to_exit)
+	if (flag_to_exit)
 		exit(flag_to_free);
 	return (env);
 }

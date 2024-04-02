@@ -32,9 +32,9 @@ void	run(t_command *cmds ,int cmd_n, int total_cmds, b_tree *tree)
 			error_msg = ft_strjoin(cmds[cmd_n].command, ": Command not found\n", 0, 0);
 			ft_putstr_fd(error_msg, 2);
 			free(error_msg);
-			free_all(total_cmds, cmds, tree);
-			get_set_env(NULL, 1, 0);
 		}
+		free_all(total_cmds, cmds, tree);
+		get_set_env(NULL, 1, 0);
 		exit(256 + 127);
 	}
 	else 

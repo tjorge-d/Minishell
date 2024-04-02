@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/02 16:58:29 by tjorge-d          #+#    #+#             */
+/*   Updated: 2024/04/02 17:34:57 by tjorge-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 int	is_space(char c)
@@ -20,11 +32,12 @@ void	free_matrix(char **matrix)
 	int	i;
 
 	i = -1;
-	while(matrix[++i])
+	while (matrix[++i])
 		free(matrix[i]);
 	free(matrix);
 }
-void	failure_msg(char mode)
+
+void	fail_msg(char mode)
 {
 	if (mode == 'P')
 		write(2, "Error: Failed to create a pipe\n", 32);

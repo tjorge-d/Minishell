@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/02 16:53:14 by tjorge-d          #+#    #+#             */
+/*   Updated: 2024/04/02 17:39:49 by tjorge-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
-int	global_var;
+int	g_var;
 
 void	print_tokens(t_token **token)
 {
@@ -8,9 +20,9 @@ void	print_tokens(t_token **token)
 
 	test1 = *token;
 	printf("\ntokens:\n");
-	while(test1)
+	while (test1)
 	{
-		printf("%s$\n",test1->data);
+		printf("%s$\n", test1->data);
 		test1 = test1->next;
 	}
 	printf("\n========================\n");
@@ -20,12 +32,13 @@ void	print_tree(b_tree **tree)
 {
 	b_tree	*test1;
 	b_tree	*test2;
+
 	test1 = *tree;
 	test2 = *tree;
 	printf("\ntree:\n");
-	while(test2)
+	while (test2)
 	{
-		while(test1)
+		while (test1)
 		{
 			printf("%i", test1->type);
 			if (test1->data && test1->data[0] == '\0')
@@ -44,10 +57,10 @@ void	print_tree(b_tree **tree)
 	printf("\n========================\n");
 }
 
-int	runner()
+int	runner(void)
 {
 	b_tree	*tree;
-	char 	*line;
+	char	*line;
 
 	tree = NULL;
 	signal(SIGINT, ctrl_c_signal);
@@ -62,7 +75,7 @@ int	runner()
 		return (1);
 	if (tree)
 	{
-		global_var = executor(tree);
+		g_var = executor(tree);
 		destroy_tree(&tree);
 	}
 	return (1);
@@ -83,20 +96,18 @@ b_tree	*parser(char *line)
 	free(line_to_parse);
 	if (!here_doc(&token))
 		return (destroy_tokens(token, 'h'), NULL);
-	if (!tree_constructor(&tree, &token))
-		return (destroy_tokens(token, 'h'), destroy_tree(&tree), NULL);
+	tree_constructor(&tree, &token);
 	destroy_tokens(token, 'd');
 	return (tree);
 }
 
-int main(int argc, char **argv ,char **envp)
+int	main(int argc, char **argv, char **envp)
 {
 	(void)argv;
 	(void)argc;
-
-	global_var = 0;
+	g_var = 0;
 	signal(SIGQUIT, SIG_IGN);
-	get_set_env(envp, 0,0);
+	get_set_env(envp, 0, 0);
 	increase_shell_lvl();
 	while (runner())
 		;
@@ -105,4 +116,5 @@ int main(int argc, char **argv ,char **envp)
 	return (0);
 }
 
-//valgrind --track-fds=yes --leak-check=full --show-leak-kinds=all  --suppressions=".valgrind.supp" ./minishell
+//valgrind --track-fds=yes --leak-check=full 
+//--show-leak-kinds=all  --suppressions=".valgrind.supp" ./minishell

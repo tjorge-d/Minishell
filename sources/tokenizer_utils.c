@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tokenizer_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/02 16:46:23 by tjorge-d          #+#    #+#             */
+/*   Updated: 2024/04/02 17:34:57 by tjorge-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	iter_spaces(char *line, int *x, int *i)
@@ -15,11 +27,11 @@ char	*quote_remover(t_token **head, char *line, int x)
 	new_line = malloc(ft_strlen(line));
 	if (!new_line)
 		return (free(line), destroy_tokens((*head), 'e'), \
-			failure_msg('M'), exit(0), NULL);
+			fail_msg('M'), get_set_env(NULL, 1, 2), NULL);
 	i = -1;
-	while(++i < x)
+	while (++i < x)
 		new_line[i] = line[i];
-	while(line[i + 1])
+	while (line[i + 1])
 	{
 		new_line[i] = line[i + 1];
 		i++;
@@ -49,7 +61,8 @@ void	iter_chars(t_token **head, char **line, int *x, int *i)
 {
 	while (!is_space((*line)[(*i)]) && (*line)[(*i)])
 	{
-		if ( (*line)[(*i)] == V_BAR || (*line)[(*i)] == LESS || (*line)[(*i)] == GREATER)
+		if ((*line)[(*i)] == V_BAR || (*line)[(*i)] == LESS \
+			|| (*line)[(*i)] == GREATER)
 		{
 			x[1] = (*i) - 1;
 			if (x[0] <= x[1])
