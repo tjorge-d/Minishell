@@ -53,7 +53,7 @@ int	runner()
 	signal(SIGINT, ctrl_c_signal);
 	line = readline("<Minishell> ");
 	if (!line)
-		return (printf("Exit\n"), 0);
+		return (printf("exit\n"), 0);
 	if (line[0] == '\0')
 		return (free(line), 1);
 	add_history(line);
@@ -73,15 +73,13 @@ b_tree	*parser(char *line)
 	t_token		*token;
 	b_tree		*tree;
 	char		*line_to_parse;
-	//int			error;
 
 	line_to_parse = ft_strdup(line);
 	free(line);
 	line_to_parse = expander(line_to_parse);
 	if (!line_to_parse)
 		return (NULL);
-	if (!tokenizer(&token, &line_to_parse))
-		return (free(line_to_parse), destroy_tokens(token, 'e'), NULL);
+	tokenizer(&token, &line_to_parse);
 	free(line_to_parse);
 	if (!here_doc(&token))
 		return (destroy_tokens(token, 'h'), NULL);

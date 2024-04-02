@@ -1,14 +1,14 @@
 #include "../minishell.h"
 
-void	here_doc_proccess(char *exit_statement, t_token **token, int fd[2])
+void	here_doc_proccess(char *exit_str, t_token **token, int fd[2])
 {
 	char	*line;
 
 	signal(SIGINT, quit_here_doc);
 	global_var = 0;
 	line = readline("> ");
-	while(line && (ft_strncmp(line, exit_statement, ft_strlen(exit_statement)) != 0 \
-	|| ft_strlen(exit_statement) != ft_strlen(line)))
+	while(line && (ft_strncmp(line, exit_str, ft_strlen(exit_str)) != 0 \
+	|| ft_strlen(exit_str) != ft_strlen(line)))
 	{
 		ft_putstr_fd(line, fd[1]);
 		ft_putstr_fd("\n", fd[1]);
@@ -18,7 +18,7 @@ void	here_doc_proccess(char *exit_statement, t_token **token, int fd[2])
 	if (line)
 		free(line);
 	else if (!line && global_var == 0)
-		printf("warning: here-document delimited by end-of-file (wanted `%s')\n", exit_statement);
+		printf("warning: here-document delimited by end-of-file (wanted `%s')\n", exit_str);
 	close(fd[1]);
 	close(fd[0]);
 	destroy_tokens((*token), 'h');
@@ -36,8 +36,10 @@ int	create_here_doc(char *exit_statement, t_token **token)
 	
 	signal(SIGINT, ctrl_c_signal_hd);
 	if (pipe(fd) == -1)
-		return (write(2, "Error: Failed to create a pipe\n", 32), 0);
+		return (failure_msg('P'), destroy_tokens((*token), 'h'), exit(0), 0);
 	id = fork();
+	if (id < 0)
+		return (failure_msg('F'), destroy_tokens((*token), 'h'), exit(0), 0);
 	if (id == 0)
 		here_doc_proccess(exit_statement, token, fd);
 	else
@@ -81,16 +83,12 @@ int	here_doc(t_token **token)
 		if (is_here_doc(prev_token))
 		{
 			if (invalid_here_doc_exit(curr_token))
-				return (write(2, "Error: Invalid syntax\n", 23), 0);
-			free(prev_token->data);
-			prev_token->data = malloc(sizeof(char) * 2);
-			if (!prev_token->data)
-				return (0);
-			prev_token->data[0] = LESS;
+				return (failure_msg('S'), 0);
 			prev_token->data[1] = '\0';
-			curr_token->data = ft_itoa(create_here_doc(curr_token->data, token));
+			curr_token->data = ft_itoa(\
+			create_here_doc(curr_token->data, token));
 			if (curr_token->data[0] == '0')
-				return (1);
+				return (0);
 			prev_token->type = REDIRECT_IN_DOC;
 		}
 		prev_token = prev_token->next;

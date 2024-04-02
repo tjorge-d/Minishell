@@ -99,12 +99,12 @@ int	tree_constructor(b_tree **tree, t_token **token)
 	*tree = NULL;
 	*tree = init_node(NULL, FIRST_BRANCH);
 	if (!tree)
-		return (0);
+		return (destroy_tokens((*token), 'h'), exit(0), 0);
 	if (!pipe_brancher(tree, token))
-		return (0);
+		return (destroy_tree(tree), destroy_tokens((*token), 'h'), exit(0), 0);
 	if (!redirection_checker(tree, token))
-		return (0);
+		return (destroy_tree(tree), destroy_tokens((*token), 'h'), exit(0), 0);
 	if (!command_builder(tree, token))
-		return (0);
+		return (destroy_tree(tree), destroy_tokens((*token), 'h'), exit(0), 0);
 	return(1);
 }

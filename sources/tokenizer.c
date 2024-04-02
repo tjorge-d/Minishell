@@ -10,13 +10,15 @@ void	destroy_tokens(t_token *token, char mode)
 			close(ft_atoi(token->next->data));
 		if(token->data)
 			free(token->data);
-
 		temp = token;
 		token = token->next;
 		free(temp);
 	}
 	if (mode == 'e')
-		write(2, "Error: A token had a problem being created", 43);
+	{
+		get_set_env(NULL, 1);
+		write(2, "Error: Failed to create a token", 32);
+	}
 }
 
 t_token	*token_creator(char *line, int x1, int x2)
@@ -61,11 +63,11 @@ int	add_token(char *line, t_token **token, int x1, int x2)
 		current = current->next;
 	current->next = token_creator(line, x1, x2);
 	if (!current->next)
-			return (0);
+			return (destroy_tokens(*token, 'e'), exit(0), 0);
 	return (1);
 }
 
-int tokenizer(t_token **head, char **line)
+void tokenizer(t_token **head, char **line)
 {
 	int		i;
 	int		x[2];
@@ -77,13 +79,8 @@ int tokenizer(t_token **head, char **line)
 	while ((*line)[i])
 	{
 		iter_spaces((*line), x, &i);
-		if (!iter_chars(head, line, x, &i))
-			return(0);
+		iter_chars(head, line, x, &i);
 		if (x[0] <= x[1] && (*line)[x[1]] != '\0' && !is_space((*line)[x[1]]))
-		{
-			if (!add_token((*line), head, x[0], x[1]))
-				return (0);
-		}
+			add_token((*line), head, x[0], x[1]);
 	}
-	return (1);
 }

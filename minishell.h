@@ -88,13 +88,13 @@ int			iter_double_quote(char **line, int i);
 void		destroy_tokens(t_token *token, char mode);
 t_token		*token_creator(char *line, int x1, int x2);
 int			add_token(char *line, t_token **token, int x1, int x2);
-int 		tokenizer(t_token **head, char **line);
+void		tokenizer(t_token **head, char **line);
 
 //tokenizer_utils.c
 void 		iter_spaces(char *line, int *x, int *i);
-char		*quote_remover(char *line, int x);
-void		skip_quote(char **line, int *i, char quote);
-int			iter_chars(t_token **head, char **line, int *x, int *i);
+char		*quote_remover(t_token **head, char *line, int x);
+void		skip_quote(t_token **head, char **line, int *i, char quote);
+void		iter_chars(t_token **head, char **line, int *x, int *i);
 
 //tree_constructor.c
 void		destroy_tree(b_tree **tree);
