@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
+/*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:44:35 by tjorge-d          #+#    #+#             */
-/*   Updated: 2024/04/02 16:46:12 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/03 14:38:15 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	tokenizer(t_token **head, char **line)
 	{
 		iter_spaces((*line), x, &i);
 		iter_chars(head, line, x, &i);
-		if (x[0] <= x[1] && (*line)[x[1]] != '\0' && !is_space((*line)[x[1]]))
+		if (x[0] <= x[1] && (*line)[x[1]] != '\0')
 			add_token((*line), head, x[0], x[1]);
 	}
 }
