@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
+/*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:03 by tjorge-d          #+#    #+#             */
-/*   Updated: 2024/04/02 17:34:57 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/03 14:00:06 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*search_and_add_variable(char *line, int *i)
 		expansion = ft_itoa(g_var);
 		if (!expansion)
 			return (free(line), fail_msg('M'), get_set_env(NULL, 1, 2), NULL);
-		return (free(expansion), refresh_line(line, i, *i + 2, expansion));
+		return (refresh_line(line, i, *i + 2, expansion));
 	}
 	while (ft_isalnum(line[j]) || line[j] == '_')
 		j++;

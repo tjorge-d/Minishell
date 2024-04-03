@@ -6,7 +6,7 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:36:31 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/02 16:53:44 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:38:11 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ int	run_echo(char **args)
 
 	i = 1; 
 	flag = 0;
+	if(!args[i])
+	{
+		printf("\n");
+		return (0);
+	}
 	while (is_valid_flag(args[i]))
 	{
 		flag = 1;
