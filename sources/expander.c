@@ -6,7 +6,7 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:03 by tjorge-d          #+#    #+#             */
-/*   Updated: 2024/04/03 14:00:06 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/03 14:54:16 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,8 @@ char	*expander(char *line)
 			i = iter_single_quote(&line, i + 1);
 		else if (line[i] == DOUBLE_Q)
 			i = iter_double_quote(&line, i + 1);
-		else if (line[i] == '$')
+		else if (line[i] == '$' && (ft_isalnum(line[i + 1]) \
+			|| line[i + 1] == '?'))
 			line = search_and_add_variable(line, &i);
 		else
 			i++;

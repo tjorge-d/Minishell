@@ -6,7 +6,7 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:36:55 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/03 12:19:22 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/03 17:10:13 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,14 @@
 int	red_in(t_tree *tree, int *fd_in)
 {
 	int		fd;
-	char	*error_msg;
 
 	fd = open(tree->data, O_RDONLY);
 	if (fd == -1)
 	{
-		error_msg = ft_strjoin("ERROR COULD NOT OPEN OR FIND FILE :" \
-			, tree->data, 0, 0);
-		ft_putstr_fd(error_msg, 2);
-		free(error_msg);
+		ft_putstr_fd("Error: ",2);
+		ft_putstr_fd(tree->data, 2);
+		ft_putstr_fd(": No such file or directory\n",2);
+		g_var = 1;
 		return (0);
 	}
 	else

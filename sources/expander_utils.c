@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
+/*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:36:37 by tjorge-d          #+#    #+#             */
-/*   Updated: 2024/04/02 17:34:57 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/03 15:00:18 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,8 @@ int	iter_double_quote(char **line, int i)
 	}
 	while ((*line)[i] && (*line)[i] != '"')
 	{
-		if ((*line)[i] == '$')
+		if ((*line)[i] == '$' && (ft_isalnum((*line)[i + 1]) \
+			|| (*line)[i + 1] == '?'))
 			(*line) = search_and_add_variable(*line, &i);
 		else
 			i++;

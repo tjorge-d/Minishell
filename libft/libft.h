@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcota-pa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 14:45:09 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/01/17 16:35:57 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/03 16:41:02 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <fcntl.h>
 # include "ft_printf.h"
 # include "get_next_line_bonus.h"
+# include <limits.h>
 
 typedef struct s_list
 {
@@ -46,6 +47,7 @@ int		ft_isprint(int c);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
 int		ft_atoi(const char *str);
+long	ft_exit_atoi(const char *str);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 char	*ft_strnstr(const char *big, const char *little, size_t len);

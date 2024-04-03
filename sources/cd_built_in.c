@@ -6,7 +6,7 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:36:25 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/02 16:49:47 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/03 15:07:31 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 char	*get_error_msg_cd(char *arg)
 {
-	return (ft_strjoin("Error: cd: ", arg, 0, 0));
+	char *temp;
+	temp = ft_strjoin("Error: cd: ", arg, 0, 0);
+	return (ft_strjoin(temp ,": ", 1, 0));
 }
 
 void	ft_chdir_our_env(char *new_dir)
@@ -43,7 +45,7 @@ int	cd_without_args(void)
 		ft_putstr_fd(error_msg, 2);
 		free(error_msg);
 		perror(NULL);
-		return (2);
+		return (1);
 	}
 	cwd = getcwd(NULL, 0);
 	ft_chdir_our_env(cwd);
@@ -66,7 +68,7 @@ int	cd_with_arg(char *arg)
 		ft_putstr_fd(error_msg, 2);
 		free(error_msg);
 		perror(NULL);
-		return (2);
+		return (1);
 	}
 	cwd = getcwd(NULL, 0);
 	ft_chdir_our_env(cwd);
@@ -83,7 +85,7 @@ int	run_cd(char **args)
 		i ++;
 	if (i > 2)
 	{
-		ft_putstr_fd("ERROR: Cd: Too many arguments\n", 2);
+		ft_putstr_fd("ERROR: Cd: too many arguments\n", 2);
 	}
 	else if (i <= 1)
 	{
@@ -91,5 +93,5 @@ int	run_cd(char **args)
 	}
 	else
 		return (cd_with_arg(args[1]));
-	return (2);
+	return (1);
 }

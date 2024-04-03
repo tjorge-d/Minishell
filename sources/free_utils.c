@@ -6,28 +6,29 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:32 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/03 12:26:33 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:32:43 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	free_all(int n_commands, t_cmd *commands, t_tree *tree)
+void	free_all(int n_commands, t_cmd *cmds, t_tree *tree, int rm_tree)
 {
 	int	j;
 
 	j = 0;
 	while (j < n_commands)
 	{
-		if (commands[j].args)
-			free_char_pp(commands[j].args);
+		if (cmds[j].args)
+			free_char_pp(cmds[j].args);
 		else 
 			break ;
 		j++;
 	}
-	close_fds(commands, n_commands);
-	free(commands);
-	destroy_tree (&tree);
+	close_fds(cmds, n_commands);
+	free(cmds);
+	if (rm_tree)
+		destroy_tree(&tree);
 }
 
 void	free_char_pp(char **array)

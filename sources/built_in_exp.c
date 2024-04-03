@@ -6,7 +6,7 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:36:08 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/02 16:47:28 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/03 15:15:18 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,9 @@ int	export(char *expression)
 
 	env = get_set_env(NULL, 0, 0);
 	if (!validate_expression(expression))
-		return (-1);
+		return (ft_putstr_fd("Error: export: `", 2), \
+			ft_putstr_fd(expression, 2), \
+			ft_putstr_fd("': not a valid identifier\n", 2) ,1);
 	old_loc = search_var_index(expression);
 	if (old_loc == -1)
 	{
@@ -97,11 +99,11 @@ int	export(char *expression)
 		new_env[array_len(env) + 1] = NULL;
 		get_set_env(new_env, 1, 0);
 		free_char_pp(new_env);
-		return (1);
+		return (0);
 	}
 	free(env[old_loc]);
 	env[old_loc] = strdup(expression);
-	return (1);
+	return (0);
 }
 
 int	run_exp(char **args)

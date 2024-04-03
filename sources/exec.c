@@ -6,7 +6,7 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:16 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/03 13:26:44 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:48:12 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	create_pipes(int n_commands, t_cmd *commands, t_tree *tree)
 		if (n_commands != 1)
 		{
 			if (pipe(pipes) == -1)
-				return (free_all(n_commands, commands, tree), \
+				return (free_all(n_commands, commands, tree, 1), \
 					fail_msg('P'), g_var = 126, \
 					get_set_env(NULL, 1, 126), 0);
 		}
@@ -60,7 +60,7 @@ int	do_redirects(t_tree *tree, t_cmd *commands, int command_n)
 	{
 		if (tree->type == REDIRECT_IN)
 		{
-			if (red_in(tree, &commands[command_n].fd_in) == 0)
+			if(!red_in(tree, &commands[command_n].fd_in))
 				return (0);
 		}
 		else if (tree->type == REDIRECT_IN_DOC)
@@ -71,7 +71,7 @@ int	do_redirects(t_tree *tree, t_cmd *commands, int command_n)
 				return (0);
 		}
 		else if (tree->type == REDIRECT_OUT_APP)
-		{
+		{	
 			if (!red_out_app(tree, &commands[command_n].fd_out))
 				return (0);
 		}
@@ -86,7 +86,10 @@ void	do_child(t_tree *tree, int command_n, t_cmd *commands, int total)
 	{
 		tree = tree->right;
 		if (!do_redirects(tree, commands, command_n))
-			return ;
+		{
+			free_all(total, commands, tree, 1);
+			exit(1);
+		}
 		while (tree && (tree->type != COMMAND))
 			tree = tree->right;
 		if (tree)
@@ -102,7 +105,7 @@ int	executor(t_tree *tree)
 
 	i = -1;
 	n_commands = get_n_commands(tree);
-	cmds = malloc(sizeof(t_cmd) * n_commands);
+	cmds = ft_calloc(n_commands, sizeof(t_cmd));
 	fill_commands(n_commands, cmds, tree);
 	create_pipes(n_commands, cmds, tree);
 	if (n_commands == 1 && cmds[0].command && is_built_in(cmds[0].command))
@@ -114,7 +117,7 @@ int	executor(t_tree *tree)
 		if (!cmds[i].process_id)
 			do_child(tree, i, cmds, n_commands);
 		else if (cmds[i].process_id < 0)
-			return (fail_msg('F'), free_all(n_commands, cmds, tree),
+			return (fail_msg('F'), free_all(n_commands, cmds, tree, 1),
 				g_var = 126, get_set_env(NULL, 1, 126), 126);
 		else
 			tree = tree->left;

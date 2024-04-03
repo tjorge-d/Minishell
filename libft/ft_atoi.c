@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcota-pa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 14:35:26 by dcota-pa          #+#    #+#             */
-/*   Updated: 2023/10/03 15:51:35 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/03 16:41:41 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*trim_str(char *str)
 
 int	ft_atoi(const char *str)
 {
-	int		ans;
+	long		ans;
 	int		signal;
 	char	*s;
 
@@ -49,3 +49,33 @@ int	ft_atoi(const char *str)
 	}
 	return (ans);
 }
+long	ft_exit_atoi(const char *str)
+{
+	long		ans;
+	int		signal;
+	char	*s;
+
+	ans = 0;
+	s = trim_str((char *)str);
+	signal = 1;
+	if (*s == '+' || *s == '-')
+	{
+		if (*s == '-')
+			signal = -1;
+		s++;
+	}
+	while (*s >= '0' && *s <= '9')
+	{
+		if (signal == 1)
+			ans = ans * 10 + (*s - '0');
+		else
+			ans = ans * 10 - (*s - '0');
+		s++;
+	}
+	if (*s != '\0')
+	{
+	return (LONG_MAX);
+	}
+	return (ans);
+}
+

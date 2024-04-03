@@ -6,7 +6,7 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:15:46 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/03 12:26:46 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/03 19:19:42 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <dirent.h>
 # include <errno.h>
 # include <signal.h>
+# include <limits.h>
 
 extern int		g_var;
 
@@ -75,6 +76,7 @@ typedef struct s_command
 	char	*command;
 	char	**args;
 	pid_t	process_id;
+	int		std_out;
 }	t_cmd;
 //parser.c
 t_tree		*parser(char *line);
@@ -159,7 +161,7 @@ int			print_pwd(void);
 //free_utils.c
 void		free_char_pp(char **array);
 int			wait_loop(int n_commands, t_cmd *commands);
-void		free_all(int n_commands, t_cmd *commands, t_tree *tree);
+void		free_all(int n_commands, t_cmd *cmds, t_tree *tree, int rm_tree);
 
 //built_in_exp.c
 int			export(char *expression);
