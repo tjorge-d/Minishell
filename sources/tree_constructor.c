@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   tree_constructor.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
+/*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:50:03 by tjorge-d          #+#    #+#             */
-/*   Updated: 2024/04/02 17:10:51 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:19:22 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	destroy_tree(b_tree **tree)
+void	destroy_tree(t_tree **tree)
 {
-	b_tree		*curr_node;
-	b_tree		*prev_node;
-	b_tree		*next_branch;
+	t_tree		*curr_node;
+	t_tree		*prev_node;
+	t_tree		*next_branch;
 
 	curr_node = *tree;
 	prev_node = *tree;
@@ -38,7 +38,7 @@ void	destroy_tree(b_tree **tree)
 	}
 }
 
-int	pipe_brancher(b_tree **tree, t_token **token)
+int	pipe_brancher(t_tree **tree, t_token **token)
 {
 	t_token	*curr_token;
 
@@ -56,10 +56,10 @@ int	pipe_brancher(b_tree **tree, t_token **token)
 	return (1);
 }
 
-int	redirection_checker(b_tree **tree, t_token **token)
+int	redirection_checker(t_tree **tree, t_token **token)
 {
 	t_token		*curr_token;
-	b_tree		*curr_branch;
+	t_tree		*curr_branch;
 
 	curr_token = *token;
 	curr_branch = *tree;
@@ -77,10 +77,10 @@ int	redirection_checker(b_tree **tree, t_token **token)
 	return (1);
 }
 
-int	command_builder(b_tree **tree, t_token **token)
+int	command_builder(t_tree **tree, t_token **token)
 {
 	t_token		*c_token;
-	b_tree		*c_branch;
+	t_tree		*c_branch;
 	int			token_type;
 
 	c_token = *token;
@@ -106,7 +106,7 @@ int	command_builder(b_tree **tree, t_token **token)
 	return (1);
 }
 
-int	tree_constructor(b_tree **tree, t_token **token)
+int	tree_constructor(t_tree **tree, t_token **token)
 {
 	*tree = NULL;
 	*tree = init_node(NULL, FIRST_BRANCH);

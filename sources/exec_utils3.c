@@ -6,13 +6,13 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:40:15 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/02 17:40:21 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:26:33 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	fill_command(int n_cmd, t_command *commands, b_tree *tree)
+void	fill_command(int n_cmd, t_cmd *commands, t_tree *tree)
 {
 	int	i;
 
@@ -30,7 +30,7 @@ void	fill_command(int n_cmd, t_command *commands, b_tree *tree)
 		commands[n_cmd].command = tree->data;
 }
 
-void	fill_commands(int n_commands, t_command *commands, b_tree *tree)
+void	fill_commands(int n_commands, t_cmd *commands, t_tree *tree)
 {
 	int	i;
 
@@ -42,7 +42,7 @@ void	fill_commands(int n_commands, t_command *commands, b_tree *tree)
 	}
 }
 
-void	close_fds(t_command *coms, int total)
+void	close_fds(t_cmd *coms, int total)
 {
 	int	i;
 

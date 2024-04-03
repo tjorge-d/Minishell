@@ -6,7 +6,7 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:53:28 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/02 17:53:31 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:12:16 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void	copy_array_skip(char **src, char **dest, int index)
 	while (i < index && src[i])
 	{
 		dest[i] = ft_strdup(src[i]);
-        i ++;
+		i ++;
 	}
 	while (src[i + 1])
 	{
 		dest[i] = ft_strdup(src[i + 1]);
-        i ++;
+		i ++;
 	}
 	dest[i] = NULL;
 }
@@ -51,10 +51,10 @@ int	unset(char *expression)
 	return (0);
 }
 
-int run_unset(char **args)
+int	run_unset(char **args)
 {
-    int	i;
-	int res;
+	int	i;
+	int	res;
 
 	i = 1;
 	if (args && !args[i])

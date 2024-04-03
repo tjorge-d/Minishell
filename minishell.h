@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/03 12:15:46 by dcota-pa          #+#    #+#             */
+/*   Updated: 2024/04/03 12:26:46 by dcota-pa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -25,8 +37,7 @@ typedef enum special_chars
 	DOUBLE_Q,
 	EMPTY,
 	NULL_TOKEN,
-
-}	special_chars;
+}	t_special_charss;
 
 typedef enum node_type
 {
@@ -39,26 +50,23 @@ typedef enum node_type
 	PIPE,
 	FIRST_BRANCH,
 	FLAGS,
-
-}	node_type;
+}	t_node_type;
 
 typedef struct s_token
 {
-	char 					*data;
-	node_type 				type;
-	struct s_token			*next;
-	int						used;
-
+	char			*data;
+	t_node_type		type;
+	struct s_token	*next;
+	int				used;
 }	t_token;
 
 typedef struct s_tree_node
 {
-	char 					*data;
-	node_type 				type;
-	struct s_tree_node 		*left;
-	struct s_tree_node 		*right;
-
-}	b_tree;
+	char				*data;
+	t_node_type			type;
+	struct s_tree_node	*left;
+	struct s_tree_node	*right;
+}	t_tree;
 
 typedef struct s_command
 {
@@ -67,9 +75,9 @@ typedef struct s_command
 	char	*command;
 	char	**args;
 	pid_t	process_id;
-} t_command;
+}	t_cmd;
 //parser.c
-b_tree		*parser(char *line);
+t_tree		*parser(char *line);
 
 //expander.c
 char		*search_and_add_variable(char *line, int *i);
@@ -91,24 +99,24 @@ int			add_token(char *line, t_token **token, int x1, int x2);
 void		tokenizer(t_token **head, char **line);
 
 //tokenizer_utils.c
-void 		iter_spaces(char *line, int *x, int *i);
+void		iter_spaces(char *line, int *x, int *i);
 char		*quote_remover(t_token **head, char *line, int x);
 void		skip_quote(t_token **head, char **line, int *i, char quote);
 void		iter_chars(t_token **head, char **line, int *x, int *i);
 
 //tree_constructor.c
-void		destroy_tree(b_tree **tree);
-int			pipe_brancher(b_tree **tree, t_token **token);
-int			redirection_checker(b_tree **tree, t_token **token);
-int			command_builder(b_tree **tree, t_token **token);
-int			tree_constructor(b_tree **tree, t_token **token);
+void		destroy_tree(t_tree **tree);
+int			pipe_brancher(t_tree **tree, t_token **token);
+int			redirection_checker(t_tree **tree, t_token **token);
+int			command_builder(t_tree **tree, t_token **token);
+int			tree_constructor(t_tree **tree, t_token **token);
 
 //tree_constructor_utils.c
-b_tree		*init_node(char **data, int type);
-int			set_token(b_tree **branch, t_token **token, int	token_type);
-int			create_branch(b_tree **tree);
+t_tree		*init_node(char **data, int type);
+int			set_token(t_tree **branch, t_token **token, int token_type);
+int			create_branch(t_tree **tree);
 int			get_redirection_type(char *redir);
-int			add_redirection(b_tree **branch, t_token **token, char *redir);
+int			add_redirection(t_tree **branch, t_token **token, char *redir);
 
 //here_doc.c
 int			create_here_doc(char *exit_statement, t_token **token);
@@ -120,7 +128,7 @@ int			here_doc(t_token **token);
 void		fail_msg(char mode);
 int			is_space(char c);
 int			is_special(char c);
-void 		free_matrix(char **matrix);
+void		free_matrix(char **matrix);
 
 //signals.c
 void		ctrl_c_signal_hd(int signal);
@@ -129,13 +137,12 @@ void		ctrl_c_signal(int signal);
 
 //get_data_path.c
 int			is_built_in(char *line);
-char		*check_command(char **path, char* data);
-char		*get_data_path(char *data, b_tree **tree, t_token **token);
-
+char		*check_command(char **path, char *data);
+char		*get_data_path(char *data, t_tree **tree, t_token **token);
 
 //utils_update
 void		copy_array_2(char **src, char **dest);
-char 		*search_var_value(char *var_name);
+char		*search_var_value(char *var_name);
 int			search_var_index(char *s);
 int			array_len(char **arr);
 char		**copy_array(char **src);
@@ -151,8 +158,8 @@ int			print_pwd(void);
 
 //free_utils.c
 void		free_char_pp(char **array);
-int			wait_loop(int n_commands,t_command *commands);
-void		free_all(int n_commands, t_command *commands, b_tree *tree);
+int			wait_loop(int n_commands, t_cmd *commands);
+void		free_all(int n_commands, t_cmd *commands, t_tree *tree);
 
 //built_in_exp.c
 int			export(char *expression);
@@ -164,37 +171,36 @@ int			cd_with_arg(char *arg);
 int			run_cd(char **args);
 
 //unset.c
-void	copy_array_skip(char **src, char **dest, int index);
-int     run_unset(char **args);
+void		copy_array_skip(char **src, char **dest, int index);
+int			run_unset(char **args);
 
 //env.c
-int     run_env(char **args);
+int			run_env(char **args);
 
 //exit.c
-int		run_exit(t_command *cmd, int cmd_n, b_tree *tree, int flag);
-void	increase_shell_lvl(void);
+int			run_exit(t_cmd *cmd, int cmd_n, t_tree *tree, int flag);
+void		increase_shell_lvl(void);
 
 //exec_utils3.c
-void	close_fds(t_command *coms, int total);
-void	fill_commands(int n_commands, t_command *commands, b_tree *tree);
-void	fill_command(int n_cmd, t_command *commands, b_tree *tree);
+void		close_fds(t_cmd *coms, int total);
+void		fill_commands(int n_commands, t_cmd *commands, t_tree *tree);
+void		fill_command(int n_cmd, t_cmd *commands, t_tree *tree);
 
 //exec_utils2.c
-int     count_args(b_tree *tree);
-int     run_built_in(t_command *cmd, int cmd_n, b_tree *tree);
-int     run_built_in_solo(b_tree *tree, t_command *cmd, char **args, int cmd_n);
+int			count_args(t_tree *tree);
+int			run_built_in(t_cmd *cmd, int cmd_n, t_tree *tree);
+int			run_built_in_solo(t_tree *tree, t_cmd *cmd, char **args, int cmd_n);
 
 //exec_utils.c
-char ** build_args(b_tree *tree);
-int     red_out_app(b_tree *tree, int *fd_out);
-int     red_out(b_tree *tree, int *fd_out);
-int     red_in_doc(b_tree *tree, int *fd_in);
-int     red_in(b_tree *tree, int *fd_in);
+char		**build_args(t_tree *tree);
+int			red_out_app(t_tree *tree, int *fd_out);
+int			red_out(t_tree *tree, int *fd_out);
+int			red_in_doc(t_tree *tree, int *fd_in);
+int			red_in(t_tree *tree, int *fd_in);
 
 //exec.c
-void	run(t_command *commands ,int cmd_n, int total_cmds, b_tree *tree);
-int		executor(b_tree *tree);
-int     do_redirects(b_tree *tree, t_command *commands, int command_n);
-
+void		run(t_cmd *commands, int cmd_n, int total_cmds, t_tree *tree);
+int			executor(t_tree *tree);
+int			do_redirects(t_tree *tree, t_cmd *commands, int command_n);
 
 #endif

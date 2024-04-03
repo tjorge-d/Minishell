@@ -6,13 +6,13 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:36:55 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/02 17:10:30 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:19:22 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	red_in(b_tree *tree, int *fd_in)
+int	red_in(t_tree *tree, int *fd_in)
 {
 	int		fd;
 	char	*error_msg;
@@ -35,7 +35,7 @@ int	red_in(b_tree *tree, int *fd_in)
 	}
 }
 
-int	red_in_doc(b_tree *tree, int *fd_in)
+int	red_in_doc(t_tree *tree, int *fd_in)
 {
 	int	atoi;
 
@@ -44,7 +44,7 @@ int	red_in_doc(b_tree *tree, int *fd_in)
 	return (1);
 }
 
-int	red_out(b_tree *tree, int *fd_out)
+int	red_out(t_tree *tree, int *fd_out)
 {
 	int		fd;
 	char	*error_msg;
@@ -66,7 +66,7 @@ int	red_out(b_tree *tree, int *fd_out)
 	}
 }
 
-int	red_out_app(b_tree *tree, int *fd_out)
+int	red_out_app(t_tree *tree, int *fd_out)
 {
 	int		fd;
 	char	*error_msg;
@@ -88,7 +88,7 @@ int	red_out_app(b_tree *tree, int *fd_out)
 	}
 }
 
-char	**build_args(b_tree *tree)
+char	**build_args(t_tree *tree)
 {
 	char	**args;
 	int		i;

@@ -6,7 +6,7 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:22 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/02 17:42:57 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:26:33 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	increase_shell_lvl(void)
 	}
 }
 
-int	run_exit(t_command *cmd, int cmd_n, b_tree *tree, int flag)
+int	run_exit(t_cmd *cmd, int cmd_n, t_tree *tree, int flag)
 {
 	if (flag)
 	{

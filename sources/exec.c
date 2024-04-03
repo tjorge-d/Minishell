@@ -6,13 +6,13 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:16 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/02 17:56:25 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:26:44 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	get_n_commands(b_tree *tree)
+int	get_n_commands(t_tree *tree)
 {
 	int	ans;
 
@@ -25,7 +25,7 @@ int	get_n_commands(b_tree *tree)
 	return (ans);
 }
 
-int	create_pipes(int n_commands, t_command *commands, b_tree *tree)
+int	create_pipes(int n_commands, t_cmd *commands, t_tree *tree)
 {
 	int	i;
 	int	pipes[2];
@@ -54,7 +54,7 @@ int	create_pipes(int n_commands, t_command *commands, b_tree *tree)
 	return (1);
 }
 
-int	do_redirects(b_tree *tree, t_command *commands, int command_n)
+int	do_redirects(t_tree *tree, t_cmd *commands, int command_n)
 {
 	while (tree && tree->type != PIPE)
 	{
@@ -80,7 +80,7 @@ int	do_redirects(b_tree *tree, t_command *commands, int command_n)
 	return (1);
 }
 
-void	do_child(b_tree *tree, int command_n, t_command *commands, int total)
+void	do_child(t_tree *tree, int command_n, t_cmd *commands, int total)
 {
 	if ((tree->type == PIPE || tree->type == FIRST_BRANCH))
 	{
@@ -94,15 +94,15 @@ void	do_child(b_tree *tree, int command_n, t_command *commands, int total)
 	}
 }
 
-int	executor(b_tree *tree)
+int	executor(t_tree *tree)
 {
 	int			n_commands;
-	t_command	*cmds;
+	t_cmd		*cmds;
 	int			i;
 
 	i = -1;
 	n_commands = get_n_commands(tree);
-	cmds = malloc(sizeof(t_command) * n_commands);
+	cmds = malloc(sizeof(t_cmd) * n_commands);
 	fill_commands(n_commands, cmds, tree);
 	create_pipes(n_commands, cmds, tree);
 	if (n_commands == 1 && cmds[0].command && is_built_in(cmds[0].command))

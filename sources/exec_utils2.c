@@ -6,13 +6,13 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:11 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/02 17:52:43 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:26:33 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	count_args(b_tree *tree)
+int	count_args(t_tree *tree)
 {
 	int	i;
 
@@ -25,7 +25,7 @@ int	count_args(b_tree *tree)
 	return (i);
 }
 
-void	run(t_command *cmds, int cmd_n, int total_cmds, b_tree *tree)
+void	run(t_cmd *cmds, int cmd_n, int total_cmds, t_tree *tree)
 {
 	char	*error_msg;
 
@@ -53,7 +53,7 @@ void	run(t_command *cmds, int cmd_n, int total_cmds, b_tree *tree)
 		exit(run_built_in(cmds, cmd_n, tree));
 }
 
-int	if_built_in_sequence(t_command *cmd, int cmd_n, b_tree *tree, int flag)
+int	if_built_in_sequence(t_cmd *cmd, int cmd_n, t_tree *tree, int flag)
 {
 	if (!ft_strncmp(cmd[cmd_n].command, "echo", 5))
 		return (run_echo(cmd[cmd_n].args));
@@ -72,7 +72,7 @@ int	if_built_in_sequence(t_command *cmd, int cmd_n, b_tree *tree, int flag)
 	return (-1);
 }
 
-int	run_built_in_solo(b_tree *tree, t_command *cmd, char **args, int cmd_n)
+int	run_built_in_solo(t_tree *tree, t_cmd *cmd, char **args, int cmd_n)
 {
 	int	ans;
 	int	temp1;
@@ -97,7 +97,7 @@ int	run_built_in_solo(b_tree *tree, t_command *cmd, char **args, int cmd_n)
 	return (ans);
 }
 
-int	run_built_in(t_command *cmd, int cmd_n, b_tree *tree)
+int	run_built_in(t_cmd *cmd, int cmd_n, t_tree *tree)
 {
 	int	ans;
 

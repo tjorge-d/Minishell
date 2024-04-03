@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
+/*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:53:14 by tjorge-d          #+#    #+#             */
-/*   Updated: 2024/04/02 17:39:49 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:19:22 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	print_tokens(t_token **token)
 	printf("\n========================\n");
 }
 
-void	print_tree(b_tree **tree)
+void	print_tree(t_tree **tree)
 {
-	b_tree	*test1;
-	b_tree	*test2;
+	t_tree	*test1;
+	t_tree	*test2;
 
 	test1 = *tree;
 	test2 = *tree;
@@ -59,7 +59,7 @@ void	print_tree(b_tree **tree)
 
 int	runner(void)
 {
-	b_tree	*tree;
+	t_tree	*tree;
 	char	*line;
 
 	tree = NULL;
@@ -81,10 +81,10 @@ int	runner(void)
 	return (1);
 }
 
-b_tree	*parser(char *line)
+t_tree	*parser(char *line)
 {
 	t_token		*token;
-	b_tree		*tree;
+	t_tree		*tree;
 	char		*line_to_parse;
 
 	line_to_parse = ft_strdup(line);

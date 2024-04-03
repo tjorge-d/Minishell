@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_data_path.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
+/*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:31:53 by tjorge-d          #+#    #+#             */
-/*   Updated: 2024/04/02 17:43:38 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:19:22 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*check_command(char **path, char *data)
 	return (data);
 }
 
-char	*get_data_path(char *data, b_tree **tree, t_token **token)
+char	*get_data_path(char *data, t_tree **tree, t_token **token)
 {
 	char	**paths;
 	char	*path;

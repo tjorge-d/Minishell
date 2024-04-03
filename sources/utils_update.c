@@ -6,10 +6,9 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:53:39 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/02 17:53:55 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:14:37 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../minishell.h"
 
@@ -21,7 +20,7 @@ char	*search_var_value(char *var_name)
 
 	env = get_set_env(NULL, 0, 0);
 	if (!env)
-		return(g_var = -1, NULL);
+		return (g_var = -1, NULL);
 	index = search_var_index(var_name);
 	if (index == -1)
 		return (NULL);
@@ -87,7 +86,7 @@ char	**get_set_env(char **new_env, int flag_to_free, int flag_to_exit)
 		if (flag_to_free)
 			free_char_pp(env);
 		env = copy_array(new_env);
-		if(!env)
+		if (!env)
 			return (NULL);
 	}
 	else if (flag_to_free == 1)

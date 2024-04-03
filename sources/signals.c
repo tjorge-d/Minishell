@@ -1,19 +1,19 @@
 #include "../minishell.h"
 
-void    quit_here_doc(int signal)
+void	quit_here_doc(int signal)
 {
 	close(0);
 	g_var = 130;
 	(void)signal;
 }
 
-void    ctrl_c_signal_hd(int signal)
+void	ctrl_c_signal_hd(int signal)
 {
 	g_var = 130;
 	(void)signal;
 }
 
-void    ctrl_c_signal(int signal)
+void	ctrl_c_signal(int signal)
 {
 	printf("\n");
 	rl_on_new_line();
@@ -22,4 +22,3 @@ void    ctrl_c_signal(int signal)
 	g_var = 130;
 	(void)signal;
 }
-

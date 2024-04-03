@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   tree_constructor_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
+/*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:47:23 by tjorge-d          #+#    #+#             */
-/*   Updated: 2024/04/02 17:46:09 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:19:22 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-b_tree	*init_node(char **data, int type)
+t_tree	*init_node(char **data, int type)
 {
-	b_tree	*node;
+	t_tree	*node;
 
-	node = malloc(sizeof(b_tree));
+	node = malloc(sizeof(t_tree));
 	if (!node)
 		return (fail_msg('M'), NULL);
 	if (!data)
@@ -33,9 +33,9 @@ b_tree	*init_node(char **data, int type)
 	return (node);
 }
 
-int	set_token(b_tree **branch, t_token **token, int token_type)
+int	set_token(t_tree **branch, t_token **token, int token_type)
 {
-	b_tree	*iterator;
+	t_tree	*iterator;
 
 	iterator = *branch;
 	while (iterator)
@@ -53,9 +53,9 @@ int	set_token(b_tree **branch, t_token **token, int token_type)
 	return (0);
 }
 
-int	create_branch(b_tree **tree)
+int	create_branch(t_tree **tree)
 {
-	b_tree	*iterator;
+	t_tree	*iterator;
 
 	iterator = *tree;
 	while (iterator)
@@ -83,9 +83,9 @@ int	get_redirection_type(char *redir)
 	return (0);
 }
 
-int	add_redirection(b_tree **branch, t_token **token, char *redir)
+int	add_redirection(t_tree **branch, t_token **token, char *redir)
 {
-	b_tree	*iterator;
+	t_tree	*iterator;
 
 	iterator = *branch;
 	while (iterator)

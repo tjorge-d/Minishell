@@ -6,13 +6,13 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:32 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/02 17:43:54 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:26:33 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	free_all(int n_commands, t_command *commands, b_tree *tree)
+void	free_all(int n_commands, t_cmd *commands, t_tree *tree)
 {
 	int	j;
 
@@ -46,7 +46,7 @@ void	free_char_pp(char **array)
 	free(array);
 }
 
-int	wait_loop(int n_commands, t_command *commands)
+int	wait_loop(int n_commands, t_cmd *commands)
 {
 	int	i;
 	int	exit_status;
