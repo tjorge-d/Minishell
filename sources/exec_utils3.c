@@ -6,11 +6,25 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:40:15 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/03 12:26:33 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/04 15:58:05 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+int	ft_is_command(char *command)
+{
+	int		i;
+
+	i = 0;
+	while (command[i])
+	{
+		if (command[i] == '/')
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 void	fill_command(int n_cmd, t_cmd *commands, t_tree *tree)
 {

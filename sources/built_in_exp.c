@@ -6,7 +6,7 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:36:08 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/03 15:15:18 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:00:48 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	export(char *expression)
 	if (!validate_expression(expression))
 		return (ft_putstr_fd("Error: export: `", 2), \
 			ft_putstr_fd(expression, 2), \
-			ft_putstr_fd("': not a valid identifier\n", 2) ,1);
+			ft_putstr_fd("': not a valid identifier\n", 2), 1);
 	old_loc = search_var_index(expression);
 	if (old_loc == -1)
 	{

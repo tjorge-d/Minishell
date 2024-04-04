@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
+/*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:15:46 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/04 09:24:54 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/04 15:58:26 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <errno.h>
 # include <signal.h>
 # include <limits.h>
+# include <sys/stat.h>
 
 extern int		g_var;
 
@@ -185,6 +186,7 @@ int			run_exit(t_cmd *cmd, int cmd_n, t_tree *tree, int flag);
 void		increase_shell_lvl(void);
 
 //exec_utils3.c
+int			ft_is_command(char *command);
 void		close_fds(t_cmd *coms, int total);
 void		fill_commands(int n_commands, t_cmd *commands, t_tree *tree);
 void		fill_command(int n_cmd, t_cmd *commands, t_tree *tree);
@@ -205,5 +207,10 @@ int			red_in(t_tree *tree, int *fd_in);
 void		run(t_cmd *commands, int cmd_n, int total_cmds, t_tree *tree);
 int			executor(t_tree *tree);
 int			do_redirects(t_tree *tree, t_cmd *commands, int command_n);
+
+//run_error.c
+void		dir_err_handler(int t_cmds, t_cmd *cmds, t_tree *tree, int cmd_n);
+void		cmd_err_handler(int t_cmds, t_cmd *cmds, t_tree *tree, int cmd_n);
+void		fl_err_handler(int ttl_cmds, t_cmd *cmds, t_tree *tree, int cmd_n);
 
 #endif

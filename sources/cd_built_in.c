@@ -6,7 +6,7 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:36:25 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/03 15:07:31 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:01:50 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 char	*get_error_msg_cd(char *arg)
 {
-	char *temp;
+	char	*temp;
+
 	temp = ft_strjoin("Error: cd: ", arg, 0, 0);
-	return (ft_strjoin(temp ,": ", 1, 0));
+	return (ft_strjoin(temp, ": ", 1, 0));
 }
 
 void	ft_chdir_our_env(char *new_dir)

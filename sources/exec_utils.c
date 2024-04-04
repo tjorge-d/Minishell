@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
+/*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:36:55 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/04 09:56:29 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:05:35 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	red_in(t_tree *tree, int *fd_in)
 	fd = open(tree->data, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_putstr_fd("Error: ",2);
+		ft_putstr_fd("Error: ", 2);
 		ft_putstr_fd(tree->data, 2);
-		ft_putstr_fd(": No such file or directory\n",2);
+		ft_putstr_fd(": No such file or directory\n", 2);
 		g_var = 1;
 		return (0);
 	}

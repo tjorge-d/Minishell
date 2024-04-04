@@ -28,7 +28,8 @@ SOURCES=parser.c \
 		exec_utils3.c    \
 		cd_built_in.c    \
 		env.c\
-		exit.c
+		exit.c\
+		run_errors.c
 		
 
 OBJ_DIR= objects

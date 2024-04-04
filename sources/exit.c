@@ -6,7 +6,7 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:22 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/03 19:31:32 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:03:31 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void	increase_shell_lvl(void)
 
 int	run_exit(t_cmd *cmd, int cmd_n, t_tree *tree, int flag)
 {
-	long ans;
-	
-	ans = 0;	
+	long	ans;
+
+	ans = 0;
 	if (flag)
 		ft_putstr_fd("exit\n", cmd[cmd_n].std_out);
 	if (cmd[cmd_n].args[1] && !cmd[cmd_n].args[2])
@@ -49,14 +49,14 @@ int	run_exit(t_cmd *cmd, int cmd_n, t_tree *tree, int flag)
 	else if (cmd[cmd_n].args[1] && cmd[cmd_n].args[2])
 		return (ft_putstr_fd("Error: exit: too many arguments\n", 2), 1);
 	if (flag)
-	{	
+	{
 		if (ans == LONG_MAX)
 		{
 			ft_putstr_fd("Error: exit: numeric argument required\n", 2);
 			ans = 2;
 		}
-		return (ans = (unsigned char) ans,close(cmd[cmd_n].std_out), \
-		free_all(1 , cmd, tree, 1), \
+		return (ans = (unsigned char)ans, close(cmd[cmd_n].std_out), \
+		free_all(1, cmd, tree, 1), \
 		g_var = ans, get_set_env(NULL, 1, 0), exit(ans), ans);
 	}
 	else

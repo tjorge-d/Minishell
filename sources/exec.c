@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
+/*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:16 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/04 10:38:29 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/04 15:55:17 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	do_redirects(t_tree *tree, t_cmd *commands, int command_n)
 	{
 		if (tree->type == REDIRECT_IN)
 		{
-			if(!red_in(tree, &commands[command_n].fd_in))
+			if (!red_in(tree, &commands[command_n].fd_in))
 				return (0);
 		}
 		else if (tree->type == REDIRECT_IN_DOC)
@@ -71,7 +71,7 @@ int	do_redirects(t_tree *tree, t_cmd *commands, int command_n)
 				return (0);
 		}
 		else if (tree->type == REDIRECT_OUT_APP)
-		{	
+		{
 			if (!red_out_app(tree, &commands[command_n].fd_out))
 				return (0);
 		}
