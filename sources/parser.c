@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
+/*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:53:14 by tjorge-d          #+#    #+#             */
-/*   Updated: 2024/04/03 14:39:10 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/04 10:39:26 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int	runner(void)
 		return (1);
 	if (tree)
 	{
+		//print_tree(&tree);
 		g_var = executor(tree);
 		destroy_tree(&tree);
 	}
@@ -93,6 +94,7 @@ t_tree	*parser(char *line)
 	if (!line_to_parse)
 		return (NULL);
 	tokenizer(&token, &line_to_parse);
+	//print_tokens(&token);
 	free(line_to_parse);
 	if (!here_doc(&token))
 		return (destroy_tokens(token, 'h'), NULL);

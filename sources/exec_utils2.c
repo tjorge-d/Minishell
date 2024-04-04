@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
+/*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:11 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/03 19:33:52 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/04 11:53:54 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,23 @@ int	count_args(t_tree *tree)
 	}
 	return (i);
 }
-
+//NOVO
+int	ft_is_file(char *command)
+{
+	int		i;
+	
+	i = 0;
+	while(command[i])
+	{
+		if (command[i] == '/')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+//NOVO
 void	run(t_cmd *cmds, int cmd_n, int total_cmds, t_tree *tree)
 {
-	char	*error_msg;
-
 	dup2(cmds[cmd_n].fd_in, STDIN_FILENO);
 	if (cmds[cmd_n].fd_out != 1)
 		dup2(cmds[cmd_n].fd_out, STDOUT_FILENO);
@@ -36,18 +48,27 @@ void	run(t_cmd *cmds, int cmd_n, int total_cmds, t_tree *tree)
 	if (!is_built_in(cmds[cmd_n].command))
 	{
 		execve(cmds[cmd_n].command, cmds[cmd_n].args, get_set_env(NULL, 0, 0));
-		if (access(cmds[cmd_n].command, X_OK) == 0)
+		if (access(cmds[cmd_n].command, X_OK) == 0 && !ft_is_file(cmds[cmd_n].command))	
 			perror(cmds[cmd_n].command);
+		else if (opendir(cmds[cmd_n].command))
+		{
+			ft_putstr_fd(cmds[cmd_n].command, 2);
+			ft_putstr_fd(": Is a directory\n", 2);
+			free_all(total_cmds, cmds, tree, 1);
+			get_set_env(NULL, 1, 0);
+			exit(126);
+		}
 		else
 		{
-			error_msg = ft_strjoin(cmds[cmd_n].command, \
-				": Command not found\n", 0, 0);
-			ft_putstr_fd(error_msg, 2);
-			free(error_msg);
+			ft_putstr_fd(cmds[cmd_n].command, 2);
+			if (ft_is_file(cmds[cmd_n].command))
+				ft_putstr_fd(": No such file or directory\n", 2);
+			else
+				ft_putstr_fd(": command not found\n", 2);
 		}
 		free_all(total_cmds, cmds, tree, 1);
 		get_set_env(NULL, 1, 0);
-		exit(126);
+		exit(127);
 	}
 	else 
 		exit(run_built_in(cmds, cmd_n, tree));
@@ -81,15 +102,22 @@ int	run_built_in_solo(t_tree *tree, t_cmd *cmd, char **args, int cmd_n)
 	cmd[cmd_n].args = args;
 	ans = 2;
 	cmd[cmd_n].std_out = dup(STDOUT_FILENO);
-	dup2(cmd[cmd_n].fd_in, STDIN_FILENO);
+	cmd[cmd_n].std_in = dup(STDIN_FILENO);
 	if (cmd[cmd_n].fd_out != 1)
 		dup2(cmd[cmd_n].fd_out, STDOUT_FILENO);
+	if (cmd[cmd_n].fd_in != 1)
+		dup2(cmd[cmd_n].fd_in, STDIN_FILENO);
 	close_fds(cmd, 1);
 	ans = if_built_in_sequence (cmd, cmd_n, tree, 1);
 	if (cmd[cmd_n].std_out && cmd[cmd_n].std_out != STDOUT_FILENO)
 	{	
 		dup2(cmd[cmd_n].std_out, STDOUT_FILENO);
 		close(cmd[cmd_n].std_out);
+	}
+	if (cmd[cmd_n].std_in && cmd[cmd_n].std_in != STDIN_FILENO)
+	{	
+		dup2(cmd[cmd_n].std_in, STDIN_FILENO);
+		close(cmd[cmd_n].std_in);
 	}
 	free_char_pp(cmd[cmd_n].args);
 	free(cmd);

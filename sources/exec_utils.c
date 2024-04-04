@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
+/*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:36:55 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/03 17:10:13 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/04 09:56:29 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,13 @@ int	red_in_doc(t_tree *tree, int *fd_in)
 int	red_out(t_tree *tree, int *fd_out)
 {
 	int		fd;
-	char	*error_msg;
 
 	fd = open(tree->data, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd == -1)
 	{
-		error_msg = ft_strjoin("ERROR COULD NOT OPEN :", tree->data, 0, 0);
-		ft_putstr_fd(error_msg, 2);
-		free(error_msg);
+		ft_putstr_fd("Error: ", 2);
+		ft_putstr_fd(tree->data, 2);
+		ft_putstr_fd(": Permission denied\n", 2);
 		return (0);
 	}
 	else
@@ -68,14 +67,13 @@ int	red_out(t_tree *tree, int *fd_out)
 int	red_out_app(t_tree *tree, int *fd_out)
 {
 	int		fd;
-	char	*error_msg;
 
 	fd = open(tree->data, O_CREAT | O_WRONLY | O_APPEND, 0644);
 	if (fd == -1)
 	{
-		error_msg = ft_strjoin("ERROR COULD NOT OPEN :", tree->data, 0, 0);
-		ft_putstr_fd(error_msg, 2);
-		free(error_msg);
+		ft_putstr_fd("Error: ", 2);
+		ft_putstr_fd(tree->data, 2);
+		ft_putstr_fd(": Permission denied\n", 2);
 		return (0);
 	}
 	else

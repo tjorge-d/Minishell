@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
+/*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:16 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/03 18:48:12 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/04 10:38:29 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,11 @@ void	do_child(t_tree *tree, int command_n, t_cmd *commands, int total)
 {
 	if ((tree->type == PIPE || tree->type == FIRST_BRANCH))
 	{
+		if (tree->right == NULL)
+		{
+			free_all(total, commands, tree, 1);
+			exit(0);
+		}
 		tree = tree->right;
 		if (!do_redirects(tree, commands, command_n))
 		{
