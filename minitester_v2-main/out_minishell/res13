@@ -1,0 +1,200 @@
+==948596== Memcheck, a memory error detector
+==948596== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==948596== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==948596== Command: ../minishell
+==948596==
+==948596== Invalid read of size 1
+==948596==    at 0x402037: is_to_expand (expander_utils.c:17)
+==948596==    by 0x401AE6: search_and_add_variable (expander.c:52)
+==948596==    by 0x401F9F: expander (expander.c:128)
+==948596==    by 0x4015EA: parser (parser.c:92)
+==948596==    by 0x401565: runner (parser.c:73)
+==948596==    by 0x4016CA: main (parser.c:112)
+==948596==  Address 0x4b652ff is 1 bytes before a block of size 5 alloc'd
+==948596==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948596==    by 0x407101: ft_strdup (in /home/dcota-pa/minishell_repo/minishell)
+==948596==    by 0x4015D4: parser (parser.c:90)
+==948596==    by 0x401565: runner (parser.c:73)
+==948596==    by 0x4016CA: main (parser.c:112)
+==948596==
+==948596== Conditional jump or move depends on uninitialised value(s)
+==948596==    at 0x401711: is_space (parser_utils.c:17)
+==948596==    by 0x40203F: is_to_expand (expander_utils.c:17)
+==948596==    by 0x401AE6: search_and_add_variable (expander.c:52)
+==948596==    by 0x401F9F: expander (expander.c:128)
+==948596==    by 0x4015EA: parser (parser.c:92)
+==948596==    by 0x401565: runner (parser.c:73)
+==948596==    by 0x4016CA: main (parser.c:112)
+==948596==  Uninitialised value was created by a heap allocation
+==948596==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948596==    by 0x48ABBAC: xmalloc (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==948596==    by 0x48A4FD6: add_history (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==948596==    by 0x40155C: runner (parser.c:72)
+==948596==    by 0x4016CA: main (parser.c:112)
+==948596==
+==948596== Conditional jump or move depends on uninitialised value(s)
+==948596==    at 0x40171E: is_space (parser_utils.c:17)
+==948596==    by 0x40203F: is_to_expand (expander_utils.c:17)
+==948596==    by 0x401AE6: search_and_add_variable (expander.c:52)
+==948596==    by 0x401F9F: expander (expander.c:128)
+==948596==    by 0x4015EA: parser (parser.c:92)
+==948596==    by 0x401565: runner (parser.c:73)
+==948596==    by 0x4016CA: main (parser.c:112)
+==948596==  Uninitialised value was created by a heap allocation
+==948596==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948596==    by 0x48ABBAC: xmalloc (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==948596==    by 0x48A4FD6: add_history (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==948596==    by 0x40155C: runner (parser.c:72)
+==948596==    by 0x4016CA: main (parser.c:112)
+==948596==
+==948596== Conditional jump or move depends on uninitialised value(s)
+==948596==    at 0x40172B: is_space (parser_utils.c:17)
+==948596==    by 0x40203F: is_to_expand (expander_utils.c:17)
+==948596==    by 0x401AE6: search_and_add_variable (expander.c:52)
+==948596==    by 0x401F9F: expander (expander.c:128)
+==948596==    by 0x4015EA: parser (parser.c:92)
+==948596==    by 0x401565: runner (parser.c:73)
+==948596==    by 0x4016CA: main (parser.c:112)
+==948596==  Uninitialised value was created by a heap allocation
+==948596==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948596==    by 0x48ABBAC: xmalloc (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==948596==    by 0x48A4FD6: add_history (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==948596==    by 0x40155C: runner (parser.c:72)
+==948596==    by 0x4016CA: main (parser.c:112)
+==948596==
+==948596== Conditional jump or move depends on uninitialised value(s)
+==948596==    at 0x401738: is_space (parser_utils.c:18)
+==948596==    by 0x40203F: is_to_expand (expander_utils.c:17)
+==948596==    by 0x401AE6: search_and_add_variable (expander.c:52)
+==948596==    by 0x401F9F: expander (expander.c:128)
+==948596==    by 0x4015EA: parser (parser.c:92)
+==948596==    by 0x401565: runner (parser.c:73)
+==948596==    by 0x4016CA: main (parser.c:112)
+==948596==  Uninitialised value was created by a heap allocation
+==948596==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948596==    by 0x48ABBAC: xmalloc (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==948596==    by 0x48A4FD6: add_history (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==948596==    by 0x40155C: runner (parser.c:72)
+==948596==    by 0x4016CA: main (parser.c:112)
+==948596==
+==948596== Conditional jump or move depends on uninitialised value(s)
+==948596==    at 0x401745: is_space (parser_utils.c:18)
+==948596==    by 0x40203F: is_to_expand (expander_utils.c:17)
+==948596==    by 0x401AE6: search_and_add_variable (expander.c:52)
+==948596==    by 0x401F9F: expander (expander.c:128)
+==948596==    by 0x4015EA: parser (parser.c:92)
+==948596==    by 0x401565: runner (parser.c:73)
+==948596==    by 0x4016CA: main (parser.c:112)
+==948596==  Uninitialised value was created by a heap allocation
+==948596==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948596==    by 0x48ABBAC: xmalloc (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==948596==    by 0x48A4FD6: add_history (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==948596==    by 0x40155C: runner (parser.c:72)
+==948596==    by 0x4016CA: main (parser.c:112)
+==948596==
+==948596== Conditional jump or move depends on uninitialised value(s)
+==948596==    at 0x401752: is_space (parser_utils.c:18)
+==948596==    by 0x40203F: is_to_expand (expander_utils.c:17)
+==948596==    by 0x401AE6: search_and_add_variable (expander.c:52)
+==948596==    by 0x401F9F: expander (expander.c:128)
+==948596==    by 0x4015EA: parser (parser.c:92)
+==948596==    by 0x401565: runner (parser.c:73)
+==948596==    by 0x4016CA: main (parser.c:112)
+==948596==  Uninitialised value was created by a heap allocation
+==948596==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948596==    by 0x48ABBAC: xmalloc (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==948596==    by 0x48A4FD6: add_history (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==948596==    by 0x40155C: runner (parser.c:72)
+==948596==    by 0x4016CA: main (parser.c:112)
+==948596==
+==948596== Conditional jump or move depends on uninitialised value(s)
+==948596==    at 0x40175F: is_space (parser_utils.c:18)
+==948596==    by 0x40203F: is_to_expand (expander_utils.c:17)
+==948596==    by 0x401AE6: search_and_add_variable (expander.c:52)
+==948596==    by 0x401F9F: expander (expander.c:128)
+==948596==    by 0x4015EA: parser (parser.c:92)
+==948596==    by 0x401565: runner (parser.c:73)
+==948596==    by 0x4016CA: main (parser.c:112)
+==948596==  Uninitialised value was created by a heap allocation
+==948596==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948596==    by 0x48ABBAC: xmalloc (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==948596==    by 0x48A4FD6: add_history (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==948596==    by 0x40155C: runner (parser.c:72)
+==948596==    by 0x4016CA: main (parser.c:112)
+==948596==
+==948596== Conditional jump or move depends on uninitialised value(s)
+==948596==    at 0x40176C: is_space (parser_utils.c:17)
+==948596==    by 0x40203F: is_to_expand (expander_utils.c:17)
+==948596==    by 0x401AE6: search_and_add_variable (expander.c:52)
+==948596==    by 0x401F9F: expander (expander.c:128)
+==948596==    by 0x4015EA: parser (parser.c:92)
+==948596==    by 0x401565: runner (parser.c:73)
+==948596==    by 0x4016CA: main (parser.c:112)
+==948596==  Uninitialised value was created by a heap allocation
+==948596==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948596==    by 0x48ABBAC: xmalloc (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==948596==    by 0x48A4FD6: add_history (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==948596==    by 0x40155C: runner (parser.c:72)
+==948596==    by 0x4016CA: main (parser.c:112)
+==948596==
+==948597==
+==948597== FILE DESCRIPTORS: 3 open (3 std) at exit.
+==948597==
+==948597== HEAP SUMMARY:
+==948597==     in use at exit: 212,627 bytes in 294 blocks
+==948597==   total heap usage: 517 allocs, 223 frees, 236,352 bytes allocated
+==948597==
+==948597== 8 bytes in 1 blocks are still reachable in loss record 2 of 69
+==948597==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948597==    by 0x4073C2: ft_strjoin (in /home/dcota-pa/minishell_repo/minishell)
+==948597==    by 0x4065AC: increase_shell_lvl (exit.c:30)
+==948597==    by 0x4016C5: main (parser.c:111)
+==948597==
+==948597== 552 bytes in 1 blocks are still reachable in loss record 27 of 69
+==948597==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948597==    by 0x403F02: copy_array (utils_update.c:70)
+==948597==    by 0x403D8C: get_set_env (utils_update.c:88)
+==948597==    by 0x4016C0: main (parser.c:110)
+==948597==
+==948597== 3,843 bytes in 67 blocks are still reachable in loss record 44 of 69
+==948597==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948597==    by 0x496E58E: strdup (strdup.c:42)
+==948597==    by 0x403F2A: copy_array (utils_update.c:73)
+==948597==    by 0x403D8C: get_set_env (utils_update.c:88)
+==948597==    by 0x4016C0: main (parser.c:110)
+==948597==
+==948597== LEAK SUMMARY:
+==948597==    definitely lost: 0 bytes in 0 blocks
+==948597==    indirectly lost: 0 bytes in 0 blocks
+==948597==      possibly lost: 0 bytes in 0 blocks
+==948597==    still reachable: 4,403 bytes in 69 blocks
+==948597==         suppressed: 208,224 bytes in 225 blocks
+==948597==
+==948597== For lists of detected and suppressed errors, rerun with: -s
+==948597== ERROR SUMMARY: 65191 errors from 9 contexts (suppressed: 0 from 0)
+==948596==
+==948596== FILE DESCRIPTORS: 3 open (3 std) at exit.
+==948596==
+==948596== HEAP SUMMARY:
+==948596==     in use at exit: 208,185 bytes in 223 blocks
+==948596==   total heap usage: 550 allocs, 327 frees, 236,932 bytes allocated
+==948596==
+==948596== 2 bytes in 1 blocks are definitely lost in loss record 1 of 64
+==948596==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948596==    by 0x40717E: ft_itoa (in /home/dcota-pa/minishell_repo/minishell)
+==948596==    by 0x401B3C: search_and_add_variable (expander.c:57)
+==948596==    by 0x401F9F: expander (expander.c:128)
+==948596==    by 0x4015EA: parser (parser.c:92)
+==948596==    by 0x401565: runner (parser.c:73)
+==948596==    by 0x4016CA: main (parser.c:112)
+==948596==
+==948596== LEAK SUMMARY:
+==948596==    definitely lost: 2 bytes in 1 blocks
+==948596==    indirectly lost: 0 bytes in 0 blocks
+==948596==      possibly lost: 0 bytes in 0 blocks
+==948596==    still reachable: 0 bytes in 0 blocks
+==948596==         suppressed: 208,183 bytes in 222 blocks
+==948596==
+==948596== For lists of detected and suppressed errors, rerun with: -s
+==948596== ERROR SUMMARY: 65192 errors from 10 contexts (suppressed: 0 from 0)
+0

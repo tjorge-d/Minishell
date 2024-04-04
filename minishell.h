@@ -6,7 +6,7 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:15:46 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/04 15:58:26 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/04 17:21:40 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,7 +193,7 @@ void		fill_command(int n_cmd, t_cmd *commands, t_tree *tree);
 
 //exec_utils2.c
 int			count_args(t_tree *tree);
-int			run_built_in(t_cmd *cmd, int cmd_n, t_tree *tree);
+int			run_built_in(t_cmd *cmd, int cmd_n, t_tree *tree, int total_cmds);
 int			run_built_in_solo(t_tree *tree, t_cmd *cmd, char **args, int cmd_n);
 
 //exec_utils.c

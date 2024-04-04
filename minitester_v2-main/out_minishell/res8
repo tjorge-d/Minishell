@@ -1,0 +1,66 @@
+==948539== Memcheck, a memory error detector
+==948539== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==948539== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==948539== Command: ../minishell
+==948539==
+==948540==
+==948540== FILE DESCRIPTORS: 3 open (3 std) at exit.
+==948540==
+==948540== HEAP SUMMARY:
+==948540==     in use at exit: 212,627 bytes in 294 blocks
+==948540==   total heap usage: 513 allocs, 219 frees, 236,311 bytes allocated
+==948540==
+==948540== 8 bytes in 1 blocks are still reachable in loss record 2 of 69
+==948540==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948540==    by 0x4073C2: ft_strjoin (in /home/dcota-pa/minishell_repo/minishell)
+==948540==    by 0x4065AC: increase_shell_lvl (exit.c:30)
+==948540==    by 0x4016C5: main (parser.c:111)
+==948540==
+==948540== 552 bytes in 1 blocks are still reachable in loss record 27 of 69
+==948540==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948540==    by 0x403F02: copy_array (utils_update.c:70)
+==948540==    by 0x403D8C: get_set_env (utils_update.c:88)
+==948540==    by 0x4016C0: main (parser.c:110)
+==948540==
+==948540== 3,843 bytes in 67 blocks are still reachable in loss record 44 of 69
+==948540==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948540==    by 0x496E58E: strdup (strdup.c:42)
+==948540==    by 0x403F2A: copy_array (utils_update.c:73)
+==948540==    by 0x403D8C: get_set_env (utils_update.c:88)
+==948540==    by 0x4016C0: main (parser.c:110)
+==948540==
+==948540== LEAK SUMMARY:
+==948540==    definitely lost: 0 bytes in 0 blocks
+==948540==    indirectly lost: 0 bytes in 0 blocks
+==948540==      possibly lost: 0 bytes in 0 blocks
+==948540==    still reachable: 4,403 bytes in 69 blocks
+==948540==         suppressed: 208,224 bytes in 225 blocks
+==948540==
+==948540== For lists of detected and suppressed errors, rerun with: -s
+==948540== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==948539==
+==948539== FILE DESCRIPTORS: 3 open (3 std) at exit.
+==948539==
+==948539== HEAP SUMMARY:
+==948539==     in use at exit: 208,185 bytes in 223 blocks
+==948539==   total heap usage: 546 allocs, 323 frees, 236,891 bytes allocated
+==948539==
+==948539== 2 bytes in 1 blocks are definitely lost in loss record 1 of 64
+==948539==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948539==    by 0x40717E: ft_itoa (in /home/dcota-pa/minishell_repo/minishell)
+==948539==    by 0x401B3C: search_and_add_variable (expander.c:57)
+==948539==    by 0x401F9F: expander (expander.c:128)
+==948539==    by 0x4015EA: parser (parser.c:92)
+==948539==    by 0x401565: runner (parser.c:73)
+==948539==    by 0x4016CA: main (parser.c:112)
+==948539==
+==948539== LEAK SUMMARY:
+==948539==    definitely lost: 2 bytes in 1 blocks
+==948539==    indirectly lost: 0 bytes in 0 blocks
+==948539==      possibly lost: 0 bytes in 0 blocks
+==948539==    still reachable: 0 bytes in 0 blocks
+==948539==         suppressed: 208,183 bytes in 222 blocks
+==948539==
+==948539== For lists of detected and suppressed errors, rerun with: -s
+==948539== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+0

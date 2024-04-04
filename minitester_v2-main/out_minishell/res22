@@ -1,0 +1,33 @@
+==948702== Memcheck, a memory error detector
+==948702== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==948702== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==948702== Command: ../minishell
+==948702==
+/usr/bin/cat: echo: No such file or directory
+/usr/bin/cat: 5: No such file or directory
+==948702==
+==948702== FILE DESCRIPTORS: 3 open (3 std) at exit.
+==948702==
+==948702== HEAP SUMMARY:
+==948702==     in use at exit: 208,185 bytes in 223 blocks
+==948702==   total heap usage: 586 allocs, 363 frees, 237,574 bytes allocated
+==948702==
+==948702== 2 bytes in 1 blocks are definitely lost in loss record 1 of 64
+==948702==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948702==    by 0x40717E: ft_itoa (in /home/dcota-pa/minishell_repo/minishell)
+==948702==    by 0x401B3C: search_and_add_variable (expander.c:57)
+==948702==    by 0x401F9F: expander (expander.c:128)
+==948702==    by 0x4015EA: parser (parser.c:92)
+==948702==    by 0x401565: runner (parser.c:73)
+==948702==    by 0x4016CA: main (parser.c:112)
+==948702==
+==948702== LEAK SUMMARY:
+==948702==    definitely lost: 2 bytes in 1 blocks
+==948702==    indirectly lost: 0 bytes in 0 blocks
+==948702==      possibly lost: 0 bytes in 0 blocks
+==948702==    still reachable: 0 bytes in 0 blocks
+==948702==         suppressed: 208,183 bytes in 222 blocks
+==948702==
+==948702== For lists of detected and suppressed errors, rerun with: -s
+==948702== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+1

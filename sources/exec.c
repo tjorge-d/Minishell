@@ -6,7 +6,7 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:16 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/04 15:55:17 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/04 17:26:31 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,23 +82,40 @@ int	do_redirects(t_tree *tree, t_cmd *commands, int command_n)
 
 void	do_child(t_tree *tree, int command_n, t_cmd *commands, int total)
 {
-	if ((tree->type == PIPE || tree->type == FIRST_BRANCH))
+	int j;
+	t_tree *head;
+	
+	j = 0;
+	head = tree;
+	while (j < command_n)
 	{
-		if (tree->right == NULL)
+		head = head->left;
+		j++;
+	}
+	if ((head->type == PIPE || head->type == FIRST_BRANCH))
+	{
+		if (head->right == NULL)
 		{
 			free_all(total, commands, tree, 1);
 			exit(0);
 		}
-		tree = tree->right;
-		if (!do_redirects(tree, commands, command_n))
+		head = head->right;
+		if (!do_redirects(head, commands, command_n))
 		{
 			free_all(total, commands, tree, 1);
 			exit(1);
 		}
-		while (tree && (tree->type != COMMAND))
-			tree = tree->right;
-		if (tree)
+		while (head && (head->type != COMMAND))
+			head = head->right;
+		if (head)
 			run(commands, command_n, total, tree);
+		else
+		{	
+			close_fds(commands, total);
+			free_all(total, commands, tree, 1);
+			get_set_env(NULL, 1, 0);
+			exit(0);
+		}
 	}
 }
 
@@ -124,8 +141,6 @@ int	executor(t_tree *tree)
 		else if (cmds[i].process_id < 0)
 			return (fail_msg('F'), free_all(n_commands, cmds, tree, 1),
 				g_var = 126, get_set_env(NULL, 1, 126), 126);
-		else
-			tree = tree->left;
 	}
 	close_fds(cmds, n_commands);
 	return (wait_loop(n_commands, cmds));

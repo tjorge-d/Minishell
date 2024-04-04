@@ -6,7 +6,7 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:11 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/04 15:58:36 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/04 17:28:25 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	run(t_cmd *cmds, int cmd_n, int total_cmds, t_tree *tree)
 		fl_err_handler(total_cmds, cmds, tree, cmd_n);
 	}
 	else 
-		exit(run_built_in(cmds, cmd_n, tree));
+		exit(run_built_in(cmds, cmd_n, tree, total_cmds));
 }
 
 int	if_built_in_sequence(t_cmd *cmd, int cmd_n, t_tree *tree, int flag)
@@ -92,10 +92,13 @@ int	run_built_in_solo(t_tree *tree, t_cmd *cmd, char **args, int cmd_n)
 	return (free_char_pp(cmd[cmd_n].args), free(cmd), ans);
 }
 
-int	run_built_in(t_cmd *cmd, int cmd_n, t_tree *tree)
+int	run_built_in(t_cmd *cmd, int cmd_n, t_tree *tree, int total_cmds)
 {
 	int	ans;
 
 	ans = if_built_in_sequence(cmd, cmd_n, tree, 0);
+	close_fds(cmd, total_cmds);
+	free_all(total_cmds, cmd, tree, 1);
+	get_set_env(NULL, 1, 0);
 	return (ans);
 }

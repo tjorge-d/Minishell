@@ -1,0 +1,1810 @@
+==948763== Memcheck, a memory error detector
+==948763== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==948763== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==948763== Command: bash
+==948763== 
+==948763== 
+==948763== Process terminating with default action of signal 2 (SIGINT)
+==948763==    at 0x49BE94D: ioctl (ioctl.c:35)
+==948763==    by 0x49BE026: tcgetpgrp (tcgetpgrp.c:29)
+==948763==    by 0x171E47: initialize_job_control (in /usr/bin/bash)
+==948763==    by 0x13CBB1: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== FILE DESCRIPTORS: 3 open (3 std) at exit.
+==948763== 
+==948763== HEAP SUMMARY:
+==948763==     in use at exit: 60,312 bytes in 653 blocks
+==948763==   total heap usage: 670 allocs, 17 frees, 61,822 bytes allocated
+==948763== 
+==948763== 2 bytes in 1 blocks are still reachable in loss record 1 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x160EB4: make_variable_value (in /usr/bin/bash)
+==948763==    by 0x16190D: ??? (in /usr/bin/bash)
+==948763==    by 0x162050: adjust_shell_level (in /usr/bin/bash)
+==948763==    by 0x1658B3: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 2 bytes in 1 blocks are still reachable in loss record 2 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x160EB4: make_variable_value (in /usr/bin/bash)
+==948763==    by 0x161411: ??? (in /usr/bin/bash)
+==948763==    by 0x1658EB: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 2 bytes in 1 blocks are still reachable in loss record 3 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x160EB4: make_variable_value (in /usr/bin/bash)
+==948763==    by 0x161411: ??? (in /usr/bin/bash)
+==948763==    by 0x16591A: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 2 bytes in 1 blocks are still reachable in loss record 4 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x191F60: array_create_element (in /usr/bin/bash)
+==948763==    by 0x1925A7: array_insert (in /usr/bin/bash)
+==948763==    by 0x165A4F: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 2 bytes in 1 blocks are still reachable in loss record 5 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x191F60: array_create_element (in /usr/bin/bash)
+==948763==    by 0x1925A7: array_insert (in /usr/bin/bash)
+==948763==    by 0x165A61: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 2 bytes in 1 blocks are still reachable in loss record 6 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x191F60: array_create_element (in /usr/bin/bash)
+==948763==    by 0x1925A7: array_insert (in /usr/bin/bash)
+==948763==    by 0x165AC1: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 3 bytes in 1 blocks are still reachable in loss record 7 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x160EB4: make_variable_value (in /usr/bin/bash)
+==948763==    by 0x161411: ??? (in /usr/bin/bash)
+==948763==    by 0x165820: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 3 bytes in 1 blocks are still reachable in loss record 8 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x191F60: array_create_element (in /usr/bin/bash)
+==948763==    by 0x1925A7: array_insert (in /usr/bin/bash)
+==948763==    by 0x165A95: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 4 bytes in 1 blocks are still reachable in loss record 9 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165820: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 4 bytes in 1 blocks are still reachable in loss record 10 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165820: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 4 bytes in 1 blocks are still reachable in loss record 11 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165835: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 4 bytes in 1 blocks are still reachable in loss record 12 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165835: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 4 bytes in 1 blocks are still reachable in loss record 13 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x160EB4: make_variable_value (in /usr/bin/bash)
+==948763==    by 0x161411: ??? (in /usr/bin/bash)
+==948763==    by 0x165835: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 4 bytes in 1 blocks are still reachable in loss record 14 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x166807: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 4 bytes in 1 blocks are still reachable in loss record 15 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x166807: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 5 bytes in 1 blocks are still reachable in loss record 16 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x494C58E: strdup (strdup.c:42)
+==948763==    by 0x48E1D57: __textdomain (textdomain.c:94)
+==948763==    by 0x48E1D57: textdomain (textdomain.c:64)
+==948763==    by 0x1A8EF6: set_default_locale (in /usr/bin/bash)
+==948763==    by 0x1393F6: main (in /usr/bin/bash)
+==948763== 
+==948763== 5 bytes in 1 blocks are still reachable in loss record 17 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x1A85EC: xmalloc (in /usr/bin/bash)
+==948763==    by 0x1397CF: main (in /usr/bin/bash)
+==948763== 
+==948763== 5 bytes in 1 blocks are still reachable in loss record 18 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x162461: set_ppid (in /usr/bin/bash)
+==948763==    by 0x1658B8: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 5 bytes in 1 blocks are still reachable in loss record 19 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x162461: set_ppid (in /usr/bin/bash)
+==948763==    by 0x1658B8: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 5 bytes in 1 blocks are still reachable in loss record 20 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x16599C: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 5 bytes in 1 blocks are still reachable in loss record 21 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x16599C: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 5 bytes in 1 blocks are still reachable in loss record 22 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x1667F4: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 5 bytes in 1 blocks are still reachable in loss record 23 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x1667F4: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 6 bytes in 1 blocks are still reachable in loss record 24 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x160EB4: make_variable_value (in /usr/bin/bash)
+==948763==    by 0x161411: ??? (in /usr/bin/bash)
+==948763==    by 0x166807: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 6 bytes in 1 blocks are still reachable in loss record 25 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x160EB4: make_variable_value (in /usr/bin/bash)
+==948763==    by 0x161411: ??? (in /usr/bin/bash)
+==948763==    by 0x1667F4: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 7 bytes in 1 blocks are still reachable in loss record 26 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x160EB4: make_variable_value (in /usr/bin/bash)
+==948763==    by 0x161411: ??? (in /usr/bin/bash)
+==948763==    by 0x165857: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 7 bytes in 1 blocks are still reachable in loss record 27 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x16586A: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 7 bytes in 1 blocks are still reachable in loss record 28 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x16586A: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 7 bytes in 1 blocks are still reachable in loss record 29 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x160EB4: make_variable_value (in /usr/bin/bash)
+==948763==    by 0x161411: ??? (in /usr/bin/bash)
+==948763==    by 0x162461: set_ppid (in /usr/bin/bash)
+==948763==    by 0x1658B8: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 7 bytes in 1 blocks are still reachable in loss record 30 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x1658EB: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 7 bytes in 1 blocks are still reachable in loss record 31 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x1658EB: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 7 bytes in 1 blocks are still reachable in loss record 32 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x16591A: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 7 bytes in 1 blocks are still reachable in loss record 33 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x16591A: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 7 bytes in 1 blocks are still reachable in loss record 34 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165DA9: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 7 bytes in 1 blocks are still reachable in loss record 35 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165DA9: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 7 bytes in 1 blocks are still reachable in loss record 36 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165DFA: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 7 bytes in 1 blocks are still reachable in loss record 37 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165DFA: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 7 bytes in 1 blocks are still reachable in loss record 38 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x1666A7: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 7 bytes in 1 blocks are still reachable in loss record 39 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x1666A7: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 8 bytes in 1 blocks are still reachable in loss record 40 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x191F60: array_create_element (in /usr/bin/bash)
+==948763==    by 0x1925A7: array_insert (in /usr/bin/bash)
+==948763==    by 0x165AD5: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 8 bytes in 1 blocks are still reachable in loss record 41 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165D0D: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 8 bytes in 1 blocks are still reachable in loss record 42 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165D0D: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 8 bytes in 1 blocks are still reachable in loss record 43 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165DD3: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 8 bytes in 1 blocks are still reachable in loss record 44 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165DD3: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 8 bytes in 1 blocks are still reachable in loss record 45 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165E27: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 8 bytes in 1 blocks are still reachable in loss record 46 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165E27: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 8 bytes in 1 blocks are still reachable in loss record 47 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165E96: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 8 bytes in 1 blocks are still reachable in loss record 48 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165E96: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 9 bytes in 1 blocks are still reachable in loss record 49 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165857: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 9 bytes in 1 blocks are still reachable in loss record 50 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165857: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 9 bytes in 1 blocks are still reachable in loss record 51 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165879: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 9 bytes in 1 blocks are still reachable in loss record 52 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165879: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 9 bytes in 1 blocks are still reachable in loss record 53 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x16588F: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 9 bytes in 1 blocks are still reachable in loss record 54 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x16588F: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 9 bytes in 1 blocks are still reachable in loss record 55 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x1666E5: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 9 bytes in 1 blocks are still reachable in loss record 56 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x1666E5: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 9 bytes in 1 blocks are still reachable in loss record 57 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x1664EB: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 9 bytes in 1 blocks are still reachable in loss record 58 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x1664EB: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 10 bytes in 1 blocks are still reachable in loss record 59 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x160EB4: make_variable_value (in /usr/bin/bash)
+==948763==    by 0x161411: ??? (in /usr/bin/bash)
+==948763==    by 0x16586A: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 10 bytes in 1 blocks are still reachable in loss record 60 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x166669: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 10 bytes in 1 blocks are still reachable in loss record 61 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x166669: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 10 bytes in 1 blocks are still reachable in loss record 62 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x16662B: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 10 bytes in 1 blocks are still reachable in loss record 63 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x16662B: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 10 bytes in 1 blocks are still reachable in loss record 64 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x16656C: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 10 bytes in 1 blocks are still reachable in loss record 65 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x16656C: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 11 bytes in 1 blocks are still reachable in loss record 66 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165D3A: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 11 bytes in 1 blocks are still reachable in loss record 67 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165D3A: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 12 bytes in 1 blocks are still reachable in loss record 68 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x1665ED: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 12 bytes in 1 blocks are still reachable in loss record 69 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x1665ED: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 12 bytes in 1 blocks are still reachable in loss record 70 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x1665AF: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 12 bytes in 1 blocks are still reachable in loss record 71 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x1665AF: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 13 bytes in 1 blocks are still reachable in loss record 72 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x1659E1: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 13 bytes in 1 blocks are still reachable in loss record 73 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x1659E1: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 13 bytes in 1 blocks are still reachable in loss record 74 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165D60: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 13 bytes in 1 blocks are still reachable in loss record 75 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165D60: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 13 bytes in 1 blocks are still reachable in loss record 76 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165E4A: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 13 bytes in 1 blocks are still reachable in loss record 77 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165E4A: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 13 bytes in 1 blocks are still reachable in loss record 78 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x166529: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 13 bytes in 1 blocks are still reachable in loss record 79 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x166529: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 14 bytes in 1 blocks are still reachable in loss record 80 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x160EB4: make_variable_value (in /usr/bin/bash)
+==948763==    by 0x161411: ??? (in /usr/bin/bash)
+==948763==    by 0x16599C: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 14 bytes in 1 blocks are still reachable in loss record 81 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x165A05: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 14 bytes in 1 blocks are still reachable in loss record 82 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x165A05: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 14 bytes in 1 blocks are still reachable in loss record 83 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165D83: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 14 bytes in 1 blocks are still reachable in loss record 84 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165D83: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 14 bytes in 1 blocks are still reachable in loss record 85 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165E70: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 14 bytes in 1 blocks are still reachable in loss record 86 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165E70: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 16 bytes in 1 blocks are still reachable in loss record 87 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x14BDD1: ??? (in /usr/bin/bash)
+==948763==    by 0x13CAD5: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 16 bytes in 1 blocks are still reachable in loss record 88 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x14BE36: ??? (in /usr/bin/bash)
+==948763==    by 0x13CAD5: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 16 bytes in 1 blocks are still reachable in loss record 89 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x187217: hash_create (in /usr/bin/bash)
+==948763==    by 0x15D2B4: ??? (in /usr/bin/bash)
+==948763==    by 0x165760: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 16 bytes in 1 blocks are still reachable in loss record 90 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x187217: hash_create (in /usr/bin/bash)
+==948763==    by 0x15D2D9: ??? (in /usr/bin/bash)
+==948763==    by 0x165760: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 16 bytes in 1 blocks are still reachable in loss record 91 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x187217: hash_create (in /usr/bin/bash)
+==948763==    by 0x15D2F7: ??? (in /usr/bin/bash)
+==948763==    by 0x165760: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 16 bytes in 1 blocks are still reachable in loss record 92 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165EBD: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 16 bytes in 1 blocks are still reachable in loss record 93 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165EBD: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 16 bytes in 1 blocks are still reachable in loss record 94 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x187217: hash_create (in /usr/bin/bash)
+==948763==    by 0x166579: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 16 bytes in 1 blocks are still reachable in loss record 95 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x187217: hash_create (in /usr/bin/bash)
+==948763==    by 0x166536: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 18 bytes in 1 blocks are still reachable in loss record 96 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x160EB4: make_variable_value (in /usr/bin/bash)
+==948763==    by 0x161411: ??? (in /usr/bin/bash)
+==948763==    by 0x1659E1: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 20 bytes in 1 blocks are still reachable in loss record 97 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x160EB4: make_variable_value (in /usr/bin/bash)
+==948763==    by 0x161411: ??? (in /usr/bin/bash)
+==948763==    by 0x165879: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 20 bytes in 1 blocks are still reachable in loss record 98 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x191F60: array_create_element (in /usr/bin/bash)
+==948763==    by 0x1925A7: array_insert (in /usr/bin/bash)
+==948763==    by 0x165AE5: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 21 bytes in 1 blocks are still reachable in loss record 99 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x1A85EC: xmalloc (in /usr/bin/bash)
+==948763==    by 0x13CC36: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 21 bytes in 1 blocks are still reachable in loss record 100 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x160EB4: make_variable_value (in /usr/bin/bash)
+==948763==    by 0x161411: ??? (in /usr/bin/bash)
+==948763==    by 0x16588F: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 24 bytes in 1 blocks are still reachable in loss record 101 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x14BD97: ??? (in /usr/bin/bash)
+==948763==    by 0x13CAD5: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 24 bytes in 1 blocks are still reachable in loss record 102 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x14BE04: ??? (in /usr/bin/bash)
+==948763==    by 0x13CAD5: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 24 bytes in 2 blocks are still reachable in loss record 103 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x494C58E: strdup (strdup.c:42)
+==948763==    by 0x48DC31A: _nl_load_locale_from_archive (loadarchive.c:464)
+==948763==    by 0x48DB0DF: _nl_find_locale (findlocale.c:152)
+==948763==    by 0x48DA856: setlocale (setlocale.c:337)
+==948763==    by 0x48DA856: setlocale (setlocale.c:217)
+==948763==    by 0x1A8E9B: set_default_locale (in /usr/bin/bash)
+==948763==    by 0x1393F6: main (in /usr/bin/bash)
+==948763== 
+==948763== 29 bytes in 1 blocks are still reachable in loss record 104 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x48DE5DE: set_binding_values.part.0 (bindtextdom.c:203)
+==948763==    by 0x48DE89B: set_binding_values (bindtextdom.c:322)
+==948763==    by 0x48DE89B: bindtextdomain (bindtextdom.c:320)
+==948763==    by 0x1A8EEE: set_default_locale (in /usr/bin/bash)
+==948763==    by 0x1393F6: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 105 of 217
+==948763==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x4976C1F: __wcsmbs_load_conv (wcsmbsload.c:167)
+==948763==    by 0x48E9ED2: get_gconv_fcts (wcsmbsload.h:73)
+==948763==    by 0x48E9ED2: mblen (mblen.c:45)
+==948763==    by 0x1A8F1B: set_default_locale (in /usr/bin/bash)
+==948763==    by 0x1393F6: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 106 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165820: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 107 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165835: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 108 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165857: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 109 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x16586A: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 110 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165879: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 111 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x16588F: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 112 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x162461: set_ppid (in /usr/bin/bash)
+==948763==    by 0x1658B8: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 113 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x1658EB: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 114 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x16591A: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 115 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x16599C: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 116 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x1659E1: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 117 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x165A05: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 118 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x191EB9: array_create (in /usr/bin/bash)
+==948763==    by 0x165A0D: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 119 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x191F3B: array_create_element (in /usr/bin/bash)
+==948763==    by 0x1925A7: array_insert (in /usr/bin/bash)
+==948763==    by 0x165A4F: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 120 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x191F3B: array_create_element (in /usr/bin/bash)
+==948763==    by 0x1925A7: array_insert (in /usr/bin/bash)
+==948763==    by 0x165A61: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 121 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x191F3B: array_create_element (in /usr/bin/bash)
+==948763==    by 0x1925A7: array_insert (in /usr/bin/bash)
+==948763==    by 0x165A95: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 122 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x191F3B: array_create_element (in /usr/bin/bash)
+==948763==    by 0x1925A7: array_insert (in /usr/bin/bash)
+==948763==    by 0x165AC1: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 123 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x191F3B: array_create_element (in /usr/bin/bash)
+==948763==    by 0x1925A7: array_insert (in /usr/bin/bash)
+==948763==    by 0x165AD5: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 124 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x191F3B: array_create_element (in /usr/bin/bash)
+==948763==    by 0x1925A7: array_insert (in /usr/bin/bash)
+==948763==    by 0x165AE5: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 125 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x166807: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 126 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x1667F4: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 127 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165D0D: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 128 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165D3A: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 129 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165D60: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 130 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165D83: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 131 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165DA9: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 132 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165DD3: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 133 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165DFA: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 134 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165E27: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 135 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165E4A: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 136 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165E70: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 137 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165E96: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 138 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165EBD: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 139 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x1666E5: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 140 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x191EB9: array_create (in /usr/bin/bash)
+==948763==    by 0x1666ED: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 141 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x1666A7: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 142 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x191EB9: array_create (in /usr/bin/bash)
+==948763==    by 0x1666AF: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 143 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x166669: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 144 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x191EB9: array_create (in /usr/bin/bash)
+==948763==    by 0x166671: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 145 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x16662B: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 146 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x191EB9: array_create (in /usr/bin/bash)
+==948763==    by 0x166633: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 147 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x1665ED: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 148 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x191EB9: array_create (in /usr/bin/bash)
+==948763==    by 0x1665F5: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 149 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x1665AF: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 150 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x191EB9: array_create (in /usr/bin/bash)
+==948763==    by 0x1665B7: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 151 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x16656C: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 152 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x166529: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 153 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x1664EB: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 32 bytes in 1 blocks are still reachable in loss record 154 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x191EB9: array_create (in /usr/bin/bash)
+==948763==    by 0x1664F3: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 40 bytes in 1 blocks are still reachable in loss record 155 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x15D269: ??? (in /usr/bin/bash)
+==948763==    by 0x165760: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 40 bytes in 1 blocks are still reachable in loss record 156 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x191E84: array_create (in /usr/bin/bash)
+==948763==    by 0x165A0D: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 40 bytes in 1 blocks are still reachable in loss record 157 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x191E84: array_create (in /usr/bin/bash)
+==948763==    by 0x1666ED: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 40 bytes in 1 blocks are still reachable in loss record 158 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x191E84: array_create (in /usr/bin/bash)
+==948763==    by 0x1666AF: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 40 bytes in 1 blocks are still reachable in loss record 159 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x191E84: array_create (in /usr/bin/bash)
+==948763==    by 0x166671: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 40 bytes in 1 blocks are still reachable in loss record 160 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x191E84: array_create (in /usr/bin/bash)
+==948763==    by 0x166633: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 40 bytes in 1 blocks are still reachable in loss record 161 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x191E84: array_create (in /usr/bin/bash)
+==948763==    by 0x1665F5: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 40 bytes in 1 blocks are still reachable in loss record 162 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x191E84: array_create (in /usr/bin/bash)
+==948763==    by 0x1665B7: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 40 bytes in 1 blocks are still reachable in loss record 163 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x191E84: array_create (in /usr/bin/bash)
+==948763==    by 0x1664F3: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 164 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165820: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 165 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165835: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 166 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165857: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 167 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x16586A: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 168 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165879: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 169 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x16588F: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 170 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x162461: set_ppid (in /usr/bin/bash)
+==948763==    by 0x1658B8: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 171 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x1658EB: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 172 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x16591A: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 173 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x16599C: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 174 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x1659E1: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 175 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x165A05: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 176 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x166807: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 177 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x1667F4: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 178 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165D0D: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 179 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165D3A: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 180 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165D60: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 181 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165D83: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 182 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165DA9: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 183 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165DD3: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 184 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165DFA: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 185 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165E27: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 186 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165E4A: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 187 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165E70: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 188 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165E96: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 189 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x165EBD: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 190 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x1666E5: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 191 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x1666A7: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 192 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x166669: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 193 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x16662B: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 194 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x1665ED: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 195 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x1665AF: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 196 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x16656C: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 197 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x166529: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 48 bytes in 1 blocks are still reachable in loss record 198 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x1664EB: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 49 bytes in 1 blocks are still reachable in loss record 199 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x1B1578: set_working_directory (in /usr/bin/bash)
+==948763==    by 0x1623AC: set_pwd (in /usr/bin/bash)
+==948763==    by 0x16579E: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 144 bytes in 12 blocks are still reachable in loss record 200 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x494C58E: strdup (strdup.c:42)
+==948763==    by 0x48DAC84: setlocale (setlocale.c:366)
+==948763==    by 0x48DAC84: setlocale (setlocale.c:217)
+==948763==    by 0x1A8E9B: set_default_locale (in /usr/bin/bash)
+==948763==    by 0x1393F6: main (in /usr/bin/bash)
+==948763== 
+==948763== 208 bytes in 1 blocks are still reachable in loss record 201 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x48D99D6: __gconv_lookup_cache (gconv_cache.c:365)
+==948763==    by 0x48CFB6E: __gconv_find_transform (gconv_db.c:732)
+==948763==    by 0x4976D4A: __wcsmbs_getfct (wcsmbsload.c:91)
+==948763==    by 0x4976D4A: __wcsmbs_load_conv (wcsmbsload.c:185)
+==948763==    by 0x48E9ED2: get_gconv_fcts (wcsmbsload.h:73)
+==948763==    by 0x48E9ED2: mblen (mblen.c:45)
+==948763==    by 0x1A8F1B: set_default_locale (in /usr/bin/bash)
+==948763==    by 0x1393F6: main (in /usr/bin/bash)
+==948763== 
+==948763== 208 bytes in 1 blocks are still reachable in loss record 202 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x48D9AC0: __gconv_lookup_cache (gconv_cache.c:365)
+==948763==    by 0x48CFB6E: __gconv_find_transform (gconv_db.c:732)
+==948763==    by 0x4976D8B: __wcsmbs_getfct (wcsmbsload.c:91)
+==948763==    by 0x4976D8B: __wcsmbs_load_conv (wcsmbsload.c:188)
+==948763==    by 0x48E9ED2: get_gconv_fcts (wcsmbsload.h:73)
+==948763==    by 0x48E9ED2: mblen (mblen.c:45)
+==948763==    by 0x1A8F1B: set_default_locale (in /usr/bin/bash)
+==948763==    by 0x1393F6: main (in /usr/bin/bash)
+==948763== 
+==948763== 240 bytes in 2 blocks are still reachable in loss record 203 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x48DC2FF: _nl_load_locale_from_archive (loadarchive.c:460)
+==948763==    by 0x48DB0DF: _nl_find_locale (findlocale.c:152)
+==948763==    by 0x48DA856: setlocale (setlocale.c:337)
+==948763==    by 0x48DA856: setlocale (setlocale.c:217)
+==948763==    by 0x1A8E9B: set_default_locale (in /usr/bin/bash)
+==948763==    by 0x1393F6: main (in /usr/bin/bash)
+==948763== 
+==948763== 281 bytes in 1 blocks are still reachable in loss record 204 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x48DA607: new_composite_name (setlocale.c:170)
+==948763==    by 0x48DABAA: setlocale (setlocale.c:375)
+==948763==    by 0x48DABAA: setlocale (setlocale.c:217)
+==948763==    by 0x1A8E9B: set_default_locale (in /usr/bin/bash)
+==948763==    by 0x1393F6: main (in /usr/bin/bash)
+==948763== 
+==948763== 281 bytes in 1 blocks are still reachable in loss record 205 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x1A8EBE: set_default_locale (in /usr/bin/bash)
+==948763==    by 0x1393F6: main (in /usr/bin/bash)
+==948763== 
+==948763== 860 bytes in 68 blocks are still reachable in loss record 206 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C53: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x16602E: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 860 bytes in 68 blocks are still reachable in loss record 207 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x16051B: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x16602E: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 2,176 bytes in 68 blocks are still reachable in loss record 208 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18782B: hash_insert (in /usr/bin/bash)
+==948763==    by 0x16053E: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x16602E: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 2,989 bytes in 67 blocks are still reachable in loss record 209 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x160EB4: make_variable_value (in /usr/bin/bash)
+==948763==    by 0x161411: ??? (in /usr/bin/bash)
+==948763==    by 0x16602E: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 3,264 bytes in 68 blocks are still reachable in loss record 210 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x159C37: ??? (in /usr/bin/bash)
+==948763==    by 0x1604F7: ??? (in /usr/bin/bash)
+==948763==    by 0x161400: ??? (in /usr/bin/bash)
+==948763==    by 0x16602E: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 3,843 bytes in 67 blocks are still reachable in loss record 211 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x166083: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 4,096 bytes in 1 blocks are still reachable in loss record 212 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18723A: hash_create (in /usr/bin/bash)
+==948763==    by 0x15D2D9: ??? (in /usr/bin/bash)
+==948763==    by 0x165760: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 4,096 bytes in 1 blocks are still reachable in loss record 213 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18723A: hash_create (in /usr/bin/bash)
+==948763==    by 0x15D2F7: ??? (in /usr/bin/bash)
+==948763==    by 0x165760: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 7,456 bytes in 24 blocks are still reachable in loss record 214 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x48DB96E: _nl_intern_locale_data (loadlocale.c:97)
+==948763==    by 0x48DC370: _nl_load_locale_from_archive (loadarchive.c:477)
+==948763==    by 0x48DB0DF: _nl_find_locale (findlocale.c:152)
+==948763==    by 0x48DA856: setlocale (setlocale.c:337)
+==948763==    by 0x48DA856: setlocale (setlocale.c:217)
+==948763==    by 0x1A8E9B: set_default_locale (in /usr/bin/bash)
+==948763==    by 0x1393F6: main (in /usr/bin/bash)
+==948763== 
+==948763== 8,192 bytes in 1 blocks are still reachable in loss record 215 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18723A: hash_create (in /usr/bin/bash)
+==948763==    by 0x15D2B4: ??? (in /usr/bin/bash)
+==948763==    by 0x165760: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 8,192 bytes in 1 blocks are still reachable in loss record 216 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18723A: hash_create (in /usr/bin/bash)
+==948763==    by 0x166579: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== 8,192 bytes in 1 blocks are still reachable in loss record 217 of 217
+==948763==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==948763==    by 0x18723A: hash_create (in /usr/bin/bash)
+==948763==    by 0x166536: initialize_shell_variables (in /usr/bin/bash)
+==948763==    by 0x13CBA3: ??? (in /usr/bin/bash)
+==948763==    by 0x139F74: main (in /usr/bin/bash)
+==948763== 
+==948763== LEAK SUMMARY:
+==948763==    definitely lost: 0 bytes in 0 blocks
+==948763==    indirectly lost: 0 bytes in 0 blocks
+==948763==      possibly lost: 0 bytes in 0 blocks
+==948763==    still reachable: 60,312 bytes in 653 blocks
+==948763==         suppressed: 0 bytes in 0 blocks
+==948763== 
+==948763== For lists of detected and suppressed errors, rerun with: -s
+==948763== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

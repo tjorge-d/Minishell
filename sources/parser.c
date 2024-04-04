@@ -6,7 +6,7 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:53:14 by tjorge-d          #+#    #+#             */
-/*   Updated: 2024/04/04 16:06:05 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/04 16:37:40 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,5 @@ int	main(int argc, char **argv, char **envp)
 	return (0);
 }
 
-//valgrind --track-fds=yes --leak-check=full 
-//--show-leak-kinds=all  --suppressions=".valgrind.supp" ./minishell
+// valgrind --track-fds=yes --leak-check=full 
+// --show-leak-kinds=all  --suppressions=".valgrind.supp" ./minishell
