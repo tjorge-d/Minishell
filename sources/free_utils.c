@@ -6,7 +6,7 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:32 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/03 18:32:43 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/05 12:32:43 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ int	wait_loop(int n_commands, t_cmd *commands)
 		i++;
 	}
 	free(commands);
+	//get_set_env(NULL, 1, 0);
 	return (WEXITSTATUS(exit_status));
 }

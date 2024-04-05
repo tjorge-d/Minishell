@@ -6,7 +6,7 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:16 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/04 17:26:31 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/05 12:44:35 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,14 @@ int	create_pipes(int n_commands, t_cmd *commands, t_tree *tree)
 					get_set_env(NULL, 1, 126), 0);
 		}
 		if (i == n_commands - 1)
+		{
+			if(n_commands != 1)
+			{
+				close(pipes[1]);
+				close(pipes[0]);
+			}
 			commands[i].fd_out = 1;
+		}
 		else
 		{
 			commands[i].fd_out = pipes[1];
