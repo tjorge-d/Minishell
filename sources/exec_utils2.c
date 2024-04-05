@@ -6,7 +6,7 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:11 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/05 15:20:44 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/05 17:02:12 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ void	run(t_cmd *cmds, int cmd_n, int total_cmds, t_tree *tree)
 	close_fds(cmds, total_cmds);
 	if (!is_built_in(cmds[cmd_n].command))
 	{
-		printf("Before EXECVE\n");
 		execve(cmds[cmd_n].command, cmds[cmd_n].args, get_set_env(NULL, 0, 0));
-		printf("After EXECVE\n");
 		if (ft_is_command(cmds[cmd_n].command))
 			cmd_err_handler(total_cmds, cmds, tree, cmd_n);
 		else

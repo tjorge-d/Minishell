@@ -6,7 +6,7 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:15:46 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/05 14:50:44 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/05 16:25:10 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,7 @@ int			run_built_in(t_cmd *cmd, int cmd_n, t_tree *tree, int total_cmds);
 int			run_built_in_solo(t_tree *tree, t_cmd *cmd, char **args, int cmd_n);
 
 //exec_utils.c
-int		build_args(int n_cmd, t_cmd *cmds, t_tree *tree);
+int			build_args(int n_cmd, t_cmd *cmds, t_tree *tree);
 int			red_out_app(t_tree *tree, int *fd_out);
 int			red_out(t_tree *tree, int *fd_out);
 int			red_in_doc(t_tree *tree, int *fd_in);

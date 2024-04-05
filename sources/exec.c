@@ -6,7 +6,7 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:16 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/05 15:27:16 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/05 17:04:49 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,33 +30,19 @@ int	create_pipes(int n_commands, t_cmd *commands, t_tree *tree)
 	int	i;
 	int	pipes[2];
 
-	i = 0;
+	i = 1;
+	commands[0].fd_in = 0;
+	commands[n_commands - 1].fd_out = 1;
 	while (i < n_commands)
 	{
-		if (i == 0)
-			commands[i].fd_in = 0;
-		if (n_commands != 1)
-		{
-			if (pipe(pipes) == -1)
-				return (free_all(n_commands, commands, tree, 1), \
-					fail_msg('P'), g_var = 126, \
-					get_set_env(NULL, 1, 126), 0);
-		}
-		if (i == n_commands - 1)
-		{
-			if(n_commands != 1)
-			{
-				close(pipes[1]);
-				close(pipes[0]);
-			}
-			commands[i].fd_out = 1;
-		}
-		else
-		{
-			commands[i].fd_out = pipes[1];
-			commands[i + 1].fd_in = pipes[0];
-		}
-		i ++;
+		if (pipe(pipes) == -1)
+			return (free_all(n_commands, commands, tree, 1), \
+				fail_msg('P'), g_var = 126, \
+				get_set_env(NULL, 1, 126), 0);
+		commands[i - 1].fd_out = pipes[1];
+		commands[i].fd_in = pipes[0];
+		
+		i++;
 	}
 	return (1);
 }
@@ -87,45 +73,33 @@ int	do_redirects(t_tree *tree, t_cmd *commands, int command_n)
 	return (1);
 }
 
-void	do_child(t_tree *tree, int command_n, t_cmd *commands, int total)
+int	do_child(t_tree *tree, int command_n, t_cmd *commands, int total)
 {
 	int j;
 	t_tree *head;
 	
-	j = 0;
+	j = -1;
 	head = tree;
-	while (j < command_n)
-	{
+	while (++j < command_n)
 		head = head->left;
-		j++;
-	}
 	if ((head->type == PIPE || head->type == FIRST_BRANCH))
 	{
 		if (head->right == NULL)
-		{
-			free_all(total, commands, tree, 1);
-			get_set_env(NULL, 1, 0);
-			exit(0);
-		}
+			return (free_all(total, commands, tree, 1), \
+				get_set_env(NULL, 1, 0), exit(0), 0);
 		head = head->right;
 		if (!do_redirects(head, commands, command_n))
-		{
-			free_all(total, commands, tree, 1);
-			get_set_env(NULL, 1, 0);
-			exit(1);
-		}
+			return (free_all(total, commands, tree, 1), \
+				get_set_env(NULL, 1, 0), exit(1), 1);
 		while (head && (head->type != COMMAND))
 			head = head->right;
 		if (head)
 			run(commands, command_n, total, tree);
 		else
-		{
-			close_fds(commands, total);
-			free_all(total, commands, tree, 1);
-			get_set_env(NULL, 1, 0);
-			exit(0);
-		}
+			return (close_fds(commands, total), get_set_env(NULL, 1, 0), \
+				free_all(total, commands, tree, 1), exit(0), 0);
 	}
+	return (0);
 }
 
 int	executor(t_tree *tree)
