@@ -6,7 +6,7 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:36:31 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/05 12:52:39 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/05 15:15:52 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	ft_echo(char **strs, int flag)
 	i = 0;
 	if (!strs)
 		return (1);
-	if (strs[i] == NULL)
 	while (strs[i])
 	{
 		ft_putstr_fd(strs[i], STDOUT_FILENO);
@@ -39,15 +38,10 @@ int	run_echo(char **args)
 
 	i = 1; 
 	flag = 0;
-	if (!args)
-	{
+	if (!args || !args[0])
 		return (1);
-	}
 	if (!args[i])
-	{
-		printf("\n");
-		return (0);
-	}
+		return (printf("\n"), 0);
 	while (is_valid_flag(args[i]))
 	{
 		flag = 1;

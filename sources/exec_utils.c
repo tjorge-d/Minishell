@@ -6,7 +6,7 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:36:55 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/04 16:05:35 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:51:40 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,27 +85,30 @@ int	red_out_app(t_tree *tree, int *fd_out)
 	}
 }
 
-char	**build_args(t_tree *tree)
+int	build_args(int cmd_n, t_cmd *commands, t_tree *tree)
 {
 	char	**args;
 	int		i;
 
 	i = 0;
+	if (commands[cmd_n].command == NULL)
+	{
+		args = malloc(sizeof(char *));
+		args[0] = NULL;
+		commands[cmd_n].args = args;
+		return (1);
+	}
 	while (tree && (tree->type != COMMAND))
 		tree = tree->right;
-	if (tree)
+	args = malloc(sizeof(char *) *(count_args(tree) + 1));
+	if (!args)
+		return (0);
+	while (tree && (tree->type == COMMAND || tree->type == ARGUMENT))
 	{
-		args = malloc(sizeof(char *) *(count_args(tree) + 1));
-		if (!args)
-			return (NULL);
-		while (tree && (tree->type == COMMAND || tree->type == ARGUMENT))
-		{
-			args[i++] = strdup(tree->data);
-			tree = tree->right;
-		}
-		args[i] = NULL;
+		args[i++] = strdup(tree->data);
+		tree = tree->right;
 	}
-	else
-		return (NULL);
-	return (args);
+	args[i] = NULL;
+	commands[cmd_n].args = args;
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:40:15 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/05 11:57:47 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:42:41 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,15 @@ void	fill_command(int n_cmd, t_cmd *commands, t_tree *tree)
 	int	i;
 
 	i = 0;
-	while (i < n_cmd)
-	{
-		tree = tree->left;
-		i ++;
-	}
+	
 	while (tree && tree->type != COMMAND)
 	{
 		tree = tree->right;
 	}
 	if (tree)
 		commands[n_cmd].command = tree->data;
+	else
+		commands[n_cmd].command = NULL;
 }
 
 void	fill_commands(int n_commands, t_cmd *commands, t_tree *tree)
@@ -49,10 +47,13 @@ void	fill_commands(int n_commands, t_cmd *commands, t_tree *tree)
 	int	i;
 
 	i = 0;
+
 	while (i < n_commands)
 	{
 		fill_command(i, commands, tree);
+		build_args(i, commands, tree);
 		i++;
+		tree = tree->left;
 	}
 }
 

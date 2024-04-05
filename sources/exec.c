@@ -6,7 +6,7 @@
 /*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:16 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/05 12:44:35 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/05 15:27:16 by dcota-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,14 @@ void	do_child(t_tree *tree, int command_n, t_cmd *commands, int total)
 		if (head->right == NULL)
 		{
 			free_all(total, commands, tree, 1);
+			get_set_env(NULL, 1, 0);
 			exit(0);
 		}
 		head = head->right;
 		if (!do_redirects(head, commands, command_n))
 		{
 			free_all(total, commands, tree, 1);
+			get_set_env(NULL, 1, 0);
 			exit(1);
 		}
 		while (head && (head->type != COMMAND))
@@ -117,7 +119,7 @@ void	do_child(t_tree *tree, int command_n, t_cmd *commands, int total)
 		if (head)
 			run(commands, command_n, total, tree);
 		else
-		{	
+		{
 			close_fds(commands, total);
 			free_all(total, commands, tree, 1);
 			get_set_env(NULL, 1, 0);
@@ -136,12 +138,13 @@ int	executor(t_tree *tree)
 	n_commands = get_n_commands(tree);
 	cmds = ft_calloc(n_commands, sizeof(t_cmd));
 	fill_commands(n_commands, cmds, tree);
+	
 	create_pipes(n_commands, cmds, tree);
 	if (n_commands == 1 && cmds[0].command && is_built_in(cmds[0].command))
-		return (run_built_in_solo(tree, cmds, build_args(tree), 0));
+		return (run_built_in_solo(tree, cmds, cmds[0].args, 0));
 	while (++i < n_commands)
 	{
-		cmds[i].args = build_args(tree);
+		
 		cmds[i].process_id = fork();
 		if (!cmds[i].process_id)
 			do_child(tree, i, cmds, n_commands);
