@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
+/*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:16 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/05 17:04:49 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/08 10:20:44 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	create_pipes(int n_commands, t_cmd *commands, t_tree *tree)
 				get_set_env(NULL, 1, 126), 0);
 		commands[i - 1].fd_out = pipes[1];
 		commands[i].fd_in = pipes[0];
-		
 		i++;
 	}
 	return (1);
@@ -75,9 +74,9 @@ int	do_redirects(t_tree *tree, t_cmd *commands, int command_n)
 
 int	do_child(t_tree *tree, int command_n, t_cmd *commands, int total)
 {
-	int j;
-	t_tree *head;
-	
+	int		j;
+	t_tree	*head;
+
 	j = -1;
 	head = tree;
 	while (++j < command_n)
@@ -112,13 +111,11 @@ int	executor(t_tree *tree)
 	n_commands = get_n_commands(tree);
 	cmds = ft_calloc(n_commands, sizeof(t_cmd));
 	fill_commands(n_commands, cmds, tree);
-	
 	create_pipes(n_commands, cmds, tree);
 	if (n_commands == 1 && cmds[0].command && is_built_in(cmds[0].command))
 		return (run_built_in_solo(tree, cmds, cmds[0].args, 0));
 	while (++i < n_commands)
 	{
-		
 		cmds[i].process_id = fork();
 		if (!cmds[i].process_id)
 			do_child(tree, i, cmds, n_commands);

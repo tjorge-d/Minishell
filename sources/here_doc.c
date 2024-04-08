@@ -6,7 +6,7 @@
 /*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:42:10 by tjorge-d          #+#    #+#             */
-/*   Updated: 2024/04/02 16:54:29 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/08 10:15:21 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	here_doc_proccess(char *exit_str, t_token **token, int fd[2])
 		by end-of-file (wanted `%s')\n", exit_str);
 	close(fd[1]);
 	close(fd[0]);
-	destroy_tokens((*token), 'h');
+	destroy_tokens(*token, 'h');
 	get_set_env(NULL, 1, 0);
 	if (g_var == 130)
 		exit(130);
@@ -54,7 +54,7 @@ int	create_here_doc(char *exit_statement, t_token **token)
 	id = fork();
 	if (id < 0)
 		return (fail_msg('F'), destroy_tokens((*token), 'h'), \
-			get_set_env(NULL, 1, 2), 0);
+			get_set_env(NULL, 1, 2), close(fd[0]), close(fd[1]), 0);
 	if (id == 0)
 		here_doc_proccess(exit_statement, token, fd);
 	else
@@ -64,7 +64,7 @@ int	create_here_doc(char *exit_statement, t_token **token)
 		if (error_code != 0)
 			return (write(1, "> ^C\n", 6), close(fd[0]), 0);
 	}
-	return (fd[0]);
+	return (free(exit_statement), fd[0]);
 }
 
 int	is_here_doc(t_token *prev_token)

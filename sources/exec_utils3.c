@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
+/*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:40:15 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/05 14:42:41 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/08 10:18:59 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	fill_command(int n_cmd, t_cmd *commands, t_tree *tree)
 	int	i;
 
 	i = 0;
-	
 	while (tree && tree->type != COMMAND)
 	{
 		tree = tree->right;
@@ -47,7 +46,6 @@ void	fill_commands(int n_commands, t_cmd *commands, t_tree *tree)
 	int	i;
 
 	i = 0;
-
 	while (i < n_commands)
 	{
 		fill_command(i, commands, tree);
