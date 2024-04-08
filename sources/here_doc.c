@@ -6,7 +6,7 @@
 /*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:42:10 by tjorge-d          #+#    #+#             */
-/*   Updated: 2024/04/08 15:11:08 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:16:01 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ int	create_here_doc(char *exit_statement, t_token **token)
 		wait(&error_code);
 		close(fd[1]);
 		if (error_code != 0)
-			return (write(1, "> ^C\n", 6), close(fd[0]), 0);
+			return (write(1, "> ^C\n", 6), close(fd[0]), \
+			free(exit_statement), 0);
 	}
 	return (free(exit_statement), fd[0]);
 }

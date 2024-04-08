@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
+/*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:15:46 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/05 16:25:10 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/08 16:56:42 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ int			is_special(char c);
 void		free_matrix(char **matrix);
 
 //signals.c
+void		ctrl_c_proccess(int signal);
 void		ctrl_c_signal_hd(int signal);
 void		quit_here_doc(int signal);
 void		ctrl_c_signal(int signal);

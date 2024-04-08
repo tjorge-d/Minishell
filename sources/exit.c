@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
+/*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:22 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/04 16:03:31 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:45:52 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ int	run_exit(t_cmd *cmd, int cmd_n, t_tree *tree, int flag)
 			ans = 2;
 		}
 		return (ans = (unsigned char)ans, close(cmd[cmd_n].std_out), \
-		free_all(1, cmd, tree, 1), \
-		g_var = ans, get_set_env(NULL, 1, 0), exit(ans), ans);
+			free_all(1, cmd, tree, 1), \
+			g_var = ans, get_set_env(NULL, 1, 0), exit(ans), ans);
 	}
 	else
 		return (ans = (unsigned char) ans, g_var = ans, exit(ans), ans);

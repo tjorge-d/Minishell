@@ -6,7 +6,7 @@
 /*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:32 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/08 15:16:40 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:48:00 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	wait_loop(int n_commands, t_cmd *commands)
 	int	exit_status;
 
 	i = 0;
+	signal(SIGQUIT, SIG_IGN);
 	while (i < n_commands)
 	{
 		waitpid(commands[i].process_id, &exit_status, 0);

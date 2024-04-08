@@ -6,7 +6,7 @@
 /*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:53:14 by tjorge-d          #+#    #+#             */
-/*   Updated: 2024/04/08 15:13:52 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:23:59 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	runner(void)
 
 	tree = NULL;
 	signal(SIGINT, ctrl_c_signal);
+	signal(SIGQUIT, SIG_IGN);
 	line = readline("<Minishell> ");
 	if (!line)
 		return (printf("exit\n"), 0);
@@ -75,7 +76,8 @@ int	runner(void)
 		return (1);
 	if (tree)
 	{
-		signal(SIGINT, SIG_IGN);
+		signal(SIGINT, ctrl_c_proccess);
+		signal(SIGQUIT, SIG_DFL);
 		g_var = executor(tree);
 		destroy_tree(&tree);
 	}
@@ -107,7 +109,6 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	(void)argc;
 	g_var = 0;
-	signal(SIGQUIT, SIG_IGN);
 	get_set_env(envp, 0, 0);
 	increase_shell_lvl();
 	while (runner())
