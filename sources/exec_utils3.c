@@ -6,7 +6,7 @@
 /*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:40:15 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/08 17:01:16 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/08 18:37:34 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	close_fds(t_cmd *coms, int total)
 			close(coms[i].fd_in);
 		if (coms[i].fd_out != STDOUT_FILENO)
 			close(coms[i].fd_out);
+		//close(coms[i].std_in);
 		i++;
 	}
 }

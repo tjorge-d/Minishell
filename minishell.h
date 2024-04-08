@@ -6,7 +6,7 @@
 /*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:15:46 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/08 16:56:42 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/08 18:31:01 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,7 @@ int			red_in(t_tree *tree, int *fd_in);
 void		run(t_cmd *commands, int cmd_n, int total_cmds, t_tree *tree);
 int			executor(t_tree *tree);
 int			do_redirects(t_tree *tree, t_cmd *commands, int command_n);
+int			get_n_commands(t_tree *tree);
 
 //run_error.c
 void		dir_err_handler(int t_cmds, t_cmd *cmds, t_tree *tree, int cmd_n);
