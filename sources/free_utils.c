@@ -6,7 +6,7 @@
 /*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:32 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/08 10:21:07 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/08 15:16:40 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int	wait_loop(int n_commands, t_cmd *commands)
 		free_char_pp(commands[i].args);
 		i++;
 	}
+	if (exit_status == 131)
+		write(2, "Quit (core dumped)\n", 20);
 	free(commands);
 	return (WEXITSTATUS(exit_status));
 }

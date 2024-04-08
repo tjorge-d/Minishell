@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcota-pa <diogopaimsteam@gmail.com>        +#+  +:+       +#+        */
+/*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 15:54:51 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/05 16:53:59 by dcota-pa         ###   ########.fr       */
+/*   Updated: 2024/04/08 14:55:46 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ void	quit_here_doc(int signal)
 	g_var = 130;
 	(void)signal;
 }
+
+// void	sig_quit_proccess(int signal)
+// {
+	
+// }
 
 void	ctrl_c_signal_hd(int signal)
 {

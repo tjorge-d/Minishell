@@ -6,7 +6,7 @@
 /*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:40:15 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/08 10:18:59 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/08 15:12:50 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	close_fds(t_cmd *coms, int total)
 	int	i;
 
 	i = 0;
+	signal(SIGINT, ctrl_c_signal);
 	while (i < total)
 	{
 		if (coms[i].fd_in != STDIN_FILENO)
