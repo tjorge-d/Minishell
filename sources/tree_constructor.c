@@ -25,6 +25,8 @@ void	destroy_tree(t_tree **tree)
 	{
 		prev_node = curr_node;
 		curr_node = curr_node->right;
+		if (prev_node->type == REDIRECT_IN_DOC)
+			close(ft_atoi(prev_node->data));
 		if (prev_node->data)
 			free(prev_node->data);
 		free(prev_node);

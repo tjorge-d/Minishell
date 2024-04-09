@@ -28,9 +28,6 @@ int	ft_is_command(char *command)
 
 void	fill_command(int n_cmd, t_cmd *commands, t_tree *tree)
 {
-	int	i;
-
-	i = 0;
 	while (tree && tree->type != COMMAND)
 	{
 		tree = tree->right;
@@ -66,7 +63,6 @@ void	close_fds(t_cmd *coms, int total)
 			close(coms[i].fd_in);
 		if (coms[i].fd_out != STDOUT_FILENO)
 			close(coms[i].fd_out);
-		//close(coms[i].std_in);
 		i++;
 	}
 }

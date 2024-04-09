@@ -36,10 +36,12 @@ int	red_in(t_tree *tree, int *fd_in)
 
 int	red_in_doc(t_tree *tree, int *fd_in)
 {
-	int	atoi;
+	int	fd;
 
-	atoi = ft_atoi(tree->data);
-	*fd_in = atoi;
+	fd = ft_atoi(tree->data);
+	if (*fd_in != STDIN_FILENO)
+		close(*fd_in);
+	*fd_in = fd;
 	return (1);
 }
 

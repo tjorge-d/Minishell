@@ -95,7 +95,7 @@ int	do_child(t_tree *tree, int command_n, t_cmd *commands, int total)
 		if (head)
 			run(commands, command_n, total, tree);
 		else
-			return (close_fds(commands, total), get_set_env(NULL, 1, 0), \
+			return (get_set_env(NULL, 1, 0), \
 				free_all(total, commands, tree, 1), exit(0), 0);
 	}
 	return (0);
