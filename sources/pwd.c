@@ -14,6 +14,15 @@
 
 int	print_pwd(void)
 {
-	printf("%s\n", getcwd(NULL, 0));
+	char	*buf;
+
+	buf = getcwd(NULL, 0);
+	if (!buf)
+	{
+		perror("Error: pwd");
+		return (0);
+	}
+	printf("%s\n", buf);
+	free(buf);
 	return (0);
 }
