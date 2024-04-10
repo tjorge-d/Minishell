@@ -6,13 +6,11 @@
 /*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:53:14 by tjorge-d          #+#    #+#             */
-/*   Updated: 2024/04/10 16:40:21 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/10 20:02:52 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-int	g_var;
 
 void	print_tokens(t_token **token)
 {
@@ -57,33 +55,6 @@ void	print_tree(t_tree **tree)
 	printf("\n=================================\n");
 }
 
-int	runner(void)
-{
-	t_tree	*tree;
-	char	*line;
-
-	tree = NULL;
-	signal(SIGINT, ctrl_c_signal);
-	signal(SIGQUIT, SIG_IGN);
-	line = readline("Minishell> ");
-	if (!line)
-		return (printf("exit\n"), 0);
-	if (line[0] == '\0')
-		return (free(line), 1);
-	add_history(line);
-	tree = parser(line);
-	if (!tree)
-		return (1);
-	if (tree)
-	{
-		signal(SIGINT, ctrl_c_proccess);
-		signal(SIGQUIT, SIG_DFL);
-		g_var = executor(tree);
-		destroy_tree(&tree);
-	}
-	return (1);
-}
-
 t_tree	*parser(char *line)
 {
 	t_token		*token;
@@ -102,20 +73,6 @@ t_tree	*parser(char *line)
 	tree_constructor(&tree, &token);
 	destroy_tokens(token, 'd');
 	return (tree);
-}
-
-int	main(int argc, char **argv, char **envp)
-{
-	(void)argv;
-	(void)argc;
-	g_var = 0;
-	get_set_env(envp, 0, 0);
-	increase_shell_lvl();
-	while (runner())
-		;
-	rl_clear_history();
-	get_set_env(NULL, 1, 0);
-	return (0);
 }
 
 // valgrind --track-fds=yes --leak-check=full --show-leak-kinds=all  

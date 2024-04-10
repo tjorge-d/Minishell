@@ -3,43 +3,42 @@ NAME= minishell
 CC= cc
 CFLAGS= -g -Wall -Werror -Wextra
 
-SRC_BI= $(addprefix sources/Built_ins/, $(SOURCES_BUILT_IN))
-SOURCES_BUILT_IN=	built_in_exp.c 				\
-					unset.c						\
-					echo.c 						\
-					pwd.c						\
-					cd_built_in.c				\
-					env.c						\
-					exit.c						
+SRC_BI= $(addprefix sources/built_ins/, $(SOURCES_BUILT_IN))
+SOURCES_BUILT_IN=	cd_built_in.c				\
+					exp_built_in.c 				\
+					unset_built_in.c			\
+					echo_built_in.c 			\
+					pwd_built_in.c				\
+					env_built_in.c				\
+					exit_built_in.c						
 
-SRC_EX= $(addprefix sources/Executor/, $(SOURCES_EXECUTOR))
-SOURCES_EXECUTOR=	global_utils.c				\
-					free_utils.c				\
-					signals.c					\
+SRC_EX= $(addprefix sources/executor/, $(SOURCES_EXECUTOR))
+SOURCES_EXECUTOR=	commands.c					\
 					executor.c					\
+					free_utils.c				\
+					global_utils.c				\
+					main.c						\
 					redirections.c				\
+					run_errors.c				\
 					run_utils.c					\
-					commands.c					\
-					run_errors.c				
+					signals.c
 
-SRC_PA= $(addprefix sources/Parser/, $(SOURCES_PARSER))
-SOURCES_PARSER=		parser.c					\
-					get_data_path.c				\
-					parser_utils.c				\
+SRC_PA= $(addprefix sources/parser/, $(SOURCES_PARSER))
+SOURCES_PARSER=		expander_utils.c			\
 					expander.c					\
-					expander_utils.c			\
-					tokenizer.c					\
-					tokenizer_utils.c			\
+					get_data_path.c				\
 					here_doc.c					\
-					tree_constructor.c			\
-					tree_constructor_utils.c	
+					parser_utils.c				\
+					parser.c					\
+					tokenizer_utils.c			\
+					tokenizer.c					\
+					tree_constructor_utils.c	\
+					tree_constructor.c
 		
-
 OBJ_DIR= objects
-OBJ=	$(addprefix $(OBJ_DIR)/, $(SRC_BI:sources/Built_ins/%.c=%.o)) \
-		$(addprefix $(OBJ_DIR)/, $(SRC_EX:sources/Executor/%.c=%.o)) \
-		$(addprefix $(OBJ_DIR)/, $(SRC_PA:sources/Parser/%.c=%.o))
-
+OBJ=	$(addprefix $(OBJ_DIR)/, $(SRC_BI:sources/built_ins/%.c=%.o)) \
+		$(addprefix $(OBJ_DIR)/, $(SRC_EX:sources/executor/%.c=%.o)) \
+		$(addprefix $(OBJ_DIR)/, $(SRC_PA:sources/parser/%.c=%.o))
 
 LIBFT_DIR= ./libft
 LIBFT= $(LIBFT_DIR)/libft.a
@@ -49,15 +48,15 @@ all: $(NAME)
 $(NAME): $(OBJ) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJ) -lreadline -o $@ $(LIBFT)
 
-$(OBJ_DIR)/%.o: sources/Built_ins/%.c
+$(OBJ_DIR)/%.o: sources/built_ins/%.c
 	mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJ_DIR)/%.o: sources/Executor/%.c
+$(OBJ_DIR)/%.o: sources/executor/%.c
 	mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJ_DIR)/%.o: sources/Parser/%.c
+$(OBJ_DIR)/%.o: sources/parser/%.c
 	mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 

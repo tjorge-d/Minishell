@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-		"libft.h": "c",
-		"minishell.h": "c",
-		"types.h": "c",
-		"unistd.h": "c",
-		"time.h": "c"
-	}
-}
