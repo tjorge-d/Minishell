@@ -65,7 +65,7 @@ do_tests()
 	dir+="/"
 	while [ -e "${dir}${test}${n}" ]; do
 		res1="out_minishell/res${n}" 
-        $val ../minishell < "${dir}${test}${n}" > $res1 2>&1
+        $val ../../minishell < "${dir}${test}${n}" > $res1 2>&1
 		cat exitcodes >> $res1
 		clean_test $res1;
 		res2="out_bash/res${n}"
