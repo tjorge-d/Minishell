@@ -52,7 +52,6 @@ int	run_exit(t_cmd *cmd, int cmd_n, t_tree *tree, int flag)
 	}
 	else if (cmd[cmd_n].args[1] && cmd[cmd_n].args[2])
 		return (ft_putstr_fd("Error: exit: too many arguments\n", 2), 1);
-	
 	if (ans == LONG_MAX)
 	{
 		ft_putstr_fd("Error: exit: numeric argument required\n", 2);
