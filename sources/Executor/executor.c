@@ -6,24 +6,11 @@
 /*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:16 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/10 16:40:21 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/10 17:16:14 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-int	get_n_commands(t_tree *tree)
-{
-	int	ans;
-
-	ans = 0;
-	while (tree)
-	{
-		tree = tree->left;
-		ans ++;
-	}
-	return (ans);
-}
 
 int	create_pipes(int n_commands, t_cmd *commands, t_tree *tree)
 {
@@ -42,32 +29,6 @@ int	create_pipes(int n_commands, t_cmd *commands, t_tree *tree)
 		commands[i - 1].fd_out = pipes[1];
 		commands[i].fd_in = pipes[0];
 		i++;
-	}
-	return (1);
-}
-
-int	do_redirects(t_tree *tree, t_cmd *commands, int command_n)
-{
-	while (tree && tree->type != PIPE)
-	{
-		if (tree->type == REDIRECT_IN)
-		{
-			if (!red_in(tree, &commands[command_n].fd_in))
-				return (0);
-		}
-		else if (tree->type == REDIRECT_IN_DOC)
-			red_in_doc(tree, &commands[command_n].fd_in);
-		else if (tree->type == REDIRECT_OUT)
-		{
-			if (!red_out(tree, &commands[command_n].fd_out))
-				return (0);
-		}
-		else if (tree->type == REDIRECT_OUT_APP)
-		{
-			if (!red_out_app(tree, &commands[command_n].fd_out))
-				return (0);
-		}
-		tree = tree->right;
 	}
 	return (1);
 }

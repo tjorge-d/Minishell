@@ -1,16 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_utils3.c                                      :+:      :+:    :+:   */
+/*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:40:15 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/10 16:40:21 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/10 17:18:31 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+int	get_n_commands(t_tree *tree)
+{
+	int	ans;
+
+	ans = 0;
+	while (tree)
+	{
+		tree = tree->left;
+		ans ++;
+	}
+	return (ans);
+}
 
 int	ft_is_command(char *command)
 {
@@ -38,6 +51,34 @@ void	fill_command(int n_cmd, t_cmd *commands, t_tree *tree)
 		commands[n_cmd].command = NULL;
 }
 
+int	build_args(int cmd_n, t_cmd *commands, t_tree *tree)
+{
+	char	**args;
+	int		i;
+
+	i = 0;
+	if (commands[cmd_n].command == NULL)
+	{
+		args = malloc(sizeof(char *));
+		args[0] = NULL;
+		commands[cmd_n].args = args;
+		return (1);
+	}
+	while (tree && (tree->type != COMMAND))
+		tree = tree->right;
+	args = malloc(sizeof(char *) *(count_args(tree) + 1));
+	if (!args)
+		return (0);
+	while (tree && (tree->type == COMMAND || tree->type == ARGUMENT))
+	{
+		args[i++] = strdup(tree->data);
+		tree = tree->right;
+	}
+	args[i] = NULL;
+	commands[cmd_n].args = args;
+	return (1);
+}
+
 void	fill_commands(int n_commands, t_cmd *commands, t_tree *tree)
 {
 	int	i;
@@ -49,20 +90,5 @@ void	fill_commands(int n_commands, t_cmd *commands, t_tree *tree)
 		build_args(i, commands, tree);
 		i++;
 		tree = tree->left;
-	}
-}
-
-void	close_fds(t_cmd *coms, int total)
-{
-	int	i;
-
-	i = 0;
-	while (i < total)
-	{
-		if (coms[i].fd_in != STDIN_FILENO)
-			close(coms[i].fd_in);
-		if (coms[i].fd_out != STDOUT_FILENO)
-			close(coms[i].fd_out);
-		i++;
 	}
 }

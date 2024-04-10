@@ -6,7 +6,7 @@
 /*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:32 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/10 16:40:21 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/10 17:15:03 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,19 @@ int	wait_loop(int n_commands, t_cmd *commands)
 		write(2, "Quit (core dumped)\n", 20);
 	free(commands);
 	return (WEXITSTATUS(exit_status));
+}
+
+void	close_fds(t_cmd *coms, int total)
+{
+	int	i;
+
+	i = 0;
+	while (i < total)
+	{
+		if (coms[i].fd_in != STDIN_FILENO)
+			close(coms[i].fd_in);
+		if (coms[i].fd_out != STDOUT_FILENO)
+			close(coms[i].fd_out);
+		i++;
+	}
 }
