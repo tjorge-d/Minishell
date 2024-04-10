@@ -40,6 +40,8 @@ int	cd_without_args(void)
 	char	*cwd;	
 
 	home_value = search_var_value("HOME");
+	if (!home_value)
+		return (ft_putstr_fd("bash: cd: HOME not set\n", 2), 1);
 	if (chdir(home_value))
 	{
 		error_msg = get_error_msg_cd(home_value);

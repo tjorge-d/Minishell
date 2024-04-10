@@ -30,8 +30,7 @@ void	here_doc_proccess(char *exit_str, t_token **token, int fd[2])
 	if (line)
 		free(line);
 	else if (!line && g_var == 0)
-		printf("warning: here-document delimited \
-		by end-of-file (wanted `%s')\n", exit_str);
+		here_doc_ctrld_warn(exit_str);
 	close(fd[1]);
 	close(fd[0]);
 	destroy_tokens(*token, 'h');

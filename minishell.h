@@ -146,9 +146,8 @@ char		*check_command(char **path, char *data);
 char		*get_data_path(char *data, t_tree **tree, t_token **token);
 
 //utils_update
-void		copy_array_2(char **src, char **dest);
 char		*search_var_value(char *var_name);
-int			search_var_index(char *s);
+void		copy_array_2(char **src, char **dest);
 int			array_len(char **arr);
 char		**copy_array(char **src);
 char		**get_set_env(char **new_env, int flag_to_free, int flag_to_exit);
@@ -162,9 +161,10 @@ int			run_echo(char **args);
 int			print_pwd(void);
 
 //free_utils.c
+void		free_all(int n_commands, t_cmd *cmds, t_tree *tree, int rm_tree);
 void		free_char_pp(char **array);
 int			wait_loop(int n_commands, t_cmd *commands);
-void		free_all(int n_commands, t_cmd *cmds, t_tree *tree, int rm_tree);
+void		close_fds(t_cmd *coms, int total);
 
 //built_in_exp.c
 int			export(char *expression);
@@ -186,31 +186,40 @@ int			run_env(char **args);
 int			run_exit(t_cmd *cmd, int cmd_n, t_tree *tree, int flag);
 void		increase_shell_lvl(void);
 
-//exec_utils3.c
+//commands.c
+int			get_n_commands(t_tree *tree);
 int			ft_is_command(char *command);
-void		close_fds(t_cmd *coms, int total);
-void		fill_commands(int n_commands, t_cmd *commands, t_tree *tree);
 void		fill_command(int n_cmd, t_cmd *commands, t_tree *tree);
+int			build_args(int n_cmd, t_cmd *cmds, t_tree *tree);
+void		fill_commands(int n_commands, t_cmd *commands, t_tree *tree);
+
+
+
+int			count_args(t_tree *tree);
+int			do_redirects(t_tree *tree, t_cmd *commands, int command_n);
+void		run(t_cmd *commands, int cmd_n, int total_cmds, t_tree *tree);
+int			get_n_commands(t_tree *tree);
+int			search_var_index(char *s);
+
+
 
 //exec_utils2.c
-int			count_args(t_tree *tree);
 int			run_built_in(t_cmd *cmd, int cmd_n, t_tree *tree, int total_cmds);
 int			run_built_in_solo(t_tree *tree, t_cmd *cmd, char **args, int cmd_n);
 
 //exec_utils.c
-int			build_args(int n_cmd, t_cmd *cmds, t_tree *tree);
 int			red_out_app(t_tree *tree, int *fd_out);
 int			red_out(t_tree *tree, int *fd_out);
 int			red_in_doc(t_tree *tree, int *fd_in);
 int			red_in(t_tree *tree, int *fd_in);
 
-//exec.c
-void		run(t_cmd *commands, int cmd_n, int total_cmds, t_tree *tree);
+//executor.c
+int			create_pipes(int n_commands, t_cmd *commands, t_tree *tree);
+int			do_child(t_tree *tree, int command_n, t_cmd *commands, int total);
 int			executor(t_tree *tree);
-int			do_redirects(t_tree *tree, t_cmd *commands, int command_n);
-int			get_n_commands(t_tree *tree);
 
 //run_error.c
+void		here_doc_ctrld_warn(char *str);
 void		dir_err_handler(int t_cmds, t_cmd *cmds, t_tree *tree, int cmd_n);
 void		cmd_err_handler(int t_cmds, t_cmd *cmds, t_tree *tree, int cmd_n);
 void		fl_err_handler(int ttl_cmds, t_cmd *cmds, t_tree *tree, int cmd_n);

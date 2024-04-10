@@ -46,9 +46,9 @@ int	run_env(char **args)
 {
 	if (args[1])
 	{
-		ft_putstr_fd("env: ", 2);
+		ft_putstr_fd("env: ‘", 2);
 		ft_putstr_fd(args[1], 2);
-		ft_putstr_fd(": Permission denied\n", 2);
+		ft_putstr_fd("’: No such file or directory\n", 2);
 		return (126);
 	}
 	else 
