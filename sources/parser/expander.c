@@ -6,7 +6,7 @@
 /*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:03 by tjorge-d          #+#    #+#             */
-/*   Updated: 2024/04/10 16:40:21 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/11 11:57:14 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*refresh_line(char *line, int *x1, int x2, char *expansion)
 					+ (ft_strlen(expansion)) + 1));
 	if (!new_line)
 		return (free(line), free(expansion), fail_msg('M'), \
-		get_set_env(NULL, 1, 2), NULL);
+			get_set_env(NULL, 1, 2), NULL);
 	i = -1;
 	while (++i < (*x1))
 		new_line[i] = line[i];

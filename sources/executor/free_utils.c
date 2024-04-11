@@ -6,7 +6,7 @@
 /*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:32 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/10 17:15:03 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/11 11:46:39 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	free_all(int n_commands, t_cmd *cmds, t_tree *tree, int rm_tree)
 	free(cmds);
 	if (rm_tree)
 		destroy_tree(&tree);
+	rl_clear_history();
 }
 
 void	free_char_pp(char **array)

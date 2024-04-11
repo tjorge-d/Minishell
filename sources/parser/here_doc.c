@@ -6,7 +6,7 @@
 /*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:42:10 by tjorge-d          #+#    #+#             */
-/*   Updated: 2024/04/10 16:40:21 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/11 11:58:11 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	here_doc_proccess(char *exit_str, t_token **token, int fd[2])
 	close(fd[0]);
 	destroy_tokens(*token, 'h');
 	get_set_env(NULL, 1, 0);
+	rl_clear_history();
 	if (g_var == 130)
 		exit(130);
 	exit(0);
@@ -53,7 +54,7 @@ int	create_here_doc(char *exit_statement, t_token **token)
 	id = fork();
 	if (id < 0)
 		return (fail_msg('F'), destroy_tokens((*token), 'h'), \
-			get_set_env(NULL, 1, 2), close(fd[0]), close(fd[1]), 0);
+			close(fd[0]), close(fd[1]), get_set_env(NULL, 1, 2), 0);
 	if (id == 0)
 		here_doc_proccess(exit_statement, token, fd);
 	else

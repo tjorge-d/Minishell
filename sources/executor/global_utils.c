@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_update.c                                     :+:      :+:    :+:   */
+/*   global_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:53:39 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/10 16:40:21 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/11 11:50:35 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,9 @@ char	**get_set_env(char **new_env, int flag_to_free, int flag_to_exit)
 	else if (flag_to_free == 1)
 		free_char_pp(env);
 	if (flag_to_exit)
+	{
+		rl_clear_history();
 		exit(flag_to_free);
+	}
 	return (env);
 }
