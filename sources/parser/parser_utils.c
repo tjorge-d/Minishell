@@ -6,7 +6,7 @@
 /*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:58:29 by tjorge-d          #+#    #+#             */
-/*   Updated: 2024/04/10 16:40:21 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:51:23 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ void	fail_msg(char mode)
 	else if (mode == 'M')
 		write(2, "Error: Failed to allocate memory\n", 34);
 	else if (mode == 'S')
+	{
+		g_var = 2;
 		write(2, "Error: Invalid syntax\n", 23);
+	}
 	else if (mode == 'F')
 		write(2, "Error: Failed to fork the program\n", 35);
 }

@@ -6,7 +6,7 @@
 /*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:42:10 by tjorge-d          #+#    #+#             */
-/*   Updated: 2024/04/11 11:58:11 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:53:24 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int	invalid_here_doc_exit(t_token *curr_token)
 {
 	if (curr_token && (curr_token->data[0] == V_BAR \
 		|| curr_token->data[0] == GREATER || curr_token->data[0] == LESS))
+		return (1);
+	if (!curr_token)
 		return (1);
 	return (0);
 }

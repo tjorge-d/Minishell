@@ -6,7 +6,7 @@
 /*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:50:03 by tjorge-d          #+#    #+#             */
-/*   Updated: 2024/04/10 16:40:21 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:46:27 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	pipe_brancher(t_tree **tree, t_token **token)
 
 int	redirection_checker(t_tree **tree, t_token **token)
 {
+	int			handler; 
 	t_token		*curr_token;
 	t_tree		*curr_branch;
 
@@ -69,8 +70,11 @@ int	redirection_checker(t_tree **tree, t_token **token)
 	{
 		if (curr_token->data[0] == LESS || curr_token->data[0] == GREATER)
 		{
-			if (!add_redirection(&curr_branch, &curr_token, curr_token->data))
+			handler = add_redirection(&curr_branch, &curr_token, curr_token->data);
+			if (!handler)
 				return (0);
+			if (handler == 2)
+				return (2);
 		}
 		curr_token = curr_token->next;
 		if (curr_token && curr_token->data[0] == V_BAR)
@@ -110,6 +114,9 @@ int	command_builder(t_tree **tree, t_token **token)
 
 int	tree_constructor(t_tree **tree, t_token **token)
 {
+	int	handler;
+
+	handler = 0;
 	*tree = NULL;
 	*tree = init_node(NULL, FIRST_BRANCH);
 	if (!tree)
@@ -117,9 +124,12 @@ int	tree_constructor(t_tree **tree, t_token **token)
 	if (!pipe_brancher(tree, token))
 		return (destroy_tree(tree), destroy_tokens((*token), 'h'), \
 			get_set_env(NULL, 1, 2), 0);
-	if (!redirection_checker(tree, token))
+	handler = redirection_checker(tree, token);
+	if (handler == 0)
 		return (destroy_tree(tree), destroy_tokens((*token), 'h'), \
 			get_set_env(NULL, 1, 2), 0);
+	else if (handler == 2)
+		return (destroy_tree(tree), *tree = NULL, 0);
 	if (!command_builder(tree, token))
 		return (destroy_tree(tree), destroy_tokens((*token), 'h'), \
 			get_set_env(NULL, 1, 2), 0);

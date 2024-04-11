@@ -6,7 +6,7 @@
 /*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:47:23 by tjorge-d          #+#    #+#             */
-/*   Updated: 2024/04/10 16:40:21 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:45:49 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	add_redirection(t_tree **branch, t_token **token, char *redir)
 			if (iterator->right == NULL)
 				return (0);
 			if ((*token)->next == NULL || is_special((*token)->next->data[0]))
-				return (fail_msg('S'), 0);
+				return (fail_msg('S'), 2);
 			if ((*token)->type == REDIRECT_IN_DOC)
 				iterator->right->type = REDIRECT_IN_DOC;
 			iterator->right->data = ft_strdup((*token)->next->data);
