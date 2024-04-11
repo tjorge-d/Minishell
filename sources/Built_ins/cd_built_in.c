@@ -61,6 +61,8 @@ int	cd_with_arg(char *arg)
 	char	*error_msg;
 	char	*cwd;
 
+	if (!arg)
+		return (ft_putstr_fd("bash: cd: OLDPWD not set\n", 2), 1);
 	if (!ft_strncmp("-", arg, 2))
 	{
 		return (cd_with_arg(search_var_value("OLDPWD")));
