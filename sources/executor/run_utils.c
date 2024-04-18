@@ -78,7 +78,7 @@ int	run_built_in_solo(t_tree *tree, t_cmd *cmd, char **args, int cmd_n)
 	if (cmd[cmd_n].fd_in != 1)
 		dup2(cmd[cmd_n].fd_in, STDIN_FILENO);
 	close_fds(cmd, 1);
-	ans = if_built_in_sequence (cmd, cmd_n, tree, 1);
+	ans = if_built_in_sequence(cmd, cmd_n, tree, 1);
 	if (cmd[cmd_n].std_out && cmd[cmd_n].std_out != STDOUT_FILENO)
 	{
 		dup2(cmd[cmd_n].std_out, STDOUT_FILENO);

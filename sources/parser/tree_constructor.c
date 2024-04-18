@@ -70,7 +70,8 @@ int	redirection_checker(t_tree **tree, t_token **token)
 	{
 		if (curr_token->data[0] == LESS || curr_token->data[0] == GREATER)
 		{
-			handler = add_redirection(&curr_branch, &curr_token, curr_token->data);
+			handler = add_redirection(&curr_branch, \
+				&curr_token, curr_token->data);
 			if (!handler)
 				return (0);
 			if (handler == 2)
