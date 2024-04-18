@@ -6,7 +6,7 @@
 /*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:32 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/11 16:58:32 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/18 17:17:03 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	free_all(int n_commands, t_cmd *cmds, t_tree *tree, int rm_tree)
 	free(cmds);
 	if (rm_tree)
 		destroy_tree(&tree);
-	rl_clear_history();
+	if (n_commands > 1)
+		rl_clear_history();
 }
 
 void	free_char_pp(char **array)
@@ -52,15 +53,21 @@ int	wait_loop(int n_commands, t_cmd *commands)
 {
 	int	i;
 	int	exit_status;
+	int	flag;
 
 	i = 0;
+	flag = 0;
 	signal(SIGQUIT, SIG_IGN);
 	while (i < n_commands)
 	{
 		waitpid(commands[i].process_id, &exit_status, 0);
 		free_char_pp(commands[i].args);
 		i++;
+		if (exit_status == 2)
+			flag = 1;
 	}
+	if (flag)
+		write(1, "\n", 1);
 	if (exit_status == 131)
 		write(2, "Quit (core dumped)\n", 20);
 	free(commands);

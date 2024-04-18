@@ -6,7 +6,7 @@
 /*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:15:46 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/10 20:30:40 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/18 15:16:42 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,8 +177,8 @@ void		ctrl_c_signal(int signal);
 //PARSER
 //expander_utils.c
 int			is_to_expand(char *line, int i);
+int			ambiguous_redirect(char *line, int i);
 char		*get_var(char *line, int var_pos, int len);
-int			is_null_token(char *line, int i, char quote);
 int			iter_single_quote(char **line, int i);
 int			iter_double_quote(char **line, int i);
 
@@ -202,6 +202,7 @@ int			invalid_here_doc_exit(t_token *curr_token);
 int			here_doc(t_token **token);
 
 //parser_utils.c
+int			is_null_token(char *line, int i, char quote);
 int			is_space(char c);
 int			is_special(char c);
 void		free_matrix(char **matrix);

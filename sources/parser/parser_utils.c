@@ -6,11 +6,22 @@
 /*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:58:29 by tjorge-d          #+#    #+#             */
-/*   Updated: 2024/04/11 16:51:23 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/18 14:55:01 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+int	is_null_token(char *line, int i, char quote)
+{
+	if (line[i] == quote)
+	{
+		if (line[i + 1] == '|' || line[i + 1] == '<' \
+		|| line[i + 1] == '>' || line[i + 1] == '\0' || is_space(line[i + 1]))
+			return (1);
+	}
+	return (0);
+}
 
 int	is_space(char c)
 {

@@ -6,7 +6,7 @@
 /*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 15:54:51 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/10 16:40:21 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/18 17:08:02 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	quit_here_doc(int signal)
 
 void	ctrl_c_proccess(int signal)
 {
-	printf("\n");
+	write(1, "\n", 1);
 	(void)signal;
 }
 

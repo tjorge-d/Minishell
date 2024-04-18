@@ -6,7 +6,7 @@
 /*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:37:16 by dcota-pa          #+#    #+#             */
-/*   Updated: 2024/04/11 17:08:07 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/18 16:53:37 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,10 @@ int	executor(t_tree *tree)
 	{
 		cmds[i].process_id = fork();
 		if (cmds[i].process_id == 0)
+		{
+			signal(SIGINT, ctrl_c_proccess);
 			do_child(tree, i, cmds, n_commands);
+		}
 		else if (cmds[i].process_id < 0)
 			return (fail_msg('F'), free_all(n_commands, cmds, tree, 1),
 				g_var = 126, get_set_env(NULL, 1, 126), 126);

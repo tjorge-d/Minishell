@@ -6,7 +6,7 @@
 /*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:36:37 by tjorge-d          #+#    #+#             */
-/*   Updated: 2024/04/11 11:59:47 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/18 17:34:26 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,30 @@ int	is_to_expand(char *line, int i)
 	return (1);
 }
 
+int	ambiguous_redirect(char *line, int i)
+{
+	int	pivot;
+
+	pivot = i;
+	i--;
+	while (!is_space(line[i]))
+	{
+		pivot = i;
+		i--;
+	}
+	while (is_space(line[i]))
+	{
+		i--;
+		if (i < 0)
+			return (0);
+		if (i > 0 && line[i] == LESS && line[i - 1] == LESS)
+			return (0);
+		else if (line[i] == LESS || line[i] == GREATER)
+			return (line[pivot] = EMPTY, 1);
+	}
+	return (0);
+}
+
 char	*get_var(char *line, int var_pos, int len)
 {
 	char	**env;
@@ -48,26 +72,18 @@ char	*get_var(char *line, int var_pos, int len)
 	var_name[len - 1] = '=';
 	while (++i < len - 1)
 		var_name[i] = line[var_pos + i];
-	i = 0;
-	while (env[i])
+	i = -1;
+	while (env[++i])
 	{
 		if (!ft_strncmp(var_name, env[i], len))
+		{
+			if (ft_strchr(env[i], ' ') && ambiguous_redirect(line, var_pos - 1))
+				break ;
 			return (free(var_name), &env[i][len]);
-		i++;
+		}
 	}
 	free(var_name);
 	return (NULL);
-}
-
-int	is_null_token(char *line, int i, char quote)
-{
-	if (line[i] == quote)
-	{
-		if (line[i + 1] == '|' || line[i + 1] == '<' \
-		|| line[i + 1] == '>' || line[i + 1] == '\0' || is_space(line[i + 1]))
-			return (1);
-	}
-	return (0);
 }
 
 int	iter_single_quote(char **line, int i)

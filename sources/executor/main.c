@@ -6,7 +6,7 @@
 /*   By: tjorge-d <tiagoscp2020@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 20:01:53 by tjorge-d          #+#    #+#             */
-/*   Updated: 2024/04/11 17:21:41 by tjorge-d         ###   ########.fr       */
+/*   Updated: 2024/04/18 17:04:35 by tjorge-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	runner(void)
 		return (1);
 	if (tree)
 	{
-		signal(SIGINT, ctrl_c_proccess);
+		signal(SIGINT, SIG_IGN);
 		signal(SIGQUIT, SIG_DFL);
 		g_var = executor(tree);
 		destroy_tree(&tree);
