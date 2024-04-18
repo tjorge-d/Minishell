@@ -17,7 +17,7 @@ int	red_in(t_tree *tree, int *fd_in)
 	int		fd;
 
 	if (tree->data[0] == EMPTY)
-		return (ft_putstr_fd("Error: ambiguos redirect \n", 2), 0);
+		return (ft_putstr_fd("Error: ambiguous redirect\n", 2), 0);
 	fd = open(tree->data, O_RDONLY);
 	if (fd == -1)
 	{
@@ -52,7 +52,7 @@ int	red_out(t_tree *tree, int *fd_out)
 	int		fd;
 
 	if (tree->data[0] == EMPTY)
-		return (ft_putstr_fd("Error: ambiguos redirect \n", 2), 0);
+		return (ft_putstr_fd("Error: ambiguous redirect\n", 2), 0);
 	if (tree->data[0] == '\0')
 		return (ft_putstr_fd("Error: : No such file or directory\n", 2), 0);
 	fd = open(tree->data, O_CREAT | O_WRONLY | O_TRUNC, 0644);
@@ -77,7 +77,7 @@ int	red_out_app(t_tree *tree, int *fd_out)
 	int		fd;
 
 	if (tree->data[0] == EMPTY)
-		return (ft_putstr_fd("Error: ambiguos redirect \n", 2), 0);
+		return (ft_putstr_fd("Error: ambiguous redirect\n", 2), 0);
 	if (tree->data[0] == '\0')
 		return (ft_putstr_fd("Error: : No such file or directory\n", 2), 0);
 	fd = open(tree->data, O_CREAT | O_WRONLY | O_APPEND, 0644);
