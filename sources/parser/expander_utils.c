@@ -42,7 +42,7 @@ int	ambiguous_redirect(char *line, int i)
 	if (i > 0 && line[i] == LESS && line[i - 1] == LESS)
 		return (0);
 	else if (line[i] == LESS || line[i] == GREATER)
-			return (line[pivot] = EMPTY, 1);
+		return (line[pivot] = EMPTY, 1);
 	while (!is_space(line[i]))
 	{
 		pivot = i;
