@@ -92,7 +92,7 @@ int	run_cd(char **args)
 	{
 		ft_putstr_fd("ERROR: Cd: too many arguments\n", 2);
 	}
-	else if (i <= 1)
+	else if (i <= 1 || (i == 2 && args[1][0] == '\0'))
 	{
 		return (cd_without_args());
 	}
